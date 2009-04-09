@@ -1,0 +1,39 @@
+[PROJECT]
+Target=remote.HEX
+Development_Mode=2
+Processor=0x4520
+Processor_Text=PIC18F4520
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=C:\Users\Bob\Desktop\remote\remote.c
+BuildTool=C-COMPILER
+OptionString=+FH
+AdditionalOptionString=
+BuildRequired=1
+
+[remote.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=remote.c
+
+[Windows]
+0=0000 remote.c 0 0 796 451 3 0
+
+[Opened Files]
+1=remote.c
+2=
+[Units]
+Count=1
+1=remote.c (main)
