@@ -1,0 +1,110 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @SCRATCH
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     @INTERRUPT_AREA
+018-019 strtok.save
+01A-01D _Randseed
+01E     MAIN.ADC_1
+01F     MAIN.ADC_2
+020     MAIN.ADC_3
+021     MAIN.i
+022-023 MAIN.buffer
+024     @PUTCHAR_2_.P1
+024     MAIN.@SCRATCH1
+025     MAIN.@SCRATCH2
+026     MAIN.@SCRATCH3
+027     MAIN.@SCRATCH4
+028-029 @MUL1616.P1
+028     MAIN.@SCRATCH5
+029-02A @DIV1616.P1
+029     MAIN.@SCRATCH6
+02A-02B @MUL1616.P1
+02A     min.a
+02B-02C @DIV1616.P1
+02B     min.b
+02C     @MUL1616.@SCRATCH1
+02D     @DIV1616.@SCRATCH1
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_HIGH
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBE     CCP_1_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+011C  @PUTCHARI_BIU_1
+0124  @PUTCHAR_2_
+00A6  @MUL1616
+00C4  @DIV1616
+009E  wegetsignal
+0106  min
+0164  MAIN
+0164  @cinit
+0136  StrtoulGO
+0136  StrtolGO
+
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\Bob\Desktop\remote\
+
+Project Files:
+    remote.c
+    ..\..\..\..\Program Files (x86)\PICC\devices\18f4520.h
+    ..\..\..\..\Program Files (x86)\PICC\drivers\stdlib.h
+    ..\..\..\..\Program Files (x86)\PICC\drivers\stddef.h
+    ..\..\..\..\Program Files (x86)\PICC\drivers\string.h
+    ..\..\..\..\Program Files (x86)\PICC\drivers\ctype.h
+    ..\..\..\..\Program Files (x86)\PICC\drivers\input.c
+
+Units:
+    C:\Users\Bob\Desktop\remote\remote.c (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    ICD Provisions: Yes
+
+Output Files:
+    Errors:      remote.err
+    Ext Symbols: remote.esym
+    INHX32:      remote.hex
+    Symbols:     remote.sym
+    List:        remote.lst
+    Debug/COFF:  remote.cof
+    Project:     remote.PJT
+    Call Tree:   remote.tre
+    Statistics:  remote.sta
