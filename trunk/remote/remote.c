@@ -46,7 +46,7 @@ void main() {
     setup_adc(ADC_CLOCK_INTERNAL);
 
     while(TRUE){
-        if (input(BUTTON1) == 1) {       // volume button pushed
+        if (input(BUTTON1) == 1) {           // volume button pushed
             set_adc_channel(1);              // y axis
             for (i = 0; i < 8; i++) {        // average 8 samples
                 buffer += read_adc();
