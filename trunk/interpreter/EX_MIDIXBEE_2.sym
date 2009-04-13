@@ -1,0 +1,132 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @SCRATCH
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     @INTERRUPT_AREA
+018     @INTERRUPT_AREA
+019-01B buffer
+01C     next_in
+01D     next_out
+01E     strt_rc
+01F     stop_rc
+020     past_eventstatus
+021     serial_isr1.status
+021     serial_isr2.b
+022     serial_isr1.num_databytes
+022-026 serial_isr2.event
+023     serial_isr1.data1
+024     serial_isr1.data2
+025-029 serial_isr1.event
+02A     lookup_mididatabytes.status
+02A-02B set_midievent.event
+02A-02B init_midievent.event
+02A-02E output_midievent.event
+02A     serial_isr1.@SCRATCH1
+02B     serial_isr1.@SCRATCH2
+02C     set_midievent.status
+02C     init_midievent.@SCRATCH1
+02D     set_midievent.data0
+02D     init_midievent.@SCRATCH2
+02E     set_midievent.data1
+02F     output_midievent.i
+02F     set_midievent.@SCRATCH1
+030     get_midievent.status
+030     output_midievent.@SCRATCH1
+030     set_midievent.@SCRATCH2
+031     get_midievent.num_databytes
+032     get_midievent.rbyte
+033     get_midievent.i
+034-038 get_midievent.event
+039     get_midievent.@SCRATCH1
+03A     get_midievent.@SCRATCH2
+F71     CCP_5
+F71     CCP_5_HIGH
+F71     CCP_5_LOW
+F74     CCP_4_LOW
+F74     CCP_4
+F74     CCP_4_HIGH
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FB8     CCP_3_HIGH
+FB8     CCP_3
+FB8     CCP_3_LOW
+FBB     CCP_2
+FBB     CCP_2_HIGH
+FBB     CCP_2_LOW
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBE     CCP_1_HIGH
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+0001CE  @PUTCHARI_BIU_1
+0000B2  init_midievent
+0001D6  output_midievent
+00017E  get_midievent
+0000F8  lookup_mididatabytes
+00020E  set_midievent
+00024C  serial_isr1
+000314  serial_isr2
+0003C8  MAIN
+0003C8  @cinit
+
+
+User Memory space: 
+
+Project Directory:
+    C:\Documents and Settings\Nabil\Application Data\PICC\Projects\KiiWii\kiiwiiproject\interpreter\
+
+Project Files:
+    EX_MIDIXBEE_2.c
+    prototype8722alone.h
+    ..\..\..\..\..\..\..\..\Program Files\PICC\devices\18F8722.h
+    ..\..\..\..\..\..\..\..\Program Files\PICC\drivers\input.c
+    ..\..\..\..\..\..\..\..\Program Files\PICC\drivers\ctype.h
+    xbee_packet.c
+    midi.c
+
+Units:
+    C:\Documents and Settings\Nabil\Application Data\PICC\Projects\KiiWii\kiiwiiproject\interpreter\EX_MIDIXBEE_2.c (main)
+
+Compiler Settings:
+    Processor:      PIC18F8722
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      EX_MIDIXBEE_2.err
+    Ext Symbols: EX_MIDIXBEE_2.esym
+    INHX32:      EX_MIDIXBEE_2.hex
+    Symbols:     EX_MIDIXBEE_2.sym
+    List:        EX_MIDIXBEE_2.lst
+    Debug/COFF:  EX_MIDIXBEE_2.cof
+    Project:     EX_MIDIXBEE_2.PJT
+    Call Tree:   EX_MIDIXBEE_2.tre
+    Statistics:  EX_MIDIXBEE_2.sta

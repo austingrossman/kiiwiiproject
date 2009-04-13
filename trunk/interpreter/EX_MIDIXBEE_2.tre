@@ -1,0 +1,28 @@
+ÀÄEX_MIDIXBEE_2
+   ÃÄMAIN  0/86  Ram=0
+   ³  ÀÄ??0??
+   ÃÄserial_isr1  0/200  Ram=11
+   ³  ÃÄinit_midievent  0/70  Ram=4
+   ³  ÃÄlookup_mididatabytes  0/134  Ram=1
+   ³  ÃÄget_midievent  0/80  Ram=11
+   ³  ÃÄoutput_midievent  0/56  Ram=7
+   ³  ³  ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
+   ³  ³  ÀÄ@PUTCHARI_BIU_1  0/8  Ram=0
+   ³  ÃÄlookup_mididatabytes  0/134  Ram=1
+   ³  ÃÄset_midievent  0/62  Ram=7
+   ³  ÀÄoutput_midievent  0/56  Ram=7
+   ³     ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
+   ³     ÀÄ@PUTCHARI_BIU_1  0/8  Ram=0
+   ÀÄserial_isr2  0/180  Ram=6
+      ÃÄset_midievent  0/62  Ram=7
+      ÃÄoutput_midievent  0/56  Ram=7
+      ³  ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
+      ³  ÀÄ@PUTCHARI_BIU_1  0/8  Ram=0
+      ÃÄset_midievent  0/62  Ram=7
+      ÃÄoutput_midievent  0/56  Ram=7
+      ³  ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
+      ³  ÀÄ@PUTCHARI_BIU_1  0/8  Ram=0
+      ÃÄset_midievent  0/62  Ram=7
+      ÀÄoutput_midievent  0/56  Ram=7
+         ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
+         ÀÄ@PUTCHARI_BIU_1  0/8  Ram=0
