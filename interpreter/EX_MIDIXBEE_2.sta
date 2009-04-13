@@ -1,0 +1,58 @@
+
+ROM used: 1050 (1%)
+          1050 (1%) including unused fragments
+
+          1 Average locations per line
+          7 Average locations per statement
+
+RAM used: 33 (1%) at main() level
+          59 (2%) worst case
+
+Stack used: 3 worst case (out of 31 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   74    45  28  EX_MIDIXBEE_2.c
+   14     0   0  prototype8722alone.h
+  520     0   0  ..\..\..\..\..\..\..\..\Program Files\PICC\devices\18F8722.h
+  121    29  18  ..\..\..\..\..\..\..\..\Program Files\PICC\drivers\input.c
+   28     0   0  ..\..\..\..\..\..\..\..\Program Files\PICC\drivers\ctype.h
+   37    14   9  xbee_packet.c
+  135    70  44  midi.c
+----- -----
+  929   158 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0      8   0   0             @PUTCHARI_BIU_1
+0     70   3   4   199  3.2  init_midievent
+0     56   3   7   229  5.0  output_midievent
+0     80   4  11   419  7.4  get_midievent
+0    134   6   1   527  3.3  lookup_mididatabytes
+0     62   3   7   223  4.3  set_midievent
+0    200  10  11   643  5.8  serial_isr1
+0    180   9   6   558  4.3  serial_isr2
+0     86   4   0   140  1.7  MAIN
+
+Program metrics:
+    Functions               8
+    Statements              158
+    Comments                169
+    Volume (V)              4514
+    Difficilty (D)          34.7
+    Effort to implement (E) 156555
+    Time to implement (T)   2 hours, 25 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   19
+    Maintainability (MI)    126
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-000B0   170  0  
+000B2-0FFFE   876  64482  
+10000-1FFFE     0  65536  
+
+
+
