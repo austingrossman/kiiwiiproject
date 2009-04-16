@@ -6,7 +6,6 @@
 #use rs232 (baud=9600, STREAM=XBEE, xmit=PIN_B3, rcv=PIN_B2,ERRORS,FORCE_SW,parity=N,bits=8) //A1 goes to TX0, A2 goes to RX1
 #include <stdlib.h>
 #include <input.c>
-//#include <math.h>
 
 #define GREEN_LED       PIN_A5      // define the pins
 #define YELLOW_LED      PIN_B4
