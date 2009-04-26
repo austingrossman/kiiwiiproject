@@ -1,0 +1,56 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+
+[Project Settings]
+ProjectDir="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\"
+ProjectType=Executable
+CPUFamily=TMS320C67XX
+Tool="Compiler"
+Tool="CustomBuilder"
+Tool="DspBiosBuilder"
+Tool="Linker"
+Config="Debug"
+Config="Release"
+
+[Source Files]
+Source="..\..\..\..\..\..\..\CCStudio_v3.3\sprc203\SystemPatch\applySystemPatch.obj"
+Source="..\..\..\..\..\..\..\CCStudio_v3.3\sprc203\SystemPatch\c672xSystemPatchV2_00_00.lib"
+Source="..\..\..\..\..\..\..\Lyrtech\PADK\dsp\lib\padk.lib"
+Source="c67xdsplibR.lib"
+Source="effects.c"
+Source="fastrts67xR.lib"
+Source="generators.c"
+Source="initialization.c"
+Source="instruments.c"
+Source="led.c"
+Source="main.c"
+Source="midi.c"
+Source="mixer.c"
+Source="Synth4.cmd"
+
+["Compiler" Settings: "Debug"]
+Options=-g -pdsw225 -fr"$(Proj_dir)\Debug" -i"%PADK_DIR%\dsp\api" -i"%CSL3X_ROOT_DIR%\csl_C672x\dsp\inc" -i"$(Proj_dir)" -i"%CSL3X_ROOT_DIR%\csl_C672x_intc\dsp\inc" -i"%CSL3X_ROOT_DIR%\FastRTS\C6700\mthlib\include" -d"_DEBUG" -mv67p
+
+["Compiler" Settings: "Release"]
+Options=-pdsw225 -o3 -fr"$(Proj_dir)\Release" -i"%PADK_DIR%\dsp\api" -i"%CSL3X_ROOT_DIR%\csl_C672x\dsp\inc" -i"%CSL3X_ROOT_DIR%\csl_C672x_intc\dsp\inc" -i"%CSL3X_ROOT_DIR%\FastRTS\C6700\mthlib\include" -i"$(Proj_dir)" -mv67p
+
+["Linker" Settings: "Debug"]
+Options=-c -heap0x800 -m".\Debug\Synth4.map" -o".\Debug\Synth4.out" -stack0x800 -w -x -i"%CSL3X_ROOT_DIR%\csl_C672x\dsp\lib" -i"%CSL3X_ROOT_DIR%\csl_C672x_intc\dsp\lib"
+
+["Linker" Settings: "Release"]
+Options=-c -m".\Release\Synth4.map" -o".\Release\Synth4.out" -w -x
+
+["..\..\..\..\..\..\..\CCStudio_v3.3\sprc203\SystemPatch\c672xSystemPatchV2_00_00.lib" Settings: "Release"]
+LinkOrder=2
+
+["..\..\..\..\..\..\..\Lyrtech\PADK\dsp\lib\padk.lib" Settings: "Release"]
+LinkOrder=3
+
+["c67xdsplibR.lib" Settings: "Release"]
+LinkOrder=5
+
+["Synth4.cmd" Settings: "Debug"]
+LinkOrder=1
+
+["Synth4.cmd" Settings: "Release"]
+LinkOrder=1
+
