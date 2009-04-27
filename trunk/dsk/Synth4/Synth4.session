@@ -1,23 +1,21 @@
 <NotepadPlus>
     <Session activeView="0">
-        <mainView activeIndex="0">
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="408" startPos="0" endPos="0" selMode="0" lang="C++" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\trunk\dsk\Synth4\common.h" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="504" startPos="0" endPos="0" selMode="0" lang="C" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\trunk\dsk\Synth4\main.c" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="632" startPos="0" endPos="0" selMode="0" lang="C++" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\trunk\dsk\Synth4\midi.h" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="1024" startPos="0" endPos="0" selMode="0" lang="C" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\trunk\dsk\Synth4\midi.c" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="800" startPos="0" endPos="0" selMode="0" lang="C++" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\trunk\dsk\Synth4\generators.h" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="408" startPos="0" endPos="0" selMode="0" lang="C" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\trunk\dsk\Synth4\generators.c" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="640" startPos="0" endPos="0" selMode="0" lang="C++" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\trunk\dsk\Synth4\instruments.h" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="504" startPos="0" endPos="0" selMode="0" lang="C" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\trunk\dsk\Synth4\instruments.c" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="704" startPos="0" endPos="0" selMode="0" lang="C" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\trunk\dsk\Synth4\mixer.h" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="800" startPos="0" endPos="0" selMode="0" lang="C" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\trunk\dsk\Synth4\mixer.c" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="440" startPos="0" endPos="0" selMode="0" lang="C++" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\trunk\dsk\Synth4\effects.h" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="448" startPos="0" endPos="0" selMode="0" lang="C" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\trunk\dsk\Synth4\effects.c" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="304" startPos="0" endPos="0" selMode="0" lang="C++" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\trunk\dsk\Synth4\harmonizer.h" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="C" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\harmonizer.c" />
+        <mainView activeIndex="15">
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="C++" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\common.h" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="560" startPos="0" endPos="0" selMode="0" lang="C" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\main.c" />
             <File firstVisibleLine="0" xOffset="0" scrollWidth="624" startPos="0" endPos="0" selMode="0" lang="C++" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\initialization.h" />
             <File firstVisibleLine="0" xOffset="0" scrollWidth="624" startPos="0" endPos="0" selMode="0" lang="C" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\initialization.c" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="C++" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\led.h" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="632" startPos="0" endPos="0" selMode="0" lang="C++" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\midi.h" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1024" startPos="0" endPos="0" selMode="0" lang="C" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\midi.c" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="800" startPos="0" endPos="0" selMode="0" lang="C++" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\generators.h" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="C" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\generators.c" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="640" startPos="0" endPos="0" selMode="0" lang="C++" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\instruments.h" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="512" startPos="0" endPos="0" selMode="0" lang="C" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\instruments.c" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="704" startPos="0" endPos="0" selMode="0" lang="C++" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\mixer.h" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="800" startPos="0" endPos="0" selMode="0" lang="C" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\mixer.c" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="448" startPos="0" endPos="0" selMode="0" lang="C++" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\effects.h" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="872" startPos="0" endPos="0" selMode="0" lang="C" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\effects.c" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="200" startPos="0" endPos="0" selMode="0" lang="C++" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\led.h" />
             <File firstVisibleLine="0" xOffset="0" scrollWidth="280" startPos="0" endPos="0" selMode="0" lang="C" filename="C:\Documents and Settings\Administrator\My Documents\PADK\trunk\dsk\Synth4\led.c" />
         </mainView>
         <subView activeIndex="0" />

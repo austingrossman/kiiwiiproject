@@ -11,13 +11,14 @@ void ReleaseNote2(int i);
 typedef struct Organ {
 	float outBuffer[FRAME_SIZE];
 	float freq;
-	unsigned char midiNote;
 	float gain;				//scale the velocity of the note to between 0 and 1;
+	Oscillator organOsc;		//private
+	Adsr envelope;			//private
+	unsigned char midiNote;
 	unsigned char released;	//set to 1 when noteOff occurs
 	unsigned char active; //0 if unactive, 1 if active
 	unsigned char finished;
-	Oscillator organOsc;		//private
-	Adsr envelope;			//private
+	int placeholder;	//to make the organ double word aligned
 } Organ;
 
 extern float organTable[TABLE_SIZE];
@@ -35,15 +36,16 @@ void ReleaseOrgan(unsigned char midiNote);
 typedef struct Clarinet {
 	float outBuffer[FRAME_SIZE];
 	float freq;
-	unsigned char midiNote;
 	float gain;				//scale the velocity of the note to between 0 and 1;
-	unsigned char released;	//set to 1 when noteOff occurs
-	unsigned char active; //0 if unactive, 1 if active
-	unsigned char finished;
 	VariableOscillator mainOsc;		//private
 	Oscillator secondOsc;	//private
 	Adsr f1Envelope;			//private
 	Adsr f2Envelope;			//private
+	unsigned char midiNote;
+	unsigned char released;	//set to 1 when noteOff occurs
+	unsigned char active; //0 if unactive, 1 if active
+	unsigned char finished;
+	int placeholder;	//to make the organ double word aligned
 } Clarinet;
 
 extern float sineTable[TABLE_SIZE];
@@ -53,6 +55,31 @@ int Clarinet_Init(int i);
 int Clarinet_ProcessFrame(int i);
 int NewClarinet(unsigned char midiNote, unsigned char velocity);
 void ReleaseClarinet(unsigned char midiNote);
+
+///////////////////////////////////////////
+//Brass shit
+typedef struct Brass {
+	float outBuffer[FRAME_SIZE];
+	float freq;
+	float gain;				//scale the velocity of the note to between 0 and 1;
+	VariableOscillator mainOsc;		//private
+	Oscillator secondOsc;	//private
+	Adsr f1Envelope;			//private
+	Adsr f2Envelope;			//private
+	unsigned char midiNote;
+	unsigned char released;	//set to 1 when noteOff occurs
+	unsigned char active; //0 if unactive, 1 if active
+	unsigned char finished;
+	int placeholder;	//to make the organ double word aligned
+} Brass;
+
+extern Brass brassList[MAX_CHANNELS];
+
+int Brass_Init(int i);
+int Brass_ProcessFrame(int i);
+int NewBrass(unsigned char midiNote, unsigned char velocity);
+void ReleaseBrass(unsigned char midiNote);
+
 
 //////////////////////////
 //Arpeggio shit

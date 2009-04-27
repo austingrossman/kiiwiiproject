@@ -6,6 +6,7 @@ int NewNote(unsigned char midiNote, unsigned char velocity) {
 	if (previouschannel != channel) {
 		ReleaseOrgan(128);
 		ReleaseClarinet(128);
+		ReleaseBrass(128);
 		ReleaseRandomArpeggio(128);
 	}
 	previouschannel = channel;
@@ -13,6 +14,8 @@ int NewNote(unsigned char midiNote, unsigned char velocity) {
 		return NewOrgan(midiNote, velocity); 
 	} else if (channel == 0x01) {
 		return NewClarinet(midiNote, velocity);
+	} else if (channel == 0x02) {
+		return NewBrass(midiNote, velocity);
 	}
 	return -1;
 }
@@ -23,6 +26,7 @@ void ReleaseNote(unsigned char midiNote){
 	if (previouschannel != channel) {
 		ReleaseOrgan(128);
 		ReleaseClarinet(128);
+		ReleaseBrass(128);
 		ReleaseRandomArpeggio(128);
 		previouschannel = channel;
 		return;
@@ -31,6 +35,7 @@ void ReleaseNote(unsigned char midiNote){
 	switch (channel) {
 		case 0x00: ReleaseOrgan(midiNote); return;
 		case 0x01: ReleaseClarinet(midiNote); return;
+		case 0x02: ReleaseBrass(midiNote); return;
 	}
 }
 
@@ -53,9 +58,10 @@ void ReleaseNote2(int i){
 
 /////////////////////////////////////////////////////
 //Organ Instrument
-//#pragma DATA_SECTION(organTable , ".sdram");
+#pragma DATA_SECTION(organTable , ".sdram");
 float	organTable[TABLE_SIZE];
 //#pragma DATA_SECTION(organList , ".sdram");
+#pragma DATA_ALIGN(organList, 8);
 Organ organList[MAX_CHANNELS];
 
 int Organ_Init(int i) {
@@ -66,9 +72,9 @@ int Organ_Init(int i) {
 	organList[i].organOsc.tablesize = TABLE_SIZE;
 	organList[i].envelope.attackgain = 1*organList[i].gain;
 	organList[i].envelope.sustaingain = 0.6*organList[i].gain;
-	organList[i].envelope.attacktime = 2000;
-	organList[i].envelope.decaytime = 2500;
-	organList[i].envelope.releasetime = 1500;
+	organList[i].envelope.attacktime = 1000;
+	organList[i].envelope.decaytime = 1250;
+	organList[i].envelope.releasetime = 750;
 	Oscillator_Init(&(organList[i].organOsc));
 	Adsr_Init(&(organList[i].envelope));
 	//organList[i].organOsc.gain = organList[i].envelope.outBuffer;
@@ -98,9 +104,10 @@ int Organ_ProcessFrame(int i) {
 	j = Adsr_ProcessFrame(&(organList[i].envelope));
 	Oscillator_ProcessFrame(&(organList[i].organOsc));
 	
-	for (k = 0; k < FRAME_SIZE; k++) {
-		outBuffer[k] = oscBuffer[k] * envelopeBuffer[k];
-	}
+	// for (k = 0; k < FRAME_SIZE; k++) {
+		// outBuffer[k] = oscBuffer[k] * envelopeBuffer[k];
+	// }
+	DSPF_sp_vecmul( oscBuffer, envelopeBuffer, outBuffer, FRAME_SIZE);
 	
 	if (j == 1) organList[i].finished = 1;
 	return j;
@@ -144,15 +151,16 @@ void ReleaseOrgan(unsigned char midiNote){
 //#pragma DATA_SECTION(sineTable , ".sdram");
 float	sineTable[TABLE_SIZE];
 //#pragma DATA_SECTION(clarinetList , ".sdram");
+#pragma DATA_ALIGN(clarinetList, 8);
 Clarinet clarinetList[MAX_CHANNELS];
 
 int Clarinet_Init(int i) {
 	clarinetList[i].released = 0;
 	clarinetList[i].active = 1;
 	clarinetList[i].finished = 0;
-	clarinetList[i].f2Envelope.attacktime = 1;
-	clarinetList[i].f2Envelope.decaytime = 1999;
-	clarinetList[i].f2Envelope.releasetime = 1000;
+	clarinetList[i].f2Envelope.attacktime = 25;
+	clarinetList[i].f2Envelope.decaytime = 975;
+	clarinetList[i].f2Envelope.releasetime = 500;
 	Adsr_Init(&(clarinetList[i].f2Envelope));
 	clarinetList[i].secondOsc.table = sineTable;
 	clarinetList[i].secondOsc.tablesize = TABLE_SIZE;
@@ -160,9 +168,9 @@ int Clarinet_Init(int i) {
 	Oscillator_Init(&(clarinetList[i].secondOsc));
 	clarinetList[i].f1Envelope.attackgain = 1 * clarinetList[i].gain;
 	clarinetList[i].f1Envelope.sustaingain = 1 * clarinetList[i].gain;
-	clarinetList[i].f1Envelope.attacktime = 2000;
-	clarinetList[i].f1Envelope.decaytime = 80;
-	clarinetList[i].f1Envelope.releasetime = 1000;
+	clarinetList[i].f1Envelope.attacktime = 950;
+	clarinetList[i].f1Envelope.decaytime = 50;
+	clarinetList[i].f1Envelope.releasetime = 500;
 	Adsr_Init(&(clarinetList[i].f1Envelope));
 	clarinetList[i].mainOsc.table = sineTable;
 	clarinetList[i].mainOsc.tablesize = TABLE_SIZE;
@@ -192,8 +200,8 @@ int Clarinet_ProcessFrame(int i) {
 	f2EnvelopeBuffer = clarinetList[i].f2Envelope.outBuffer;
 
 	freq = clarinetList[i].freq * pitchBend;
-	fc = 2*freq;
-	fm = 1.5*freq;
+	fc = 3*freq;
+	fm = 2*freq + 2.13;
 	
 	if (clarinetList[i].released == 1) {
 		clarinetList[i].f1Envelope.state = 3;
@@ -201,7 +209,7 @@ int Clarinet_ProcessFrame(int i) {
 	}
 	
 	clarinetList[i].f2Envelope.attackgain = 4*fm;
-	clarinetList[i].f2Envelope.sustaingain = 1*fm;
+	clarinetList[i].f2Envelope.sustaingain = 2*fm;
 	Adsr_ProcessFrame(&(clarinetList[i].f2Envelope));
 	
 	clarinetList[i].secondOsc.freq = fm;	
@@ -209,15 +217,17 @@ int Clarinet_ProcessFrame(int i) {
 
 	for (k = 0; k < FRAME_SIZE; k++) {
 		secondOscBuffer[k] = secondOscBuffer[k]*f2EnvelopeBuffer[k] + fc;
+		//secondOscBuffer[k] += fc;
 	}
 	
 	j = Adsr_ProcessFrame(&(clarinetList[i].f1Envelope));
-	
 	VariableOscillator_ProcessFrame(&(clarinetList[i].mainOsc));
 	
-	for (k = 0; k < FRAME_SIZE; k++) {
-		outBuffer[k] = mainOscBuffer[k] * f1EnvelopeBuffer[k];
-	}
+	// for (k = 0; k < FRAME_SIZE; k++) {
+		// outBuffer[k] = mainOscBuffer[k] * f1EnvelopeBuffer[k];
+	// }
+	DSPF_sp_vecmul( mainOscBuffer, f1EnvelopeBuffer, outBuffer, FRAME_SIZE);
+	
 	
 	if (j == 1) clarinetList[i].finished = 1;
 	return j;
@@ -254,6 +264,124 @@ void ReleaseClarinet(unsigned char midiNote){
 		}
 	}
 }
+
+
+/////////////////////////////////////////////////////
+//Brass Instrument
+//#pragma DATA_SECTION(brassList , ".sdram");
+#pragma DATA_ALIGN(brassList, 8);
+Brass brassList[MAX_CHANNELS];
+
+int Brass_Init(int i) {
+	brassList[i].released = 0;
+	brassList[i].active = 1;
+	brassList[i].finished = 0;
+	brassList[i].f2Envelope.attacktime = 1000;
+	brassList[i].f2Envelope.decaytime = 1000;
+	brassList[i].f2Envelope.releasetime = 1000;
+	Adsr_Init(&(brassList[i].f2Envelope));
+	brassList[i].secondOsc.table = sineTable;
+	brassList[i].secondOsc.tablesize = TABLE_SIZE;
+	//brassList[i].secondOsc.gain = brassList[i].f2Envelope.outBuffer;
+	Oscillator_Init(&(brassList[i].secondOsc));
+	brassList[i].f1Envelope.attackgain = 1 * brassList[i].gain;
+	brassList[i].f1Envelope.sustaingain = 0.8 * brassList[i].gain;
+	brassList[i].f1Envelope.attacktime = 1000;
+	brassList[i].f1Envelope.decaytime = 1000;
+	brassList[i].f1Envelope.releasetime = 1000;
+	Adsr_Init(&(brassList[i].f1Envelope));
+	brassList[i].mainOsc.table = sineTable;
+	brassList[i].mainOsc.tablesize = TABLE_SIZE;
+	brassList[i].mainOsc.freqTable = brassList[i].secondOsc.outBuffer;
+	//brassList[i].mainOsc.gain = brassList[i].f1Envelope.outBuffer;
+	VariableOscillator_Init(&(brassList[i].mainOsc));
+	return 0;
+}
+
+int Brass_ProcessFrame(int i) {
+	float *outBuffer, *mainOscBuffer, *secondOscBuffer, *f1EnvelopeBuffer, *f2EnvelopeBuffer;
+	float freq, fc, fm;
+	int j, k;
+	
+	if (brassList[i].active == 0) {
+		return 0;
+	}
+	if (brassList[i].finished == 1) {
+		brassList[i].active = 0;
+		return 0;
+	}
+	
+	outBuffer = brassList[i].outBuffer;
+	mainOscBuffer = brassList[i].mainOsc.outBuffer;
+	secondOscBuffer = brassList[i].secondOsc.outBuffer;
+	f1EnvelopeBuffer = brassList[i].f1Envelope.outBuffer;
+	f2EnvelopeBuffer = brassList[i].f2Envelope.outBuffer;
+
+	freq = brassList[i].freq * pitchBend;
+	fc = freq;
+	fm = freq + 0.03;
+	
+	if (brassList[i].released == 1) {
+		brassList[i].f1Envelope.state = 3;
+		brassList[i].f2Envelope.state = 3;
+	}
+	
+	brassList[i].f2Envelope.attackgain = 5*fm;
+	brassList[i].f2Envelope.sustaingain = 4*fm;
+	Adsr_ProcessFrame(&(brassList[i].f2Envelope));
+	
+	brassList[i].secondOsc.freq = fm;	
+	Oscillator_ProcessFrame(&(brassList[i].secondOsc));
+
+	for (k = 0; k < FRAME_SIZE; k++) {
+		secondOscBuffer[k] = secondOscBuffer[k]*f2EnvelopeBuffer[k] + fc;
+		//secondOscBuffer[k] += fc;
+	}
+	
+	j = Adsr_ProcessFrame(&(brassList[i].f1Envelope));
+	VariableOscillator_ProcessFrame(&(brassList[i].mainOsc));
+	
+	// for (k = 0; k < FRAME_SIZE; k++) {
+		// outBuffer[k] = mainOscBuffer[k] * f1EnvelopeBuffer[k];
+	// }
+	DSPF_sp_vecmul( mainOscBuffer, f1EnvelopeBuffer, outBuffer, FRAME_SIZE);
+	
+	if (j == 1) brassList[i].finished = 1;
+	return j;
+}
+
+int NewBrass(unsigned char midiNote, unsigned char velocity) {	
+	unsigned int i;
+	
+	i = 0;
+	while ( (brassList[i].active !=0) && (i < MAX_CHANNELS) ) {
+		i++;	
+	}
+
+	if (i == MAX_CHANNELS)
+	return -1;
+	
+	
+	brassList[i].midiNote = midiNote;
+	brassList[i].freq = 440 * expf(((float)midiNote - 69) * LN2DIV12); //formula for converting MIDI "notes" to frequency
+	brassList[i].gain = (float)(velocity) / 127; //scale velocity to between 0 and 1
+	Brass_Init(i);
+	
+	return i;
+}
+
+void ReleaseBrass(unsigned char midiNote){
+	int i;
+	
+	for (i = 0; i < MAX_CHANNELS; i++) {
+		if (brassList[i].active == 1) {
+			if ((brassList[i].midiNote == midiNote)||(midiNote == 128)){
+				brassList[i].released = 1;
+			}
+		}
+	}
+}
+
 
 
 

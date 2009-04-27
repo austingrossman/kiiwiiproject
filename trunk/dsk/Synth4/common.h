@@ -10,7 +10,7 @@
 #include <csl_dmax.h>
 #include <csl_mcasp.h>
 #include "DSPF_sp_vecmul.h"
-
+#include "DSPF_sp_blk_move.h"
 
 
 #define PI					(3.14159265358979f)
@@ -18,9 +18,9 @@
 #define SAMPLING_PERIOD 	(0.0000208333)   // 48k
 //#define SAMPLING_RATE		96000
 #define SAMPLING_RATE		48000
-#define FRAME_SIZE  		80
+#define FRAME_SIZE  		128
 #define MAX_CHANNELS 		16
-#define TABLE_SIZE			4096
+#define TABLE_SIZE			2048
 #define QUEUE_SIZE 			32
 #define GAIN				2147483647 //2^31-1
 #define LN2DIV12 			0.057762265f
@@ -38,6 +38,5 @@
 
 //globals
 extern float analogInBuffer[FRAME_SIZE];
-extern float pulsorTable[TABLE_SIZE];
 
 #endif //_COMMON_H_
