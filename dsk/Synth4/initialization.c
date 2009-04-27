@@ -8,6 +8,8 @@ interrupt void nmi_isr( void );
 
 
 //  Audio Buffer
+#pragma DATA_SECTION(dmaxAdcBuffer , ".sdram");
+#pragma DATA_SECTION(dmaxDacBuffer , ".sdram");
 int dmaxAdcBuffer[PINGPONG][STEREO][NUM_CHANNEL][FRAME_SIZE];
 int dmaxDacBuffer[PINGPONG][STEREO][NUM_CHANNEL][FRAME_SIZE]; 
 //the audio buffer must have this format for dMax unless we change other stuff

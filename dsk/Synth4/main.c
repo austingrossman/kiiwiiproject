@@ -34,6 +34,7 @@ int main( int argc, char *argv[] ) {
 	for (i=0; i<MAX_CHANNELS; i++) {
 		organList[i].active = 0;
 		clarinetList[i].active = 0;
+		brassList[i].active = 0;
 		rarpeggioList[i].active = 0;
 	}
 	
@@ -43,14 +44,23 @@ int main( int argc, char *argv[] ) {
 	Pulsor_Init();
 	pulsorEffect.inBuffer = mixer.outBuffer;
 
-	Phasor_Init();
-	phasorEffect.inBuffer = pulsorEffect.outBuffer;
+	//Phasor_Init();
+	//phasorEffect.inBuffer = pulsorEffect.outBuffer;
 
 	Wah_Init();
-	wahEffect.inBuffer = phasorEffect.outBuffer;
+	wahEffect.inBuffer = pulsorEffect.outBuffer;
+	
+	Vibrato_Init();
+	vibratoEffect.inBuffer = wahEffect.outBuffer;
 	
 	Mute_Init();
-	muteEffect.inBuffer = wahEffect.outBuffer;
+	muteEffect.inBuffer = vibratoEffect.outBuffer;
+	
+	// memset(delayBuffer, 0, sizeof(float)*65536);
+	// delayEffect.inBuffer = muteEffect.outBuffer;
+	// delayEffect.buffer = delayBuffer; delayEffect.bufferSize = 65536;
+	// delayEffect.delay = 0;
+	// DelayLine_Init(&delayEffect);
 	
 	lastBuffer = muteEffect.outBuffer;
 	
@@ -95,7 +105,7 @@ interrupt void dmax_isr( void ) {
 
 
 		if (++counter == 200) {
-			L7(-1);
+			//L7(-1);
 			counter = 0;
 		}
 		
@@ -133,11 +143,16 @@ void processGenerators(void) {
 	for (i=0; i<MAX_CHANNELS; i++) {
 		Clarinet_ProcessFrame(i);
 	}
+	for (i=0; i<MAX_CHANNELS; i++) {
+		Brass_ProcessFrame(i);
+	}
 }
 
 void processEffects(void) {
 	Pulsor_ProcessFrame();
-	Phasor_ProcessFrame();
+	//Phasor_ProcessFrame();
 	Wah_ProcessFrame();
+	Vibrato_ProcessFrame();
 	Mute_ProcessFrame();
+	//DelayLine_ProcessFrame(&delayEffect);
 }

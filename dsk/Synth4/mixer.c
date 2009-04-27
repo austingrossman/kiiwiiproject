@@ -26,9 +26,10 @@ int Mixer_ProcessFrame(void){
 	mixer.previousGains[0]=mixer.gain;
 	
 	//zero samples, TODO change to memset
-	for (currentSample = 0; currentSample < FRAME_SIZE; currentSample++) {
-		outBuffer[currentSample] = 0;
-	}
+	// for (currentSample = 0; currentSample < FRAME_SIZE; currentSample++) {
+		// outBuffer[currentSample] = 0;
+	// }
+	memset( outBuffer, 0, sizeof(float)*FRAME_SIZE );  
 	
 	for (currentChannel = 0; currentChannel < MAX_CHANNELS; currentChannel++) {
 		if (clarinetList[currentChannel].active == 1) {
@@ -41,6 +42,13 @@ int Mixer_ProcessFrame(void){
 		if (organList[currentChannel].active == 1) {
 			for (currentSample = 0; currentSample < FRAME_SIZE; currentSample++) {
 				outBuffer[currentSample] += organList[currentChannel].outBuffer[currentSample];
+			}
+		}
+	}
+	for (currentChannel = 0; currentChannel < MAX_CHANNELS; currentChannel++) {
+		if (brassList[currentChannel].active == 1) {
+			for (currentSample = 0; currentSample < FRAME_SIZE; currentSample++) {
+				outBuffer[currentSample] += brassList[currentChannel].outBuffer[currentSample];
 			}
 		}
 	}

@@ -76,9 +76,46 @@ typedef struct Pulsor {
 } Pulsor;
 
 extern Pulsor pulsorEffect;
+extern float pulsorTable[TABLE_SIZE];
 
 void Pulsor_Init(void);
 void Pulsor_ProcessFrame(void);
+
+
+/////////////////////////////////////////////////////
+//Delay line
+/*typedef struct DelayLine {
+	float outBuffer[FRAME_SIZE];
+	float *inBuffer;		//should be FRAME_SIZE long, double word aligned
+	float *buffer;
+	unsigned int bufferSize;			//must be a power of two
+	unsigned int delay;				//must be even number
+	unsigned int dp;			//private
+} DelayLine;
+
+extern DelayLine delayEffect;
+extern float delayBuffer[65536];
+
+void DelayLine_Init(DelayLine *dl);
+void DelayLine_ProcessFrame(DelayLine *dl);
+*/
+
+/////////////////////////////////////////////////////
+//Vibrato Effect
+typedef struct Vibrato {
+	float outBuffer[FRAME_SIZE];
+	Oscillator lfo;			//private
+	float *inBuffer;		//should be FRAME_SIZE long, double word aligned
+	float freq;				
+	float intensity;			
+	unsigned int dp;		//private
+} Vibrato;
+
+extern Vibrato vibratoEffect;
+extern float vibratoBuffer[8192];
+
+void Vibrato_Init(void);
+void Vibrato_ProcessFrame(void);
 
 
 /////////////////////////////////////////////////////

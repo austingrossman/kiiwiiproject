@@ -45,9 +45,6 @@ LinkOrder=2
 ["..\..\..\..\..\..\..\Lyrtech\PADK\dsp\lib\padk.lib" Settings: "Release"]
 LinkOrder=3
 
-["c67xdsplibR.lib" Settings: "Release"]
-LinkOrder=5
-
 ["Synth4.cmd" Settings: "Debug"]
 LinkOrder=1
 

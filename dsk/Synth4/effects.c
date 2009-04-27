@@ -82,7 +82,7 @@
 /////////////////////////////////////////////////////
 //AutoWah Effect
 Wah wahEffect; //the WAH instance
-//#pragma DATA_SECTION(wahTable , ".sdram");
+#pragma DATA_SECTION(wahTable , ".sdram");
 float wahTable[TABLE_SIZE];
 
 void Wah_Init(void){
@@ -131,8 +131,8 @@ void Wah_ProcessFrame(void){
 	wahEffect.lfo.freq = parameter;
 	Oscillator_ProcessFrame(&(wahEffect.lfo));
 	//anglcos = cosf(7 * PI / 64 * parameter + PI / 64);
-	anglcos = cosf(7 * PI / 64 * wahEffect.lfo.outBuffer[0] + PI / 64);
-	bw = 2*32000/PI * (7 * PI / 64 * parameter + PI / 64);
+	anglcos = cosf(7 * PI / 32 * wahEffect.lfo.outBuffer[0] + PI / 32);
+	bw = 2*16000/PI * (7 * PI / 32 * wahEffect.lfo.outBuffer[0] + PI / 32);
 	B = .35*PI*bw*SAMPLING_PERIOD;
 	B2 = B*B;
  
@@ -245,6 +245,7 @@ void Phasor_ProcessFrame(void){
 /////////////////////////////////////////////////////
 //Pulsor Effect
 Pulsor pulsorEffect; //the Pulsor instance
+#pragma DATA_SECTION(pulsorTable , ".sdram");
 float pulsorTable[TABLE_SIZE];
 
 void Pulsor_Init(void){
@@ -296,10 +297,67 @@ void Pulsor_ProcessFrame(void){
 	pulsorEffect.lastinput1 = inBuffer[FRAME_SIZE - 1];
 	//pulsorEffect.lastinput2 = inBuffer[FRAME_SIZE - 2];
 	pulsorEffect.count = count;
-	
+	Oscillator_ProcessFrame(&(vibratoEffect.lfo));
 	return;
 }
 
+/*
+/////////////////////////////////////////////////////
+//Delay line
+DelayLine delayEffect;
+#pragma DATA_SECTION(delayBuffer , ".sdram");
+#pragma DATA_ALIGN(delayBuffer, 8);
+float delayBuffer[65536];
+
+void DelayLine_Init(DelayLine *dl) {
+	dl->dp = 0;
+}
+void DelayLine_ProcessFrame(DelayLine *dl) {
+	unsigned int sp;
+	DSPF_sp_blk_move (dl->inBuffer, dl->buffer + dl->dp, FRAME_SIZE);
+	sp = (int)dl->dp - dl->delay;
+	//if (sp < 0) sp += dl->bufferSize;
+	sp &= (dl->bufferSize-1);
+	DSPF_sp_blk_move (dl->buffer + sp, dl->outBuffer, FRAME_SIZE);
+	dl->dp += FRAME_SIZE;
+	dl->dp &= (dl->bufferSize-1);
+}
+*/
+
+/////////////////////////////////////////////////////
+//Vibrato Effect
+#pragma DATA_ALIGN(vibratoEffect, 8);
+Vibrato vibratoEffect;
+#pragma DATA_SECTION(vibratoBuffer , ".sdram");
+#pragma DATA_ALIGN(vibratoBuffer, 8);
+float vibratoBuffer[8192];
+#define VIBRATOMASK 8191
+
+void Vibrato_Init(void) {
+	vibratoEffect.dp = 0;
+	vibratoEffect.lfo.table = wahTable;
+	vibratoEffect.lfo.tablesize = TABLE_SIZE;
+	Oscillator_Init(&(vibratoEffect.lfo));
+	//vibratoEffect.intensity = 0;
+	vibratoEffect.lfo.freq = 1;
+}
+
+void Vibrato_ProcessFrame(void) {
+	unsigned int j = 0, delay;
+	
+	DSPF_sp_blk_move (vibratoEffect.inBuffer, vibratoBuffer + vibratoEffect.dp, FRAME_SIZE);
+	//vibratoEffect.lfo.freq = vibratoEffect.freq;
+	//Oscillator_ProcessFrame(&(vibratoEffect.lfo));
+	
+	
+	for (; j < FRAME_SIZE; j++) {
+			delay = vibratoEffect.lfo.outBuffer[j] * vibratoEffect.intensity;
+			vibratoEffect.outBuffer[j] = vibratoBuffer[ (vibratoEffect.dp + j - delay)&VIBRATOMASK];
+	}
+	
+	vibratoEffect.dp += FRAME_SIZE;
+	vibratoEffect.dp &= VIBRATOMASK;
+}
 
 /////////////////////////////////////////////////////
 //Mute Effect

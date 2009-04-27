@@ -135,8 +135,8 @@ int Oscillator_Init(Oscillator *this) {
 }
 
 int Oscillator_ProcessFrame(Oscillator *this) {
-	float *outBuffer, *table, freq, index, increment, *gain;
-	unsigned int tablesize, i, nindex;
+	float *outBuffer, *table, freq, index, increment;//, *gain;
+	unsigned int tablesize, i;
 
 	outBuffer = this->outBuffer;
 	//gain = this->gain;
@@ -168,7 +168,7 @@ int VariableOscillator_Init(VariableOscillator *this) {
 }
 
 int VariableOscillator_ProcessFrame(VariableOscillator *this) {
-	float *outBuffer, *table, *freqTable, index, increment, *gain;
+	float *outBuffer, *table, *freqTable, index, increment;//, *gain;
 	unsigned int tablesize, i;
 
 	outBuffer = this->outBuffer;
@@ -182,6 +182,8 @@ int VariableOscillator_ProcessFrame(VariableOscillator *this) {
 	for (i = 0; i < FRAME_SIZE; i++) {
 		if (index >= tablesize)
 			index -= tablesize;
+		if (index < 0)
+			index += tablesize;
 		outBuffer[i] = table[(int)(index)]; 
 		//outBuffer[i] = gain[i] * table[(int)(index)]; 
 		increment = SAMPLING_PERIOD * freqTable[i] * tablesize;
