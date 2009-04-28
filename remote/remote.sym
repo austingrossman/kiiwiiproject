@@ -30,44 +30,45 @@
 020     MAIN.ADC_3
 021     MAIN.i
 022-023 MAIN.buffer
-024     @PUTCHAR_2_.P1
-024     MAIN.@SCRATCH1
-025     MAIN.@SCRATCH2
-026     MAIN.@SCRATCH3
-027     MAIN.@SCRATCH4
-028-029 @MUL1616.P1
-028     MAIN.@SCRATCH5
-029-02A @DIV1616.P1
-029     MAIN.@SCRATCH6
-02A-02B @MUL1616.P1
-02A     min.a
-02B-02C @DIV1616.P1
-02B     min.b
-02C     @MUL1616.@SCRATCH1
-02D     @DIV1616.@SCRATCH1
+024     MAIN.arpOn
+025     @PUTCHAR_2_.P1
+025     @delay_ms1.P2
+025     MAIN.@SCRATCH1
+026     MAIN.@SCRATCH2
+027-028 @MUL1616.P1
+027     MAIN.@SCRATCH3
+028-029 @DIV1616.P1
+028     MAIN.@SCRATCH4
+029-02A @MUL1616.P1
+029     min.a
+02A     min.b
+02A-02B @DIV1616.P1
+02B     @MUL1616.@SCRATCH1
+02C     @DIV1616.@SCRATCH1
 F83     PSP_DATA
 FB4.6   C1OUT
 FB4.7   C2OUT
-FBB     CCP_2_HIGH
 FBB     CCP_2_LOW
 FBB     CCP_2
+FBB     CCP_2_HIGH
+FBE     CCP_1_LOW
 FBE     CCP_1_HIGH
 FBE     CCP_1
-FBE     CCP_1_LOW
 FE9-FEA @WRITE_PROGRAM_MEMORY.P1
 FE9-FEA @READ_PROGRAM_MEMORY.P2
 FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
 FF6-FF8 @READ_PROGRAM_MEMORY.P2
 
 ROM Allocation:
+0164  @delay_ms1
 011C  @PUTCHARI_BIU_1
 0124  @PUTCHAR_2_
 00A6  @MUL1616
 00C4  @DIV1616
 009E  wegetsignal
 0106  min
-0164  MAIN
-0164  @cinit
+018C  MAIN
+018C  @cinit
 0136  StrtoulGO
 0136  StrtolGO
 
@@ -75,19 +76,19 @@ ROM Allocation:
 User Memory space: 
 
 Project Directory:
-    C:\Users\Bob\Desktop\remote\
+    C:\Users\Bob\Desktop\KiiWiiCode\remote\
 
 Project Files:
     remote.c
-    ..\..\..\..\Program Files (x86)\PICC\devices\18f4520.h
-    ..\..\..\..\Program Files (x86)\PICC\drivers\stdlib.h
-    ..\..\..\..\Program Files (x86)\PICC\drivers\stddef.h
-    ..\..\..\..\Program Files (x86)\PICC\drivers\string.h
-    ..\..\..\..\Program Files (x86)\PICC\drivers\ctype.h
-    ..\..\..\..\Program Files (x86)\PICC\drivers\input.c
+    ..\..\..\..\..\Program Files (x86)\PICC\devices\18f4520.h
+    ..\..\..\..\..\Program Files (x86)\PICC\drivers\stdlib.h
+    ..\..\..\..\..\Program Files (x86)\PICC\drivers\stddef.h
+    ..\..\..\..\..\Program Files (x86)\PICC\drivers\string.h
+    ..\..\..\..\..\Program Files (x86)\PICC\drivers\ctype.h
+    ..\..\..\..\..\Program Files (x86)\PICC\drivers\input.c
 
 Units:
-    C:\Users\Bob\Desktop\remote\remote.c (main)
+    C:\Users\Bob\Desktop\KiiWiiCode\remote\remote.c (main)
 
 Compiler Settings:
     Processor:      PIC18F4520

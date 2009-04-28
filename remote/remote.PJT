@@ -11,7 +11,7 @@ Library=
 LinkerScript=
 
 [Target Data]
-FileList=C:\Users\Bob\Desktop\remote\remote.c
+FileList=C:\Users\Bob\Desktop\KiiWiiCode\remote\remote.c
 BuildTool=C-COMPILER
 OptionString=+FH
 AdditionalOptionString=
