@@ -68,6 +68,7 @@ void processMIDIEvent(MIDIEvent *event) {
 			if (HarmonizerEffectOnFlag) {
 				ScaleHarmonizer(event);
 			}
+			if(event->db1 > 0x70){ event->db1 = 0x70;}//default to 0x70
 			NewNote(event->db1, event->db2);
 		}
 
@@ -78,6 +79,7 @@ void processMIDIEvent(MIDIEvent *event) {
 			if (HarmonizerEffectOnFlag) {
 				ScaleHarmonizer(event);
 			}
+			if(event->db1 > 0x70){ event->db1 = 0x70;}//default to 0x70
 			ReleaseNote(event->db1);
 		}
 
