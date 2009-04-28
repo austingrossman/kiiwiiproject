@@ -1,10 +1,10 @@
 ******************************************************************************
           TMS320C6x COFF Linker PC v6.0.8                      
 ******************************************************************************
->> Linked Mon Apr 27 20:26:43 2009
+>> Linked Tue Apr 28 01:33:50 2009
 
 OUTPUT FILE NAME:   <./Release/Synth4.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 10034c80
+ENTRY POINT SYMBOL: "_c_int00"  address: 10034ca0
 
 
 MEMORY CONFIGURATION
@@ -15,7 +15,7 @@ MEMORY CONFIGURATION
   IROM_DSPLIB           00020000   0000c000  00000000  0000c000  RWIX
   IROM_FASTRTS          0002c000   00004000  00000000  00004000  RWIX
   IRAM_FASTRTS          10001b00   00000100  00000000  00000100  RWIX
-  RAM                   10001c00   0003e400  0003ab80  00003880  RWIX
+  RAM                   10001c00   0003e400  0003aba0  00003860  RWIX
   SDRAM                 80000000   08000000  00012084  07fedf7c  RWIX
   ASYNC2                90000000   00008000  00000000  00008000  RWIX
 
@@ -70,265 +70,265 @@ INTERNAL_MEMORY
                   10020f70    00000004     applySystemPatch.obj (.pinit)
                   10020f74    00000008     --HOLE-- [fill = 0]
 
-.text      0    10020f80    00014760     
+.text      0    10020f80    00014780     
                   10020f80    000021e0     csl_C6727.lib : csl_mcaspHwControl.o (.text:csl_section:mcasp)
                   10023160    00001de0     instruments.obj (.text)
                   10024f40    000010e0     effects.obj (.text)
                   10026020    00001060     padk.lib : PADK_I2C.obj (.text)
-                  10027080    00000ea0     midi.obj (.text)
-                  10027f20    00000c80     main.obj (.text)
-                  10028ba0    00000a00     generators.obj (.text)
-                  100295a0    000009a0     initialization.obj (.text)
-                  10029f40    00000520     csl_C6727.lib : csl_dmaxHwSetup.o (.text:csl_section:dmax)
-                  1002a460    00000500     rts67plus.lib : _printfi.obj (.text:__setfield)
-                  1002a960    000004a0     mixer.obj (.text)
-                  1002ae00    000004a0     csl_C6727.lib : csl_dmaxHwControl.o (.text:csl_section:dmax)
-                  1002b2a0    00000440     rts67plus.lib : _printfi.obj (.text:__getarg_diouxp)
-                  1002b6e0    00000440     csl_C6727.lib : csl_mcaspHwSetup.o (.text:csl_section:mcasp)
-                  1002bb20    00000420     padk.lib : PADK_UART.obj (.text)
-                  1002bf40    00000420     rts67plus.lib : _printfi.obj (.text:__printfi)
-                  1002c360    00000400     padk.lib : PADK_MIDI.obj (.text)
-                  1002c760    000003c0     rts67plus.lib : _printfi.obj (.text:__fcpy)
-                  1002cb20    000003c0                   : _printfi.obj (.text:_ecvt)
-                  1002cee0    000003c0     csl_C672x_intc.lib : csl_intcHookIsr.o (.text:csl_section:intc)
-                  1002d2a0    000003a0     rts67plus.lib : _printfi.obj (.text:_fcvt)
-                  1002d640    00000380                   : memory.obj (.text:_free)
-                  1002d9c0    00000360     padk.lib : PADK_GPIO.obj (.text)
-                  1002dd20    00000360     rts67plus.lib : _printfi.obj (.text:__pproc_fwp)
-                  1002e080    00000360                   : fputs.obj (.text:_fputs)
-                  1002e3e0    00000360     csl_C6727.lib : csl_mcaspRegReset.o (.text:csl_section:mcasp)
-                  1002e740    00000340     led.obj (.text)
-                  1002ea80    00000300     c672xSystemPatchV2_00_00.lib : patch.obj (.text)
-                  1002ed80    00000300     rts67plus.lib : _printfi.obj (.text:__pconv_e)
-                  1002f080    00000300     csl_C6727.lib : csl_i2cHwControl.o (.text:csl_section:i2c)
-                  1002f380    000002e0     rts67plus.lib : imath64.obj (.text:__divull)
-                  1002f660    000002e0     csl_C6727.lib : csl_mcaspResetCtrl.o (.text:csl_section:mcasp)
-                  1002f940    000002c0     rts67plus.lib : _printfi.obj (.text:__pproc_diouxp)
-                  1002fc00    000002c0                   : _printfi.obj (.text:__pproc_str)
-                  1002fec0    000002c0     csl_C6727.lib : csl_dmaxOpen.o (.text:csl_section:dmax)
-                  10030180    00000260     padk.lib : PADK_CLKGEN.obj (.text)
-                  100303e0    00000260     csl_C6727.lib : csl_i2cGetHwStatus.o (.text:csl_section:i2c)
-                  10030640    00000240     rts67plus.lib : _printfi.obj (.text:__mcpy)
-                  10030880    00000200                   : trgdrv.obj (.text:_HOSTrename)
-                  10030a80    00000200                   : memcpy62.obj (.text:_memcpy)
-                  10030c80    00000200                   : setvbuf.obj (.text:_setvbuf)
-                  10030e80    00000200     csl_C6727.lib : csl_i2cHwSetup.o (.text:csl_section:i2c)
-                  10031080    000001e0     padk.lib : PADK_DAC.obj (.text)
-                  10031260    000001e0     rts67plus.lib : _printfi.obj (.text:__pconv_g)
-                  10031440    000001e0                   : memory.obj (.text:_malloc)
-                  10031620    000001c0                   : imath40.obj (.text:__divul)
-                  100317e0    000001a0                   : _printfi.obj (.text:__ltostr)
-                  10031980    000001a0                   : lowlev.obj (.text:_getdevice)
-                  10031b20    000001a0     csl_C6727.lib : csl_dmaxHwSetupGpParam.o (.text:csl_section:dmax)
-                  10031cc0    00000180     rts67plus.lib : fputc.obj (.text:_fputc)
-                  10031e40    00000160                   : _printfi.obj (.text:__pproc_fflags)
-                  10031fa0    00000160                   : fclose.obj (.text:_fclose)
-                  10032100    00000140                   : trgdrv.obj (.text:_HOSTlseek)
-                  10032240    00000140                   : atoi.obj (.text:_atoi)
-                  10032380    00000140                   : exit.obj (.text:_exit)
-                  100324c0    00000140     csl_C6727.lib : csl_i2cHwSetupRaw.o (.text:csl_section:i2c)
-                  10032600    00000120     rts67plus.lib : trgdrv.obj (.text:_HOSTopen)
-                  10032720    00000120                   : autoinit.obj (.text:__auto_init)
-                  10032840    00000120                   : _printfi.obj (.text:__div)
-                  10032960    00000120                   : _io_perm.obj (.text:__wrt_ok)
-                  10032a80    00000120                   : lowlev.obj (.text:_close)
-                  10032ba0    00000120                   : fseek.obj (.text:_fseek)
-                  10032cc0    00000120                   : lowlev.obj (.text:_lseek)
-                  10032de0    00000120                   : ltoa.obj (.text:_ltoa)
-                  10032f00    00000120                   : memset.obj (.text:_memset)
-                  10033020    00000120                   : lowlev.obj (.text:_write)
-                  10033140    00000120     csl_C6727.lib : csl_i2cOpen.o (.text:csl_section:i2c)
-                  10033260    00000120     csl_C672x_intc.lib : csl_intcOpen.o (.text:csl_section:intc)
-                  10033380    00000100     rts67plus.lib : trgdrv.obj (.text:_HOSTread)
-                  10033480    00000100                   : trgdrv.obj (.text:_HOSTunlink)
-                  10033580    00000100                   : trgdrv.obj (.text:_HOSTwrite)
-                  10033680    00000100                   : fopen.obj (.text:__cleanup)
-                  10033780    00000100                   : _printfi.obj (.text:__pconv_f)
-                  10033880    00000100                   : _printfi.obj (.text:__pproc_fge)
-                  10033980    00000100                   : strasg.obj (.text:__strasgi)
-                  10033a80    000000e0     padk.lib : PADK_ADC.obj (.text)
-                  10033b60    000000e0     rts67plus.lib : trgdrv.obj (.text:_HOSTclose)
-                  10033c40    000000e0                   : _printfi.obj (.text:__ecpy)
-                  10033d20    000000e0                   : memory.obj (.text:_minsert)
-                  10033e00    000000c0                   : imath40.obj (.text:__divli)
-                  10033ec0    000000c0                   : divu.obj (.text:__divu)
-                  10033f80    000000c0                   : fflush.obj (.text:__doflush)
-                  10034040    000000c0                   : fixdli.obj (.text:__fixdli)
-                  10034100    000000c0                   : remi.obj (.text:__remi)
-                  100341c0    000000c0                   : lowlev.obj (.text:_finddevice)
-                  10034280    000000c0                   : memory.obj (.text:_mremove)
-                  10034340    000000c0                   : rand.obj (.text:_rand)
-                  10034400    000000c0                   : trgmsg.obj (.text:_readmsg)
-                  100344c0    000000c0                   : trgmsg.obj (.text:_writemsg)
-                  10034580    000000c0     csl_C6727.lib : csl_mcaspOpen.o (.text:csl_section:mcasp)
-                  10034640    000000c0                   : csl_mcaspGetChipCtxt.o (.text:csl_section:mcasp)
-                  10034700    000000a0                   : CSL_dmaxGetNextFreeParamEntry.o (.text)
-                  100347a0    000000a0     rts67plus.lib : fixfu.obj (.text:__fixfu)
-                  10034840    000000a0                   : fltlid.obj (.text:__fltlid)
-                  100348e0    000000a0                   : mpyll.obj (.text:__mpyll)
-                  10034980    000000a0                   : lowlev.obj (.text:_unlink)
-                  10034a20    000000a0     csl_C6727.lib : csl_dmaxHwSetupFifoParam.o (.text:csl_section:dmax)
-                  10034ac0    000000a0                   : csl_dmaxClose.o (.text:csl_section:dmax)
-                  10034b60    000000a0     csl_C672x_intc.lib : csl_intcEventEnable.o (.text:csl_section:intc)
-                  10034c00    00000080     rts67plus.lib : llshift.obj (.text:__llshl)
-                  10034c80    00000080                   : boot.obj (.text:_c_int00)
-                  10034d00    00000080                   : fprintf.obj (.text:_fprintf)
-                  10034d80    00000080                   : memccpy.obj (.text:_memccpy)
-                  10034e00    00000080     csl_C6727.lib : csl_dmaxHwSetup1dParam.o (.text:csl_section:dmax)
-                  10034e80    00000080                   : csl_dmaxHwSetupSpiParam.o (.text:csl_section:dmax)
-                  10034f00    00000080     csl_C672x_intc.lib : csl_intcSetVectorPtr.o (.text:csl_section:intc)
-                  10034f80    00000080                        : csl_intcInit.o (.text:csl_section:intc)
-                  10035000    00000060                        : _CSL_eventEnorDisable.o (.text)
-                  10035060    00000060     rts67plus.lib : llshift.obj (.text:__llshru)
-                  100350c0    00000060                   : imath40.obj (.text:__remli)
-                  10035120    00000060                   : imath64.obj (.text:__subcull)
-                  10035180    00000060     csl_C6727.lib : csl_i2cGetBaseAddress.o (.text:csl_section:i2c)
-                  100351e0    00000060     csl_C672x_intc.lib : csl_intcGlobalDisable.o (.text:csl_section:intc)
-                  10035240    00000060                        : csl_intcGlobalRestore.o (.text:csl_section:intc)
-                  100352a0    00000060                        : csl_intcGlobalEnable.o (.text:csl_section:intc)
-                  10035300    00000040     csl_C6727.lib : csl_dmaxSetDetr.o (.text)
-                  10035340    00000040     csl_C672x_intc.lib : _CSL_intcGlobalEnorDisable.o (.text)
-                  10035380    00000040     rts67plus.lib : args_main.obj (.text:__args_main)
-                  100353c0    00000040     csl_C6727.lib : csl_dmaxInit.o (.text:csl_section:dmax)
-                  10035400    00000040                   : csl_dmaxGetBaseAddress.o (.text:csl_section:dmax)
-                  10035440    00000020     csl_C672x_intc.lib : _CSL_intcReadISTP.o (.text)
-                  10035460    00000020                        : _CSL_intcISTP.o (.text)
-                  10035480    00000020                        : _CSL_intcFetchPacket.o (.text)
-                  100354a0    00000020     rts67plus.lib : negll.obj (.text:__negll)
-                  100354c0    00000020                   : _lock.obj (.text:__nop)
-                  100354e0    00000020                   : fprintf.obj (.text:__outc)
-                  10035500    00000020                   : fprintf.obj (.text:__outs)
-                  10035520    00000020                   : exit.obj (.text:_abort)
-                  10035540    00000020                   : remove.obj (.text:_remove)
-                  10035560    00000020     csl_C6727.lib : csl_chipInit.o (.text:csl_section:chip)
-                  10035580    00000020                   : csl_i2cInit.o (.text:csl_section:i2c)
-                  100355a0    00000020                   : csl_i2cClose.o (.text:csl_section:i2c)
-                  100355c0    00000020                   : csl_mcaspInit.o (.text:csl_section:mcasp)
-                  100355e0    00000020     (.T$0004)
-                  10035600    00000020     (.T$0007)
-                  10035620    00000020     (.T$0002)
-                  10035640    00000020     (.T$0000)
-                  10035660    00000020     (.T$0005)
-                  10035680    00000020     (.T$0003)
-                  100356a0    00000020     (.T$0006)
-                  100356c0    00000020     (.T$0001)
+                  10027080    00000ec0     midi.obj (.text)
+                  10027f40    00000c80     main.obj (.text)
+                  10028bc0    00000a00     generators.obj (.text)
+                  100295c0    000009a0     initialization.obj (.text)
+                  10029f60    00000520     csl_C6727.lib : csl_dmaxHwSetup.o (.text:csl_section:dmax)
+                  1002a480    00000500     rts67plus.lib : _printfi.obj (.text:__setfield)
+                  1002a980    000004a0     mixer.obj (.text)
+                  1002ae20    000004a0     csl_C6727.lib : csl_dmaxHwControl.o (.text:csl_section:dmax)
+                  1002b2c0    00000440     rts67plus.lib : _printfi.obj (.text:__getarg_diouxp)
+                  1002b700    00000440     csl_C6727.lib : csl_mcaspHwSetup.o (.text:csl_section:mcasp)
+                  1002bb40    00000420     padk.lib : PADK_UART.obj (.text)
+                  1002bf60    00000420     rts67plus.lib : _printfi.obj (.text:__printfi)
+                  1002c380    00000400     padk.lib : PADK_MIDI.obj (.text)
+                  1002c780    000003c0     rts67plus.lib : _printfi.obj (.text:__fcpy)
+                  1002cb40    000003c0                   : _printfi.obj (.text:_ecvt)
+                  1002cf00    000003c0     csl_C672x_intc.lib : csl_intcHookIsr.o (.text:csl_section:intc)
+                  1002d2c0    000003a0     rts67plus.lib : _printfi.obj (.text:_fcvt)
+                  1002d660    00000380                   : memory.obj (.text:_free)
+                  1002d9e0    00000360     padk.lib : PADK_GPIO.obj (.text)
+                  1002dd40    00000360     rts67plus.lib : _printfi.obj (.text:__pproc_fwp)
+                  1002e0a0    00000360                   : fputs.obj (.text:_fputs)
+                  1002e400    00000360     csl_C6727.lib : csl_mcaspRegReset.o (.text:csl_section:mcasp)
+                  1002e760    00000340     led.obj (.text)
+                  1002eaa0    00000300     c672xSystemPatchV2_00_00.lib : patch.obj (.text)
+                  1002eda0    00000300     rts67plus.lib : _printfi.obj (.text:__pconv_e)
+                  1002f0a0    00000300     csl_C6727.lib : csl_i2cHwControl.o (.text:csl_section:i2c)
+                  1002f3a0    000002e0     rts67plus.lib : imath64.obj (.text:__divull)
+                  1002f680    000002e0     csl_C6727.lib : csl_mcaspResetCtrl.o (.text:csl_section:mcasp)
+                  1002f960    000002c0     rts67plus.lib : _printfi.obj (.text:__pproc_diouxp)
+                  1002fc20    000002c0                   : _printfi.obj (.text:__pproc_str)
+                  1002fee0    000002c0     csl_C6727.lib : csl_dmaxOpen.o (.text:csl_section:dmax)
+                  100301a0    00000260     padk.lib : PADK_CLKGEN.obj (.text)
+                  10030400    00000260     csl_C6727.lib : csl_i2cGetHwStatus.o (.text:csl_section:i2c)
+                  10030660    00000240     rts67plus.lib : _printfi.obj (.text:__mcpy)
+                  100308a0    00000200                   : trgdrv.obj (.text:_HOSTrename)
+                  10030aa0    00000200                   : memcpy62.obj (.text:_memcpy)
+                  10030ca0    00000200                   : setvbuf.obj (.text:_setvbuf)
+                  10030ea0    00000200     csl_C6727.lib : csl_i2cHwSetup.o (.text:csl_section:i2c)
+                  100310a0    000001e0     padk.lib : PADK_DAC.obj (.text)
+                  10031280    000001e0     rts67plus.lib : _printfi.obj (.text:__pconv_g)
+                  10031460    000001e0                   : memory.obj (.text:_malloc)
+                  10031640    000001c0                   : imath40.obj (.text:__divul)
+                  10031800    000001a0                   : _printfi.obj (.text:__ltostr)
+                  100319a0    000001a0                   : lowlev.obj (.text:_getdevice)
+                  10031b40    000001a0     csl_C6727.lib : csl_dmaxHwSetupGpParam.o (.text:csl_section:dmax)
+                  10031ce0    00000180     rts67plus.lib : fputc.obj (.text:_fputc)
+                  10031e60    00000160                   : _printfi.obj (.text:__pproc_fflags)
+                  10031fc0    00000160                   : fclose.obj (.text:_fclose)
+                  10032120    00000140                   : trgdrv.obj (.text:_HOSTlseek)
+                  10032260    00000140                   : atoi.obj (.text:_atoi)
+                  100323a0    00000140                   : exit.obj (.text:_exit)
+                  100324e0    00000140     csl_C6727.lib : csl_i2cHwSetupRaw.o (.text:csl_section:i2c)
+                  10032620    00000120     rts67plus.lib : trgdrv.obj (.text:_HOSTopen)
+                  10032740    00000120                   : autoinit.obj (.text:__auto_init)
+                  10032860    00000120                   : _printfi.obj (.text:__div)
+                  10032980    00000120                   : _io_perm.obj (.text:__wrt_ok)
+                  10032aa0    00000120                   : lowlev.obj (.text:_close)
+                  10032bc0    00000120                   : fseek.obj (.text:_fseek)
+                  10032ce0    00000120                   : lowlev.obj (.text:_lseek)
+                  10032e00    00000120                   : ltoa.obj (.text:_ltoa)
+                  10032f20    00000120                   : memset.obj (.text:_memset)
+                  10033040    00000120                   : lowlev.obj (.text:_write)
+                  10033160    00000120     csl_C6727.lib : csl_i2cOpen.o (.text:csl_section:i2c)
+                  10033280    00000120     csl_C672x_intc.lib : csl_intcOpen.o (.text:csl_section:intc)
+                  100333a0    00000100     rts67plus.lib : trgdrv.obj (.text:_HOSTread)
+                  100334a0    00000100                   : trgdrv.obj (.text:_HOSTunlink)
+                  100335a0    00000100                   : trgdrv.obj (.text:_HOSTwrite)
+                  100336a0    00000100                   : fopen.obj (.text:__cleanup)
+                  100337a0    00000100                   : _printfi.obj (.text:__pconv_f)
+                  100338a0    00000100                   : _printfi.obj (.text:__pproc_fge)
+                  100339a0    00000100                   : strasg.obj (.text:__strasgi)
+                  10033aa0    000000e0     padk.lib : PADK_ADC.obj (.text)
+                  10033b80    000000e0     rts67plus.lib : trgdrv.obj (.text:_HOSTclose)
+                  10033c60    000000e0                   : _printfi.obj (.text:__ecpy)
+                  10033d40    000000e0                   : memory.obj (.text:_minsert)
+                  10033e20    000000c0                   : imath40.obj (.text:__divli)
+                  10033ee0    000000c0                   : divu.obj (.text:__divu)
+                  10033fa0    000000c0                   : fflush.obj (.text:__doflush)
+                  10034060    000000c0                   : fixdli.obj (.text:__fixdli)
+                  10034120    000000c0                   : remi.obj (.text:__remi)
+                  100341e0    000000c0                   : lowlev.obj (.text:_finddevice)
+                  100342a0    000000c0                   : memory.obj (.text:_mremove)
+                  10034360    000000c0                   : rand.obj (.text:_rand)
+                  10034420    000000c0                   : trgmsg.obj (.text:_readmsg)
+                  100344e0    000000c0                   : trgmsg.obj (.text:_writemsg)
+                  100345a0    000000c0     csl_C6727.lib : csl_mcaspOpen.o (.text:csl_section:mcasp)
+                  10034660    000000c0                   : csl_mcaspGetChipCtxt.o (.text:csl_section:mcasp)
+                  10034720    000000a0                   : CSL_dmaxGetNextFreeParamEntry.o (.text)
+                  100347c0    000000a0     rts67plus.lib : fixfu.obj (.text:__fixfu)
+                  10034860    000000a0                   : fltlid.obj (.text:__fltlid)
+                  10034900    000000a0                   : mpyll.obj (.text:__mpyll)
+                  100349a0    000000a0                   : lowlev.obj (.text:_unlink)
+                  10034a40    000000a0     csl_C6727.lib : csl_dmaxHwSetupFifoParam.o (.text:csl_section:dmax)
+                  10034ae0    000000a0                   : csl_dmaxClose.o (.text:csl_section:dmax)
+                  10034b80    000000a0     csl_C672x_intc.lib : csl_intcEventEnable.o (.text:csl_section:intc)
+                  10034c20    00000080     rts67plus.lib : llshift.obj (.text:__llshl)
+                  10034ca0    00000080                   : boot.obj (.text:_c_int00)
+                  10034d20    00000080                   : fprintf.obj (.text:_fprintf)
+                  10034da0    00000080                   : memccpy.obj (.text:_memccpy)
+                  10034e20    00000080     csl_C6727.lib : csl_dmaxHwSetup1dParam.o (.text:csl_section:dmax)
+                  10034ea0    00000080                   : csl_dmaxHwSetupSpiParam.o (.text:csl_section:dmax)
+                  10034f20    00000080     csl_C672x_intc.lib : csl_intcSetVectorPtr.o (.text:csl_section:intc)
+                  10034fa0    00000080                        : csl_intcInit.o (.text:csl_section:intc)
+                  10035020    00000060                        : _CSL_eventEnorDisable.o (.text)
+                  10035080    00000060     rts67plus.lib : llshift.obj (.text:__llshru)
+                  100350e0    00000060                   : imath40.obj (.text:__remli)
+                  10035140    00000060                   : imath64.obj (.text:__subcull)
+                  100351a0    00000060     csl_C6727.lib : csl_i2cGetBaseAddress.o (.text:csl_section:i2c)
+                  10035200    00000060     csl_C672x_intc.lib : csl_intcGlobalDisable.o (.text:csl_section:intc)
+                  10035260    00000060                        : csl_intcGlobalRestore.o (.text:csl_section:intc)
+                  100352c0    00000060                        : csl_intcGlobalEnable.o (.text:csl_section:intc)
+                  10035320    00000040     csl_C6727.lib : csl_dmaxSetDetr.o (.text)
+                  10035360    00000040     csl_C672x_intc.lib : _CSL_intcGlobalEnorDisable.o (.text)
+                  100353a0    00000040     rts67plus.lib : args_main.obj (.text:__args_main)
+                  100353e0    00000040     csl_C6727.lib : csl_dmaxInit.o (.text:csl_section:dmax)
+                  10035420    00000040                   : csl_dmaxGetBaseAddress.o (.text:csl_section:dmax)
+                  10035460    00000020     csl_C672x_intc.lib : _CSL_intcReadISTP.o (.text)
+                  10035480    00000020                        : _CSL_intcISTP.o (.text)
+                  100354a0    00000020                        : _CSL_intcFetchPacket.o (.text)
+                  100354c0    00000020     rts67plus.lib : negll.obj (.text:__negll)
+                  100354e0    00000020                   : _lock.obj (.text:__nop)
+                  10035500    00000020                   : fprintf.obj (.text:__outc)
+                  10035520    00000020                   : fprintf.obj (.text:__outs)
+                  10035540    00000020                   : exit.obj (.text:_abort)
+                  10035560    00000020                   : remove.obj (.text:_remove)
+                  10035580    00000020     csl_C6727.lib : csl_chipInit.o (.text:csl_section:chip)
+                  100355a0    00000020                   : csl_i2cInit.o (.text:csl_section:i2c)
+                  100355c0    00000020                   : csl_i2cClose.o (.text:csl_section:i2c)
+                  100355e0    00000020                   : csl_mcaspInit.o (.text:csl_section:mcasp)
+                  10035600    00000020     (.T$0004)
+                  10035620    00000020     (.T$0007)
+                  10035640    00000020     (.T$0002)
+                  10035660    00000020     (.T$0000)
+                  10035680    00000020     (.T$0005)
+                  100356a0    00000020     (.T$0003)
+                  100356c0    00000020     (.T$0006)
+                  100356e0    00000020     (.T$0001)
 
-.const     0    100356e0    00002177     
-                  100356e0    00000f9c     c672xSystemPatchV2_00_00.lib : pdspFirmware_p0.pdsp.obj (.const)
-                  1003667c    00000f9c                                  : pdspFirmware_p1.pdsp.obj (.const)
-                  10037618    00000101     rts67plus.lib : ctype.obj (.const)
-                  10037719    00000002                   : fputs.obj (.const)
-                  1003771b    00000001     --HOLE-- [fill = 0]
-                  1003771c    0000002c     padk.lib : PADK_I2C.obj (.const)
-                  10037748    00000018              : PADK_MIDI.obj (.const)
-                  10037760    00000018              : PADK_UART.obj (.const)
-                  10037778    00000014              : PADK_CLKGEN.obj (.const)
-                  1003778c    00000008              : PADK_DAC.obj (.const)
-                  10037794    00000002              : PADK_ADC.obj (.const)
-                  10037796    0000009e     initialization.obj (.const)
-                  10037834    00000023     rts67plus.lib : _printfi.obj (.const)
+.const     0    10035700    00002177     
+                  10035700    00000f9c     c672xSystemPatchV2_00_00.lib : pdspFirmware_p0.pdsp.obj (.const)
+                  1003669c    00000f9c                                  : pdspFirmware_p1.pdsp.obj (.const)
+                  10037638    00000101     rts67plus.lib : ctype.obj (.const)
+                  10037739    00000002                   : fputs.obj (.const)
+                  1003773b    00000001     --HOLE-- [fill = 0]
+                  1003773c    0000002c     padk.lib : PADK_I2C.obj (.const)
+                  10037768    00000018              : PADK_MIDI.obj (.const)
+                  10037780    00000018              : PADK_UART.obj (.const)
+                  10037798    00000014              : PADK_CLKGEN.obj (.const)
+                  100377ac    00000008              : PADK_DAC.obj (.const)
+                  100377b4    00000002              : PADK_ADC.obj (.const)
+                  100377b6    0000009e     initialization.obj (.const)
+                  10037854    00000023     rts67plus.lib : _printfi.obj (.const)
 
-.stack     0    10037858    00002000     
-                  10037858    00000008     rts67plus.lib : boot.obj (.stack) [fill = deadbeef]
-                  10037860    00001ff8     --HOLE-- [fill = deadbeef]
+.stack     0    10037878    00002000     
+                  10037878    00000008     rts67plus.lib : boot.obj (.stack) [fill = deadbeef]
+                  10037880    00001ff8     --HOLE-- [fill = deadbeef]
 
-.sysmem    0    10039858    00002000     UNINITIALIZED
-                  10039858    00000008     rts67plus.lib : memory.obj (.sysmem)
+.sysmem    0    10039878    00002000     UNINITIALIZED
+                  10039878    00000008     rts67plus.lib : memory.obj (.sysmem)
 
-.cinit     0    1003b858    00000af4     
-                  1003b858    00000679     instruments.obj (.cinit)
-                  1003bed1    00000007     --HOLE-- [fill = 0]
-                  1003bed8    00000118     initialization.obj (.cinit)
-                  1003bff0    000000cc     led.obj (.cinit)
-                  1003c0bc    00000004     --HOLE-- [fill = 0]
-                  1003c0c0    0000005c     rts67plus.lib : lowlev.obj (.cinit)
-                  1003c11c    00000004     --HOLE-- [fill = 0]
-                  1003c120    0000005c                   : defs.obj (.cinit)
-                  1003c17c    00000004     --HOLE-- [fill = 0]
-                  1003c180    00000048     csl_C672x_intc.lib : csl_intcInit.o (.cinit)
-                  1003c1c8    00000048     padk.lib : PADK_I2C.obj (.cinit)
-                  1003c210    0000002c     rts67plus.lib : memory.obj (.cinit)
-                  1003c23c    00000004     --HOLE-- [fill = 0]
-                  1003c240    0000002c                   : exit.obj (.cinit)
-                  1003c26c    00000004     --HOLE-- [fill = 0]
-                  1003c270    0000002c     main.obj (.cinit)
-                  1003c29c    00000004     --HOLE-- [fill = 0]
-                  1003c2a0    00000029     midi.obj (.cinit)
-                  1003c2c9    00000007     --HOLE-- [fill = 0]
-                  1003c2d0    00000028     csl_C6727.lib : csl_dmaxInit.o (.cinit)
-                  1003c2f8    0000001c     rts67plus.lib : _lock.obj (.cinit)
-                  1003c314    00000004     --HOLE-- [fill = 0]
-                  1003c318    00000010                   : rand.obj (.cinit)
-                  1003c328    0000000c                   : fopen.obj (.cinit)
+.cinit     0    1003b878    00000af4     
+                  1003b878    00000679     instruments.obj (.cinit)
+                  1003bef1    00000007     --HOLE-- [fill = 0]
+                  1003bef8    00000118     initialization.obj (.cinit)
+                  1003c010    000000cc     led.obj (.cinit)
+                  1003c0dc    00000004     --HOLE-- [fill = 0]
+                  1003c0e0    0000005c     rts67plus.lib : lowlev.obj (.cinit)
+                  1003c13c    00000004     --HOLE-- [fill = 0]
+                  1003c140    0000005c                   : defs.obj (.cinit)
+                  1003c19c    00000004     --HOLE-- [fill = 0]
+                  1003c1a0    00000048     csl_C672x_intc.lib : csl_intcInit.o (.cinit)
+                  1003c1e8    00000048     padk.lib : PADK_I2C.obj (.cinit)
+                  1003c230    0000002c     rts67plus.lib : memory.obj (.cinit)
+                  1003c25c    00000004     --HOLE-- [fill = 0]
+                  1003c260    0000002c                   : exit.obj (.cinit)
+                  1003c28c    00000004     --HOLE-- [fill = 0]
+                  1003c290    0000002c     main.obj (.cinit)
+                  1003c2bc    00000004     --HOLE-- [fill = 0]
+                  1003c2c0    00000029     midi.obj (.cinit)
+                  1003c2e9    00000007     --HOLE-- [fill = 0]
+                  1003c2f0    00000028     csl_C6727.lib : csl_dmaxInit.o (.cinit)
+                  1003c318    0000001c     rts67plus.lib : _lock.obj (.cinit)
                   1003c334    00000004     --HOLE-- [fill = 0]
-                  1003c338    0000000c     csl_C672x_intc.lib : csl_intcOpen.o (.cinit)
-                  1003c344    00000008     --HOLE-- [fill = 0]
+                  1003c338    00000010                   : rand.obj (.cinit)
+                  1003c348    0000000c                   : fopen.obj (.cinit)
+                  1003c354    00000004     --HOLE-- [fill = 0]
+                  1003c358    0000000c     csl_C672x_intc.lib : csl_intcOpen.o (.cinit)
+                  1003c364    00000008     --HOLE-- [fill = 0]
 
-.switch    0    1003c34c    00000244     
-                  1003c34c    0000013c     csl_C6727.lib : csl_mcaspHwControl.o (.switch)
-                  1003c488    00000050                   : csl_i2cHwControl.o (.switch)
-                  1003c4d8    0000004c                   : csl_i2cGetHwStatus.o (.switch)
-                  1003c524    00000030     padk.lib : PADK_CLKGEN.obj (.switch)
-                  1003c554    0000002c     csl_C6727.lib : csl_dmaxHwControl.o (.switch)
-                  1003c580    00000010                   : csl_dmaxHwSetupGpParam.o (.switch)
+.switch    0    1003c36c    00000244     
+                  1003c36c    0000013c     csl_C6727.lib : csl_mcaspHwControl.o (.switch)
+                  1003c4a8    00000050                   : csl_i2cHwControl.o (.switch)
+                  1003c4f8    0000004c                   : csl_i2cGetHwStatus.o (.switch)
+                  1003c544    00000030     padk.lib : PADK_CLKGEN.obj (.switch)
+                  1003c574    0000002c     csl_C6727.lib : csl_dmaxHwControl.o (.switch)
+                  1003c5a0    00000010                   : csl_dmaxHwSetupGpParam.o (.switch)
 
-.cio       0    1003c590    00000120     UNINITIALIZED
-                  1003c590    00000120     rts67plus.lib : trgmsg.obj (.cio)
+.cio       0    1003c5b0    00000120     UNINITIALIZED
+                  1003c5b0    00000120     rts67plus.lib : trgmsg.obj (.cio)
 
-.bss       0    1003c6b0    000000d8     UNINITIALIZED
-                  1003c6b0    00000042     csl_C672x_intc.lib : csl_intcInit.o (.bss:csl_section:intc)
-                  1003c6f4    00000034     led.obj (.bss)
-                  1003c728    0000002b     instruments.obj (.bss)
-                  1003c754    00000014     initialization.obj (.bss)
-                  1003c768    00000010     main.obj (.bss)
-                  1003c778    00000009     midi.obj (.bss)
-                  1003c784    00000004     csl_C672x_intc.lib : csl_intcOpen.o (.bss:csl_section:intc)
+.bss       0    1003c6d0    000000d8     UNINITIALIZED
+                  1003c6d0    00000042     csl_C672x_intc.lib : csl_intcInit.o (.bss:csl_section:intc)
+                  1003c714    00000034     led.obj (.bss)
+                  1003c748    0000002b     instruments.obj (.bss)
+                  1003c774    00000014     initialization.obj (.bss)
+                  1003c788    00000010     main.obj (.bss)
+                  1003c798    00000009     midi.obj (.bss)
+                  1003c7a4    00000004     csl_C672x_intc.lib : csl_intcOpen.o (.bss:csl_section:intc)
 
 
 FAR CALL TRAMPOLINES
 
 callee    addr      tramp     addr      call addr  call info
 --------  --------  --------  --------  ---------  ----------------
-_cosf     0002d2a0  .T$0000   10035640  10025b1c   effects.obj (.text)
+_cosf     0002d2a0  .T$0000   10035660  10025b1c   effects.obj (.text)
                                         10025104   effects.obj (.text)
-                                        100283d0   main.obj (.text)
-_sinf     0002d2b4  .T$0001   100356c0  10028440   main.obj (.text)
-                                        10028404   main.obj (.text)
-                                        10028384   main.obj (.text)
-                                        1002832c   main.obj (.text)
-                                        100282dc   main.obj (.text)
-                                        1002828c   main.obj (.text)
-                                        10028230   main.obj (.text)
-                                        100281dc   main.obj (.text)
-                                        1002817c   main.obj (.text)
-                                        1002812c   main.obj (.text)
-                                        100280ec   main.obj (.text)
+                                        100283f0   main.obj (.text)
+_sinf     0002d2b4  .T$0001   100356e0  10028460   main.obj (.text)
+                                        10028424   main.obj (.text)
+                                        100283a4   main.obj (.text)
+                                        1002834c   main.obj (.text)
+                                        100282fc   main.obj (.text)
+                                        100282ac   main.obj (.text)
+                                        10028250   main.obj (.text)
+                                        100281fc   main.obj (.text)
+                                        1002819c   main.obj (.text)
+                                        1002814c   main.obj (.text)
+                                        1002810c   main.obj (.text)
 _DSPF_sp_vecmul
-          00024a60  .T$0002   10035620  10024eec   instruments.obj (.text)
+          00024a60  .T$0002   10035640  10024eec   instruments.obj (.text)
                                         10024cb0   instruments.obj (.text)
                                         100249b4   instruments.obj (.text)
 _DSPF_sp_blk_move
-          000252a0  .T$0003   10035680  100254c8   effects.obj (.text)
-_expf     0002d5a0  .T$0004   100355e0  10024440   instruments.obj (.text)
+          000252a0  .T$0003   100356a0  100254c8   effects.obj (.text)
+_expf     0002d5a0  .T$0004   10035600  10024440   instruments.obj (.text)
                                         10024104   instruments.obj (.text)
                                         10023de0   instruments.obj (.text)
                                         10025b50   effects.obj (.text)
-                                        10027b80   midi.obj (.text)
-                                        10027a8c   midi.obj (.text)
-                                        100279ec   midi.obj (.text)
-                                        10027368   midi.obj (.text)
-                                        100272e8   midi.obj (.text)
-                                        10027258   midi.obj (.text)
-_sqrt     0002d460  .T$0005   10035660  10025190   effects.obj (.text)
-__divd    0002c4e0  .T$0006   100356a0  100276cc   midi.obj (.text)
-                                        100272a4   midi.obj (.text)
-                                        1002cc0c   rts67plus.lib : _printfi.obj (.text:_ecvt)
-                                        1002cbc0                 : _printfi.obj (.text:_ecvt)
-                                        1002d38c                 : _printfi.obj (.text:_fcvt)
-                                        1002d340                 : _printfi.obj (.text:_fcvt)
-                                        1002ef08                 : _printfi.obj (.text:__pconv_e)
-                                        1002eed4                 : _printfi.obj (.text:__pconv_e)
-__divf    0002c560  .T$0007   10035600  10024714   instruments.obj (.text)
+                                        10027ba0   midi.obj (.text)
+                                        10027ab4   midi.obj (.text)
+                                        10027a18   midi.obj (.text)
+                                        10027374   midi.obj (.text)
+                                        100272f0   midi.obj (.text)
+                                        10027260   midi.obj (.text)
+_sqrt     0002d460  .T$0005   10035680  10025190   effects.obj (.text)
+__divd    0002c4e0  .T$0006   100356c0  100276fc   midi.obj (.text)
+                                        100272ac   midi.obj (.text)
+                                        1002cc2c   rts67plus.lib : _printfi.obj (.text:_ecvt)
+                                        1002cbe0                 : _printfi.obj (.text:_ecvt)
+                                        1002d3ac                 : _printfi.obj (.text:_fcvt)
+                                        1002d360                 : _printfi.obj (.text:_fcvt)
+                                        1002ef28                 : _printfi.obj (.text:__pconv_e)
+                                        1002eef4                 : _printfi.obj (.text:__pconv_e)
+__divf    0002c560  .T$0007   10035620  10024714   instruments.obj (.text)
                                         10024458   instruments.obj (.text)
                                         1002411c   instruments.obj (.text)
                                         10023df8   instruments.obj (.text)
@@ -337,34 +337,36 @@ __divf    0002c560  .T$0007   10035600  10024714   instruments.obj (.text)
                                         100256b0   effects.obj (.text)
                                         10025054   effects.obj (.text)
                                         10024fb8   effects.obj (.text)
-                                        10027b04   midi.obj (.text)
-                                        10027ad4   midi.obj (.text)
-                                        10027a84   midi.obj (.text)
-                                        100279a4   midi.obj (.text)
-                                        10027210   midi.obj (.text)
-                                        100293ec   generators.obj (.text)
-                                        100291e8   generators.obj (.text)
-                                        10029004   generators.obj (.text)
-                                        10028f14   generators.obj (.text)
-                                        1002a9c4   mixer.obj (.text)
+                                        10027b28   midi.obj (.text)
+                                        10027afc   midi.obj (.text)
+                                        10027aac   midi.obj (.text)
+                                        100279d0   midi.obj (.text)
+                                        10027598   midi.obj (.text)
+                                        10027550   midi.obj (.text)
+                                        10027218   midi.obj (.text)
+                                        1002940c   generators.obj (.text)
+                                        10029208   generators.obj (.text)
+                                        10029024   generators.obj (.text)
+                                        10028f34   generators.obj (.text)
+                                        1002a9e4   mixer.obj (.text)
 
 
 GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
 
 address    name
 --------   ----
-1003c6b0   $bss
-1003c6b0   .bss
+1003c6d0   $bss
+1003c6d0   .bss
 10001c00   .data
 10020f80   .text
-10035520   C$$EXIT
-10034568   C$$IO$$
-10033a80   _ADC_Init
-10033b28   _ADC_Reset
+10035540   C$$EXIT
+10034588   C$$IO$$
+10033aa0   _ADC_Init
+10033b48   _ADC_Reset
 1001f174   _ALGERIAN
 1001ef3c   _ARABIAN
-10029578   _Adsr_Init
-10028e74   _Adsr_ProcessFrame
+10029598   _Adsr_Init
+10028e94   _Adsr_ProcessFrame
 1001f1c0   _BALINESE
 1001ef04   _BLACKKEYS
 1001ef88   _BYZANTINE
@@ -372,79 +374,79 @@ address    name
 10024d04   _Brass_ProcessFrame
 80012000   _CHINESE
 1001ee38   _CHROMATIC
-10030180   _CLKGEN_Init
-1003039c   _CLKGEN_OscSel
-1003033c   _CLKGEN_Reset
-10035560   _CSL_chipInit
-10034ac0   _CSL_dmaxClose
-10035400   _CSL_dmaxGetBaseAddress
-10034700   _CSL_dmaxGetNextFreeParamEntry
-1002ae00   _CSL_dmaxHwControl
-10029f40   _CSL_dmaxHwSetup
-100353c0   _CSL_dmaxInit
-1002fec0   _CSL_dmaxOpen
-10035300   _CSL_dmaxSetDetr
-10034e00   _CSL_dmaxSetup1dXFRParameterEntry
-10034a20   _CSL_dmaxSetupFifoXFRParameterEntry
-10031b20   _CSL_dmaxSetupGeneralXFRParameterEntry
-10034e80   _CSL_dmaxSetupSpiXFRParameterEntry
-100355a0   _CSL_i2cClose
-10035180   _CSL_i2cGetBaseAddress
-100303e0   _CSL_i2cGetHwStatus
-1002f080   _CSL_i2cHwControl
-10030e80   _CSL_i2cHwSetup
-100324c0   _CSL_i2cHwSetupRaw
-10035580   _CSL_i2cInit
-10033140   _CSL_i2cOpen
-10034b60   _CSL_intcEventEnable
-100351e0   _CSL_intcGlobalDisable
-100352a0   _CSL_intcGlobalEnable
-10035240   _CSL_intcGlobalRestore
-1002cee0   _CSL_intcHookIsr
-10034f80   _CSL_intcInit
-10033260   _CSL_intcOpen
-10034f00   _CSL_intcSetVectorPtr
-10034640   _CSL_mcaspGetChipCtxt
+100301a0   _CLKGEN_Init
+100303bc   _CLKGEN_OscSel
+1003035c   _CLKGEN_Reset
+10035580   _CSL_chipInit
+10034ae0   _CSL_dmaxClose
+10035420   _CSL_dmaxGetBaseAddress
+10034720   _CSL_dmaxGetNextFreeParamEntry
+1002ae20   _CSL_dmaxHwControl
+10029f60   _CSL_dmaxHwSetup
+100353e0   _CSL_dmaxInit
+1002fee0   _CSL_dmaxOpen
+10035320   _CSL_dmaxSetDetr
+10034e20   _CSL_dmaxSetup1dXFRParameterEntry
+10034a40   _CSL_dmaxSetupFifoXFRParameterEntry
+10031b40   _CSL_dmaxSetupGeneralXFRParameterEntry
+10034ea0   _CSL_dmaxSetupSpiXFRParameterEntry
+100355c0   _CSL_i2cClose
+100351a0   _CSL_i2cGetBaseAddress
+10030400   _CSL_i2cGetHwStatus
+1002f0a0   _CSL_i2cHwControl
+10030ea0   _CSL_i2cHwSetup
+100324e0   _CSL_i2cHwSetupRaw
+100355a0   _CSL_i2cInit
+10033160   _CSL_i2cOpen
+10034b80   _CSL_intcEventEnable
+10035200   _CSL_intcGlobalDisable
+100352c0   _CSL_intcGlobalEnable
+10035260   _CSL_intcGlobalRestore
+1002cf00   _CSL_intcHookIsr
+10034fa0   _CSL_intcInit
+10033280   _CSL_intcOpen
+10034f20   _CSL_intcSetVectorPtr
+10034660   _CSL_mcaspGetChipCtxt
 10020f80   _CSL_mcaspHwControl
-1002b6e0   _CSL_mcaspHwSetup
-100355c0   _CSL_mcaspInit
-10034580   _CSL_mcaspOpen
-1002e3e0   _CSL_mcaspRegReset
-1002f660   _CSL_mcaspResetCtrl
+1002b700   _CSL_mcaspHwSetup
+100355e0   _CSL_mcaspInit
+100345a0   _CSL_mcaspOpen
+1002e400   _CSL_mcaspRegReset
+1002f680   _CSL_mcaspResetCtrl
 10023e54   _Clarinet_Init
 10024ac4   _Clarinet_ProcessFrame
 10020f30   _CslDmaxAlloc
-100310a4   _DAC_Init
-1003122c   _DAC_Mute
-10031208   _DAC_RelayMute
-100311ec   _DAC_RelayUnmute
-100311a8   _DAC_Reset
-10031080   _DAC_Unmute
+100310c4   _DAC_Init
+1003124c   _DAC_Mute
+10031228   _DAC_RelayMute
+1003120c   _DAC_RelayUnmute
+100311c8   _DAC_Reset
+100310a0   _DAC_Unmute
 000252a0   _DSPF_sp_blk_move
 00024a60   _DSPF_sp_vecmul
-10027edc   _De_QueueMIDIEvent
+10027f08   _De_QueueMIDIEvent
 1001efd4   _EGYPTIAN
 1001f00c   _ENIGMATIC
-1002dd00   _GPIO_ClearDeltaPushButton
-1002da04   _GPIO_EnableLed
-1002dc68   _GPIO_GetDIPSwitch
-1002dc50   _GPIO_GetDeltaPushButton
-1002dc2c   _GPIO_GetPushButton
-1002da80   _GPIO_Reset
-1002d9c0   _GPIO_SetBCD
+1002dd20   _GPIO_ClearDeltaPushButton
+1002da24   _GPIO_EnableLed
+1002dc88   _GPIO_GetDIPSwitch
+1002dc70   _GPIO_GetDeltaPushButton
+1002dc4c   _GPIO_GetPushButton
+1002daa0   _GPIO_Reset
+1002d9e0   _GPIO_SetBCD
 1001f058   _GYPSY
 80012038   _HARMONIC_MINOR
 1001f128   _HINDU
 1001f0a4   _HIRAJOSHI
-10033b60   _HOSTclose
-10032100   _HOSTlseek
-10032600   _HOSTopen
-10033380   _HOSTread
-10030880   _HOSTrename
-10033480   _HOSTunlink
-10033580   _HOSTwrite
+10033b80   _HOSTclose
+10032120   _HOSTlseek
+10032620   _HOSTopen
+100333a0   _HOSTread
+100308a0   _HOSTrename
+100334a0   _HOSTunlink
+100335a0   _HOSTwrite
 1001f244   _HUNGARIANGYPSY
-1003c738   _HarmonizerEffectOnFlag
+1003c758   _HarmonizerEffectOnFlag
 10026e20   _I2C_ReadMem
 10026c3c   _I2C_ReadReg
 10026a90   _I2C_ReadVal
@@ -453,31 +455,31 @@ address    name
 10026418   _I2C_WriteVal
 1001ee00   _JAPANESE
 1001f0dc   _JEWISH
-1003c730   _Key
-1002ea20   _L0
-1002e9e0   _L1
-1002e9a0   _L2
-1002e960   _L3
-1002e920   _L4
-1002e8e0   _L5
-1002e8a0   _L6
-1002e860   _L7
-1002e818   _M1
-1002e7d0   _M2
+1003c750   _Key
+1002ea40   _L0
+1002ea00   _L1
+1002e9c0   _L2
+1002e980   _L3
+1002e940   _L4
+1002e900   _L5
+1002e8c0   _L6
+1002e880   _L7
+1002e838   _M1
+1002e7f0   _M2
 10020e78   _MIDIEventArray
-1003c778   _MIDIQueueIndex_In
-1003c77c   _MIDIQueueIndex_Out
-1002c710   _MIDI_EnableLed1
-1002c6dc   _MIDI_EnableLed2
-1002c6d0   _MIDI_GetInterruptId
-1002c484   _MIDI_Init
-10027dc8   _MIDI_Poll
-1002c5c4   _MIDI_Read
-1002c558   _MIDI_Reset
-1002c458   _MIDI_SetRTS
-1002c360   _MIDI_Write
-1002adac   _Mixer_Init
-1002a960   _Mixer_ProcessFrame
+1003c798   _MIDIQueueIndex_In
+1003c79c   _MIDIQueueIndex_Out
+1002c730   _MIDI_EnableLed1
+1002c6fc   _MIDI_EnableLed2
+1002c6f0   _MIDI_GetInterruptId
+1002c4a4   _MIDI_Init
+10027dfc   _MIDI_Poll
+1002c5e4   _MIDI_Read
+1002c578   _MIDI_Reset
+1002c478   _MIDI_SetRTS
+1002c380   _MIDI_Write
+1002adcc   _Mixer_Init
+1002a980   _Mixer_ProcessFrame
 10025ff4   _Mute_Init
 10025e2c   _Mute_ProcessFrame
 1002430c   _NewBrass
@@ -487,14 +489,14 @@ address    name
 10024a04   _NewRandomArpeggio
 10023b98   _Organ_Init
 100248a0   _Organ_ProcessFrame
-10028e5c   _Oscillator_Init
-10028d98   _Oscillator_ProcessFrame
+10028e7c   _Oscillator_Init
+10028db8   _Oscillator_ProcessFrame
 10025dc4   _Phasor_Init
 10025960   _Phasor_ProcessFrame
 100258dc   _Pulsor_Init
 10025658   _Pulsor_ProcessFrame
-10027d10   _QueueMIDIEvent
-10027d8c   _QueueMIDIEvent2
+10027d40   _QueueMIDIEvent
+10027dc0   _QueueMIDIEvent2
 100247e0   _RandomArpeggio_Init
 100245d8   _RandomArpeggio_ProcessFrame
 100238e8   _ReleaseBrass
@@ -504,100 +506,100 @@ address    name
 10023770   _ReleaseOrgan
 100235f0   _ReleaseRandomArpeggio
 1001f1f8   _SPANISH
-100356e0   _SarPdspFirmware0
-1003667c   _SarPdspFirmware1
+10035700   _SarPdspFirmware0
+1003669c   _SarPdspFirmware1
 10023160   _ScaleHarmonizer
-100295a8   _SetupInterrupts
-100296f0   _SynthInit
-1002e788   _U1
-1002e740   _U2
-1002befc   _UART_EnableLed1
-1002bec8   _UART_EnableLed2
-1002beb0   _UART_GetInterruptId
-1002bc58   _UART_Init
-1002bda0   _UART_Read
-1002bd2c   _UART_Reset
-1002bb20   _UART_Write
-10028d80   _VariableOscillator_Init
-10028ba0   _VariableOscillator_ProcessFrame
+100295c8   _SetupInterrupts
+10029710   _SynthInit
+1002e7a8   _U1
+1002e760   _U2
+1002bf1c   _UART_EnableLed1
+1002bee8   _UART_EnableLed2
+1002bed0   _UART_GetInterruptId
+1002bc78   _UART_Init
+1002bdc0   _UART_Read
+1002bd4c   _UART_Reset
+1002bb40   _UART_Write
+10028da0   _VariableOscillator_Init
+10028bc0   _VariableOscillator_ProcessFrame
 100255e0   _Vibrato_Init
 100254a4   _Vibrato_ProcessFrame
 1001eeb8   _WHITEKEYS
 10025418   _Wah_Init
 10024f40   _Wah_ProcessFrame
-1003c590   __CIOBUF_
-1003c6f0   __CSL_IntcContextFlags
-1003c784   __CSL_IntcEventAllocMask
-1003c6b0   __CSL_IntcEventTable
-10035028   __CSL_intcEventDisable
-10035000   __CSL_intcEventEnable
-10035480   __CSL_intcFetchPacket
-1003535c   __CSL_intcGlobalDisable
-10035340   __CSL_intcGlobalEnable
-10035460   __CSL_intcISTP
-10035440   __CSL_intcReadISTP
+1003c5b0   __CIOBUF_
+1003c710   __CSL_IntcContextFlags
+1003c7a4   __CSL_IntcEventAllocMask
+1003c6d0   __CSL_IntcEventTable
+10035048   __CSL_intcEventDisable
+10035020   __CSL_intcEventEnable
+100354a0   __CSL_intcFetchPacket
+1003537c   __CSL_intcGlobalDisable
+10035360   __CSL_intcGlobalEnable
+10035480   __CSL_intcISTP
+10035460   __CSL_intcReadISTP
 00002000   __STACK_SIZE
 00002000   __SYSMEM_SIZE
 ffffffff   ___binit__
-1003c6b0   ___bss__
+1003c6d0   ___bss__
 ffffffff   ___c_args__
-1003b858   ___cinit__
+1003b878   ___cinit__
 10001c00   ___data__
 10001c00   ___edata__
-1003c788   ___end__
-100356e0   ___etext__
+1003c7a8   ___end__
+10035700   ___etext__
 10020f70   ___pinit__
 10020f80   ___text__
-10035380   __args_main
-10032720   __auto_init
-10033680   __cleanup
+100353a0   __args_main
+10032740   __auto_init
+100336a0   __cleanup
 10020e70   __cleanup_ptr
-10037618   __ctypes_
+10037638   __ctypes_
 0002c4e0   __divd
 0002c560   __divf
-10033e00   __divli
-10033ec0   __divu
-10031620   __divul
-1002f380   __divull
-10033f80   __doflush
+10033e20   __divli
+10033ee0   __divu
+10031640   __divul
+1002f3a0   __divull
+10033fa0   __doflush
 10020e74   __dtors_ptr
-10034040   __fixdli
-100347a0   __fixfu
-10034840   __fltlid
+10034060   __fixdli
+100347c0   __fixfu
+10034860   __fltlid
 10020c4c   __ft_end
 10020abc   __ftable
-10034c00   __llshl
-10035060   __llshru
+10034c20   __llshl
+10035080   __llshru
 10020f60   __lock
-100348e0   __mpyll
-100354a0   __negll
-100354c0   __nop
-1002bf40   __printfi
-10034100   __remi
-100350c0   __remli
-10037858   __stack
-10033980   __strasgi
-10035120   __subcull
-10039858   __sys_memory
+10034900   __mpyll
+100354c0   __negll
+100354e0   __nop
+1002bf60   __printfi
+10034120   __remi
+100350e0   __remli
+10037878   __stack
+100339a0   __strasgi
+10035140   __subcull
+10039878   __sys_memory
 10020bac   __tmpnams
 10020f64   __unlock
-10032960   __wrt_ok
-10035520   _abort
+10032980   __wrt_ok
+10035540   _abort
 10020a64   _adcDmaxHwSetup
 10020a4c   _adcDmaxObj
 10020a6c   _adcGpxfrEventSetup
 10020a80   _adcGpxfrParameterSetup
 1002092c   _adcParams
 10020710   _analogInBuffer
-1002ea80   _applySystemPatch
-10032240   _atoi
-1003c6f4   _bcd
+1002eaa0   _applySystemPatch
+10032260   _atoi
+1003c714   _bcd
 10014700   _brassList
-10034c80   _c_int00
-1003c780   _channel
+10034ca0   _c_int00
+1003c7a0   _channel
 1000a000   _clarinetList
 10020918   _clkgenParams
-10032a80   _close
+10032aa0   _close
 0002d2a0   _cosf
 0002d2a0   _cossp
 10020a0c   _dacDmaxHwSetup
@@ -609,82 +611,82 @@ ffffffff   ___c_args__
 0002c560   _divsp
 8000c000   _dmaxAdcBuffer
 8000e000   _dmaxDacBuffer
-10028648   _dmax_isr
-1003c758   _eventStat
-10032380   _exit
+10028668   _dmax_isr
+1003c778   _eventStat
+100323a0   _exit
 0002d570   _exp10f
 0002d570   _exp10sp
 0002d540   _exp2f
 0002d540   _exp2sp
 0002d5a0   _expf
 0002d5a0   _expsp
-10031fa0   _fclose
-10034d00   _fprintf
-10031cc0   _fputc
-1002e080   _fputs
-1002d640   _free
-10032ba0   _fseek
-1003c764   _hDmaxAdc
-1003c760   _hDmaxDac
-1003c754   _hIntc
-1003c75c   _hMcasp0
-1003c72c   _harmonizerScaleSelect
+10031fc0   _fclose
+10034d20   _fprintf
+10031ce0   _fputc
+1002e0a0   _fputs
+1002d660   _free
+10032bc0   _fseek
+1003c784   _hDmaxAdc
+1003c780   _hDmaxDac
+1003c774   _hIntc
+1003c77c   _hMcasp0
+1003c74c   _harmonizerScaleSelect
 1001f290   _harmonizerScales
 10020910   _intcObj
-1003c728   _keyOffset
-1003c768   _lastBuffer
-10032cc0   _lseek
-10032de0   _ltoa
-10028064   _main
-10031440   _malloc
+1003c748   _keyOffset
+1003c788   _lastBuffer
+10032ce0   _lseek
+10032e00   _ltoa
+10028084   _main
+10031460   _malloc
 10020948   _mcasp0HwCfg
 10020938   _mcasp0Obj
-10034d80   _memccpy
-10030a80   _memcpy
-10032f00   _memset
+10034da0   _memccpy
+10030aa0   _memcpy
+10032f20   _memset
 10020aa4   _midiParams
 100204f8   _mixer
 100202f0   _muteEffect
-1003c73c   _newNoteFreq
-100295a0   _nmi_isr
+1003c75c   _newNoteFreq
+100295c0   _nmi_isr
 10001c00   _organList
 80010000   _organTable
 1001f85c   _phasorEffect
-1003c76c   _pitchBend
-10028024   _processEffects
-10027f20   _processGenerators
+1003c78c   _pitchBend
+10028044   _processEffects
+10027f40   _processGenerators
 10027080   _processMIDIEvent
 1001fa9c   _pulsorEffect
 80002000   _pulsorTable
-10031cc0   _putc
-10034340   _rand
-1003c748   _randArpDelay
-1003c740   _randArpEffectOnFlag
-1003c74c   _randArpHSnum
-1003c744   _randArpScaleSelect
+10031ce0   _putc
+10034360   _rand
+1003c768   _randArpDelay
+1003c760   _randArpEffectOnFlag
+1003c76c   _randArpHSnum
+1003c764   _randArpScaleSelect
 10023370   _randNote
 1001f2d0   _rarpeggioList
-10034400   _readmsg
-10035540   _remove
-1003c734   _scaleLUT_Index
-10030c80   _setvbuf
+10034420   _readmsg
+10035560   _remove
+1003c754   _scaleLUT_Index
+10030ca0   _setvbuf
 10008000   _sineTable
 0002d2b4   _sinf
 0002d2b4   _sinsp
 0002d460   _sqrt
 0002d460   _sqrtdp
-10034980   _unlink
+100349a0   _unlink
 80004000   _vibratoBuffer
 1001fed0   _vibratoEffect
 1001f410   _wahEffect
 80000000   _wahTable
-10033020   _write
-100344c0   _writemsg
+10033040   _write
+100344e0   _writemsg
 ffffffff   binit
-1003b858   cinit
+1003b878   cinit
 10001c00   edata
-1003c788   end
-100356e0   etext
+1003c7a8   end
+10035700   etext
 10020f70   pinit
 
 
@@ -812,208 +814,208 @@ address    name
 10026c3c   _I2C_ReadReg
 10026e20   _I2C_ReadMem
 10027080   _processMIDIEvent
-10027d10   _QueueMIDIEvent
-10027d8c   _QueueMIDIEvent2
-10027dc8   _MIDI_Poll
-10027edc   _De_QueueMIDIEvent
-10027f20   _processGenerators
-10028024   _processEffects
-10028064   _main
-10028648   _dmax_isr
-10028ba0   _VariableOscillator_ProcessFrame
-10028d80   _VariableOscillator_Init
-10028d98   _Oscillator_ProcessFrame
-10028e5c   _Oscillator_Init
-10028e74   _Adsr_ProcessFrame
-10029578   _Adsr_Init
-100295a0   _nmi_isr
-100295a8   _SetupInterrupts
-100296f0   _SynthInit
-10029f40   _CSL_dmaxHwSetup
-1002a960   _Mixer_ProcessFrame
-1002adac   _Mixer_Init
-1002ae00   _CSL_dmaxHwControl
-1002b6e0   _CSL_mcaspHwSetup
-1002bb20   _UART_Write
-1002bc58   _UART_Init
-1002bd2c   _UART_Reset
-1002bda0   _UART_Read
-1002beb0   _UART_GetInterruptId
-1002bec8   _UART_EnableLed2
-1002befc   _UART_EnableLed1
-1002bf40   __printfi
-1002c360   _MIDI_Write
-1002c458   _MIDI_SetRTS
-1002c484   _MIDI_Init
-1002c558   _MIDI_Reset
-1002c5c4   _MIDI_Read
-1002c6d0   _MIDI_GetInterruptId
-1002c6dc   _MIDI_EnableLed2
-1002c710   _MIDI_EnableLed1
-1002cee0   _CSL_intcHookIsr
-1002d640   _free
-1002d9c0   _GPIO_SetBCD
-1002da04   _GPIO_EnableLed
-1002da80   _GPIO_Reset
-1002dc2c   _GPIO_GetPushButton
-1002dc50   _GPIO_GetDeltaPushButton
-1002dc68   _GPIO_GetDIPSwitch
-1002dd00   _GPIO_ClearDeltaPushButton
-1002e080   _fputs
-1002e3e0   _CSL_mcaspRegReset
-1002e740   _U2
-1002e788   _U1
-1002e7d0   _M2
-1002e818   _M1
-1002e860   _L7
-1002e8a0   _L6
-1002e8e0   _L5
-1002e920   _L4
-1002e960   _L3
-1002e9a0   _L2
-1002e9e0   _L1
-1002ea20   _L0
-1002ea80   _applySystemPatch
-1002f080   _CSL_i2cHwControl
-1002f380   __divull
-1002f660   _CSL_mcaspResetCtrl
-1002fec0   _CSL_dmaxOpen
-10030180   _CLKGEN_Init
-1003033c   _CLKGEN_Reset
-1003039c   _CLKGEN_OscSel
-100303e0   _CSL_i2cGetHwStatus
-10030880   _HOSTrename
-10030a80   _memcpy
-10030c80   _setvbuf
-10030e80   _CSL_i2cHwSetup
-10031080   _DAC_Unmute
-100310a4   _DAC_Init
-100311a8   _DAC_Reset
-100311ec   _DAC_RelayUnmute
-10031208   _DAC_RelayMute
-1003122c   _DAC_Mute
-10031440   _malloc
-10031620   __divul
-10031b20   _CSL_dmaxSetupGeneralXFRParameterEntry
-10031cc0   _fputc
-10031cc0   _putc
-10031fa0   _fclose
-10032100   _HOSTlseek
-10032240   _atoi
-10032380   _exit
-100324c0   _CSL_i2cHwSetupRaw
-10032600   _HOSTopen
-10032720   __auto_init
-10032960   __wrt_ok
-10032a80   _close
-10032ba0   _fseek
-10032cc0   _lseek
-10032de0   _ltoa
-10032f00   _memset
-10033020   _write
-10033140   _CSL_i2cOpen
-10033260   _CSL_intcOpen
-10033380   _HOSTread
-10033480   _HOSTunlink
-10033580   _HOSTwrite
-10033680   __cleanup
-10033980   __strasgi
-10033a80   _ADC_Init
-10033b28   _ADC_Reset
-10033b60   _HOSTclose
-10033e00   __divli
-10033ec0   __divu
-10033f80   __doflush
-10034040   __fixdli
-10034100   __remi
-10034340   _rand
-10034400   _readmsg
-100344c0   _writemsg
-10034568   C$$IO$$
-10034580   _CSL_mcaspOpen
-10034640   _CSL_mcaspGetChipCtxt
-10034700   _CSL_dmaxGetNextFreeParamEntry
-100347a0   __fixfu
-10034840   __fltlid
-100348e0   __mpyll
-10034980   _unlink
-10034a20   _CSL_dmaxSetupFifoXFRParameterEntry
-10034ac0   _CSL_dmaxClose
-10034b60   _CSL_intcEventEnable
-10034c00   __llshl
-10034c80   _c_int00
-10034d00   _fprintf
-10034d80   _memccpy
-10034e00   _CSL_dmaxSetup1dXFRParameterEntry
-10034e80   _CSL_dmaxSetupSpiXFRParameterEntry
-10034f00   _CSL_intcSetVectorPtr
-10034f80   _CSL_intcInit
-10035000   __CSL_intcEventEnable
-10035028   __CSL_intcEventDisable
-10035060   __llshru
-100350c0   __remli
-10035120   __subcull
-10035180   _CSL_i2cGetBaseAddress
-100351e0   _CSL_intcGlobalDisable
-10035240   _CSL_intcGlobalRestore
-100352a0   _CSL_intcGlobalEnable
-10035300   _CSL_dmaxSetDetr
-10035340   __CSL_intcGlobalEnable
-1003535c   __CSL_intcGlobalDisable
-10035380   __args_main
-100353c0   _CSL_dmaxInit
-10035400   _CSL_dmaxGetBaseAddress
-10035440   __CSL_intcReadISTP
-10035460   __CSL_intcISTP
-10035480   __CSL_intcFetchPacket
-100354a0   __negll
-100354c0   __nop
-10035520   C$$EXIT
-10035520   _abort
-10035540   _remove
-10035560   _CSL_chipInit
-10035580   _CSL_i2cInit
-100355a0   _CSL_i2cClose
-100355c0   _CSL_mcaspInit
-100356e0   _SarPdspFirmware0
-100356e0   ___etext__
-100356e0   etext
-1003667c   _SarPdspFirmware1
-10037618   __ctypes_
-10037858   __stack
-10039858   __sys_memory
-1003b858   ___cinit__
-1003b858   cinit
-1003c590   __CIOBUF_
-1003c6b0   $bss
-1003c6b0   .bss
-1003c6b0   __CSL_IntcEventTable
-1003c6b0   ___bss__
-1003c6f0   __CSL_IntcContextFlags
-1003c6f4   _bcd
-1003c728   _keyOffset
-1003c72c   _harmonizerScaleSelect
-1003c730   _Key
-1003c734   _scaleLUT_Index
-1003c738   _HarmonizerEffectOnFlag
-1003c73c   _newNoteFreq
-1003c740   _randArpEffectOnFlag
-1003c744   _randArpScaleSelect
-1003c748   _randArpDelay
-1003c74c   _randArpHSnum
-1003c754   _hIntc
-1003c758   _eventStat
-1003c75c   _hMcasp0
-1003c760   _hDmaxDac
-1003c764   _hDmaxAdc
-1003c768   _lastBuffer
-1003c76c   _pitchBend
-1003c778   _MIDIQueueIndex_In
-1003c77c   _MIDIQueueIndex_Out
-1003c780   _channel
-1003c784   __CSL_IntcEventAllocMask
-1003c788   ___end__
-1003c788   end
+10027d40   _QueueMIDIEvent
+10027dc0   _QueueMIDIEvent2
+10027dfc   _MIDI_Poll
+10027f08   _De_QueueMIDIEvent
+10027f40   _processGenerators
+10028044   _processEffects
+10028084   _main
+10028668   _dmax_isr
+10028bc0   _VariableOscillator_ProcessFrame
+10028da0   _VariableOscillator_Init
+10028db8   _Oscillator_ProcessFrame
+10028e7c   _Oscillator_Init
+10028e94   _Adsr_ProcessFrame
+10029598   _Adsr_Init
+100295c0   _nmi_isr
+100295c8   _SetupInterrupts
+10029710   _SynthInit
+10029f60   _CSL_dmaxHwSetup
+1002a980   _Mixer_ProcessFrame
+1002adcc   _Mixer_Init
+1002ae20   _CSL_dmaxHwControl
+1002b700   _CSL_mcaspHwSetup
+1002bb40   _UART_Write
+1002bc78   _UART_Init
+1002bd4c   _UART_Reset
+1002bdc0   _UART_Read
+1002bed0   _UART_GetInterruptId
+1002bee8   _UART_EnableLed2
+1002bf1c   _UART_EnableLed1
+1002bf60   __printfi
+1002c380   _MIDI_Write
+1002c478   _MIDI_SetRTS
+1002c4a4   _MIDI_Init
+1002c578   _MIDI_Reset
+1002c5e4   _MIDI_Read
+1002c6f0   _MIDI_GetInterruptId
+1002c6fc   _MIDI_EnableLed2
+1002c730   _MIDI_EnableLed1
+1002cf00   _CSL_intcHookIsr
+1002d660   _free
+1002d9e0   _GPIO_SetBCD
+1002da24   _GPIO_EnableLed
+1002daa0   _GPIO_Reset
+1002dc4c   _GPIO_GetPushButton
+1002dc70   _GPIO_GetDeltaPushButton
+1002dc88   _GPIO_GetDIPSwitch
+1002dd20   _GPIO_ClearDeltaPushButton
+1002e0a0   _fputs
+1002e400   _CSL_mcaspRegReset
+1002e760   _U2
+1002e7a8   _U1
+1002e7f0   _M2
+1002e838   _M1
+1002e880   _L7
+1002e8c0   _L6
+1002e900   _L5
+1002e940   _L4
+1002e980   _L3
+1002e9c0   _L2
+1002ea00   _L1
+1002ea40   _L0
+1002eaa0   _applySystemPatch
+1002f0a0   _CSL_i2cHwControl
+1002f3a0   __divull
+1002f680   _CSL_mcaspResetCtrl
+1002fee0   _CSL_dmaxOpen
+100301a0   _CLKGEN_Init
+1003035c   _CLKGEN_Reset
+100303bc   _CLKGEN_OscSel
+10030400   _CSL_i2cGetHwStatus
+100308a0   _HOSTrename
+10030aa0   _memcpy
+10030ca0   _setvbuf
+10030ea0   _CSL_i2cHwSetup
+100310a0   _DAC_Unmute
+100310c4   _DAC_Init
+100311c8   _DAC_Reset
+1003120c   _DAC_RelayUnmute
+10031228   _DAC_RelayMute
+1003124c   _DAC_Mute
+10031460   _malloc
+10031640   __divul
+10031b40   _CSL_dmaxSetupGeneralXFRParameterEntry
+10031ce0   _fputc
+10031ce0   _putc
+10031fc0   _fclose
+10032120   _HOSTlseek
+10032260   _atoi
+100323a0   _exit
+100324e0   _CSL_i2cHwSetupRaw
+10032620   _HOSTopen
+10032740   __auto_init
+10032980   __wrt_ok
+10032aa0   _close
+10032bc0   _fseek
+10032ce0   _lseek
+10032e00   _ltoa
+10032f20   _memset
+10033040   _write
+10033160   _CSL_i2cOpen
+10033280   _CSL_intcOpen
+100333a0   _HOSTread
+100334a0   _HOSTunlink
+100335a0   _HOSTwrite
+100336a0   __cleanup
+100339a0   __strasgi
+10033aa0   _ADC_Init
+10033b48   _ADC_Reset
+10033b80   _HOSTclose
+10033e20   __divli
+10033ee0   __divu
+10033fa0   __doflush
+10034060   __fixdli
+10034120   __remi
+10034360   _rand
+10034420   _readmsg
+100344e0   _writemsg
+10034588   C$$IO$$
+100345a0   _CSL_mcaspOpen
+10034660   _CSL_mcaspGetChipCtxt
+10034720   _CSL_dmaxGetNextFreeParamEntry
+100347c0   __fixfu
+10034860   __fltlid
+10034900   __mpyll
+100349a0   _unlink
+10034a40   _CSL_dmaxSetupFifoXFRParameterEntry
+10034ae0   _CSL_dmaxClose
+10034b80   _CSL_intcEventEnable
+10034c20   __llshl
+10034ca0   _c_int00
+10034d20   _fprintf
+10034da0   _memccpy
+10034e20   _CSL_dmaxSetup1dXFRParameterEntry
+10034ea0   _CSL_dmaxSetupSpiXFRParameterEntry
+10034f20   _CSL_intcSetVectorPtr
+10034fa0   _CSL_intcInit
+10035020   __CSL_intcEventEnable
+10035048   __CSL_intcEventDisable
+10035080   __llshru
+100350e0   __remli
+10035140   __subcull
+100351a0   _CSL_i2cGetBaseAddress
+10035200   _CSL_intcGlobalDisable
+10035260   _CSL_intcGlobalRestore
+100352c0   _CSL_intcGlobalEnable
+10035320   _CSL_dmaxSetDetr
+10035360   __CSL_intcGlobalEnable
+1003537c   __CSL_intcGlobalDisable
+100353a0   __args_main
+100353e0   _CSL_dmaxInit
+10035420   _CSL_dmaxGetBaseAddress
+10035460   __CSL_intcReadISTP
+10035480   __CSL_intcISTP
+100354a0   __CSL_intcFetchPacket
+100354c0   __negll
+100354e0   __nop
+10035540   C$$EXIT
+10035540   _abort
+10035560   _remove
+10035580   _CSL_chipInit
+100355a0   _CSL_i2cInit
+100355c0   _CSL_i2cClose
+100355e0   _CSL_mcaspInit
+10035700   _SarPdspFirmware0
+10035700   ___etext__
+10035700   etext
+1003669c   _SarPdspFirmware1
+10037638   __ctypes_
+10037878   __stack
+10039878   __sys_memory
+1003b878   ___cinit__
+1003b878   cinit
+1003c5b0   __CIOBUF_
+1003c6d0   $bss
+1003c6d0   .bss
+1003c6d0   __CSL_IntcEventTable
+1003c6d0   ___bss__
+1003c710   __CSL_IntcContextFlags
+1003c714   _bcd
+1003c748   _keyOffset
+1003c74c   _harmonizerScaleSelect
+1003c750   _Key
+1003c754   _scaleLUT_Index
+1003c758   _HarmonizerEffectOnFlag
+1003c75c   _newNoteFreq
+1003c760   _randArpEffectOnFlag
+1003c764   _randArpScaleSelect
+1003c768   _randArpDelay
+1003c76c   _randArpHSnum
+1003c774   _hIntc
+1003c778   _eventStat
+1003c77c   _hMcasp0
+1003c780   _hDmaxDac
+1003c784   _hDmaxAdc
+1003c788   _lastBuffer
+1003c78c   _pitchBend
+1003c798   _MIDIQueueIndex_In
+1003c79c   _MIDIQueueIndex_Out
+1003c7a0   _channel
+1003c7a4   __CSL_IntcEventAllocMask
+1003c7a8   ___end__
+1003c7a8   end
 80000000   _wahTable
 80002000   _pulsorTable
 80004000   _vibratoBuffer

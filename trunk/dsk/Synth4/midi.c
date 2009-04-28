@@ -39,12 +39,12 @@ MIDIEvent* De_QueueMIDIEvent(void){
 #define PHASORWET	    	 0x49  //MIDI Controller slider F3
 #define PULSORWET			 0x4A  //MIDI Controller slider F1
 #define PULSORFREQ			 0x47  //MIDI Controller slider F2
-#define SCALEHARMONIZER	     0x19  //MIDI Controller button "record(circle)"
+#define SETCHROMATIC	     0x19  //MIDI Controller button "record(circle)"
 #define SCALEHARMONIZERKEY   0x5F  //MIDI Controller knob C17
 //#define SCALEHARMKEYNEG      0x0D  //MIDI Controller knob C13
 #define RANDARPEGGIATOR	     0x18  //MIDI Controller button "play"
-#define NEGARPRANGE          0x02  //MIDI Controller knob C11
-#define POSARPRANGE          0x5C  //MIDI Controller knob C16
+//#define NEGARPRANGE          0x02  //MIDI Controller knob C11
+#define ARPRANGE             0x5C  //MIDI Controller knob C16
 #define RANDARPEGGIATORDELAY 0x0C  //MIDI Controller knob C12
 #define RANDARPEGGIATORFREQ  0x5D  //MIDI Controller slider F4
 #define SCALESELECTOR        0x0A  //MIDI Controller knob C10
@@ -122,15 +122,17 @@ void processMIDIEvent(MIDIEvent *event) {
 			pulsorEffect.freq = expf( (float)event->db2 * 0.0235884431f);
 			if (event->db2 == 0) pulsorEffect.freq = 0;
 			
-		} else if ((event->db1) == SCALEHARMONIZER) {
+		} else if ((event->db1) == SETCHROMATIC) {
 			ReleaseOrgan(128); ReleaseClarinet(128); ReleaseBrass(128); ReleaseRandomArpeggio(128);
-			if( HarmonizerEffectOnFlag == 0 ){HarmonizerEffectOnFlag = 1;}  //Turn on harmonizer effect 
-			else{HarmonizerEffectOnFlag = 0;}  //Turn off Harmonizer effect
+			// if( HarmonizerEffectOnFlag == 0 ){HarmonizerEffectOnFlag = 1;}  //Turn on harmonizer effect 
+			// else{HarmonizerEffectOnFlag = 0;}  //Turn off Harmonizer effect
+			harmonizerScaleSelect = 0;
 			
 		} else if ((event->db1) == RANDARPEGGIATOR) {;
 			ReleaseOrgan(128); ReleaseClarinet(128); ReleaseBrass(128); ReleaseRandomArpeggio(128);
 			if( randArpEffectOnFlag == 0 ){randArpEffectOnFlag = 1;}  //Turn on random arp effect  
 			else{randArpEffectOnFlag = 0; randArpHSnum = 1;}  //Turn off rand arp effect  //reset range to root note
+			HarmonizerEffectOnFlag = randArpEffectOnFlag;
 			
 		} else if ((event->db1) == RANDARPEGGIATORFREQ) {;
 			newNoteFreq = expf( (float)event->db2 * LN2DIV25);
@@ -157,15 +159,11 @@ void processMIDIEvent(MIDIEvent *event) {
 			ReleaseOrgan(128); ReleaseClarinet(128); ReleaseBrass(128); //ReleaseRandomArpeggio(128);
 			keyOffset = (int)(((float)event->db2-63)/5.25);			
 			
-		} else if ( randArpEffectOnFlag && (event->db1) == NEGARPRANGE) {
-			if(event->db2 > 30){randArpHSnum = -30;}
-			else if(event->db2 == 0){randArpHSnum = 1;}  //play only root note
-			else{randArpHSnum = -1*event->db2;}	
-			
-		} else if ( randArpEffectOnFlag && (event->db1) == POSARPRANGE) {
-		    if(event->db2 > 30){randArpHSnum = 30;}
-			else if(event->db2 == 0){randArpHSnum = 1;}  //play only root note
-			else{randArpHSnum = event->db2;}
+		} else if ( randArpEffectOnFlag && (event->db1) == ARPRANGE) {
+		    if(event->db2 > 68){randArpHSnum = (int)(18*((float)event->db2-68)/59);}
+			else if(event->db2 < 58){randArpHSnum = -(int)(18*(58-(float)event->db2)/58);}  //play only root note
+			else{randArpHSnum = 1;}
+			if (randArpHSnum == 0) randArpHSnum = 1;
 			
 		} else if ( randArpEffectOnFlag && (event->db1) == LEFTSELECT) {
 			randArpHSnum = randArpHSnum - 1; 
