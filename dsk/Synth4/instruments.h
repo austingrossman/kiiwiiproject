@@ -98,7 +98,7 @@ extern int ArpScaleSelect;
 #define HAR_MIN_SCALE_NUM_NOTES    75
 #define CHIN_SCALE_NUM_NOTES       55
 #define CHROMATIC_SCALE_NUM_NOTES  128
-#define NUMOFHARM_SCALES           4
+#define NUMOFHARM_SCALES           16
 
 extern unsigned int currentScale;
 extern int HarmonizerEffectOnFlag;

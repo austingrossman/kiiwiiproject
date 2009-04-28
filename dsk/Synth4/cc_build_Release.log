@@ -1,29 +1,16 @@
 ----------------------------  Synth4.pjt - Release  ----------------------------
-[effects.c] "C:\CCStudio_v3.3\C6000\cgtools\bin\cl6x" -pdsw225 -o3 -fr"C:/Documents and Settings/Administrator/My Documents/PADK/trunk/dsk/Synth4/Release" -i"C:/Lyrtech/PADK/dsp/api" -i"C:/CCStudio_v3.3/csl/csl_C672x/dsp/inc" -i"C:/CCStudio_v3.3/csl/csl_C672x_intc/dsp/inc" -i"C:/CCStudio_v3.3/csl/FastRTS/C6700/mthlib/include" -i"C:/Documents and Settings/Administrator/My Documents/PADK/trunk/dsk/Synth4" -mv67p -@"Release.lkf" "effects.c"
-
-[generators.c] "C:\CCStudio_v3.3\C6000\cgtools\bin\cl6x" -pdsw225 -o3 -fr"C:/Documents and Settings/Administrator/My Documents/PADK/trunk/dsk/Synth4/Release" -i"C:/Lyrtech/PADK/dsp/api" -i"C:/CCStudio_v3.3/csl/csl_C672x/dsp/inc" -i"C:/CCStudio_v3.3/csl/csl_C672x_intc/dsp/inc" -i"C:/CCStudio_v3.3/csl/FastRTS/C6700/mthlib/include" -i"C:/Documents and Settings/Administrator/My Documents/PADK/trunk/dsk/Synth4" -mv67p -@"Release.lkf" "generators.c"
-
-[initialization.c] "C:\CCStudio_v3.3\C6000\cgtools\bin\cl6x" -pdsw225 -o3 -fr"C:/Documents and Settings/Administrator/My Documents/PADK/trunk/dsk/Synth4/Release" -i"C:/Lyrtech/PADK/dsp/api" -i"C:/CCStudio_v3.3/csl/csl_C672x/dsp/inc" -i"C:/CCStudio_v3.3/csl/csl_C672x_intc/dsp/inc" -i"C:/CCStudio_v3.3/csl/FastRTS/C6700/mthlib/include" -i"C:/Documents and Settings/Administrator/My Documents/PADK/trunk/dsk/Synth4" -mv67p -@"Release.lkf" "initialization.c"
-"initialization.c", line 66: warning: function declared implicitly
-
 [instruments.c] "C:\CCStudio_v3.3\C6000\cgtools\bin\cl6x" -pdsw225 -o3 -fr"C:/Documents and Settings/Administrator/My Documents/PADK/trunk/dsk/Synth4/Release" -i"C:/Lyrtech/PADK/dsp/api" -i"C:/CCStudio_v3.3/csl/csl_C672x/dsp/inc" -i"C:/CCStudio_v3.3/csl/csl_C672x_intc/dsp/inc" -i"C:/CCStudio_v3.3/csl/FastRTS/C6700/mthlib/include" -i"C:/Documents and Settings/Administrator/My Documents/PADK/trunk/dsk/Synth4" -mv67p -@"Release.lkf" "instruments.c"
-"instruments.c", line 86: warning: variable "k" was declared but never referenced
-"instruments.c", line 578: warning: variable "numNotesInScale" was declared but never referenced
-"instruments.c", line 579: warning: variable "randArpIndex" was declared but never referenced
-
-[led.c] "C:\CCStudio_v3.3\C6000\cgtools\bin\cl6x" -pdsw225 -o3 -fr"C:/Documents and Settings/Administrator/My Documents/PADK/trunk/dsk/Synth4/Release" -i"C:/Lyrtech/PADK/dsp/api" -i"C:/CCStudio_v3.3/csl/csl_C672x/dsp/inc" -i"C:/CCStudio_v3.3/csl/csl_C672x_intc/dsp/inc" -i"C:/CCStudio_v3.3/csl/FastRTS/C6700/mthlib/include" -i"C:/Documents and Settings/Administrator/My Documents/PADK/trunk/dsk/Synth4" -mv67p -@"Release.lkf" "led.c"
-
-[main.c] "C:\CCStudio_v3.3\C6000\cgtools\bin\cl6x" -pdsw225 -o3 -fr"C:/Documents and Settings/Administrator/My Documents/PADK/trunk/dsk/Synth4/Release" -i"C:/Lyrtech/PADK/dsp/api" -i"C:/CCStudio_v3.3/csl/csl_C672x/dsp/inc" -i"C:/CCStudio_v3.3/csl/csl_C672x_intc/dsp/inc" -i"C:/CCStudio_v3.3/csl/FastRTS/C6700/mthlib/include" -i"C:/Documents and Settings/Administrator/My Documents/PADK/trunk/dsk/Synth4" -mv67p -@"Release.lkf" "main.c"
+"instruments.c", line 88: warning: variable "k" was declared but never referenced
+"instruments.c", line 734: warning: variable "numNotesInScale" was declared but never referenced
+"instruments.c", line 735: warning: variable "randArpIndex" was declared but never referenced
+"instruments.c", line 430: warning: pragma can only be applied to a file level symbol, not 'JAPENESE'
 
 [midi.c] "C:\CCStudio_v3.3\C6000\cgtools\bin\cl6x" -pdsw225 -o3 -fr"C:/Documents and Settings/Administrator/My Documents/PADK/trunk/dsk/Synth4/Release" -i"C:/Lyrtech/PADK/dsp/api" -i"C:/CCStudio_v3.3/csl/csl_C672x/dsp/inc" -i"C:/CCStudio_v3.3/csl/csl_C672x_intc/dsp/inc" -i"C:/CCStudio_v3.3/csl/FastRTS/C6700/mthlib/include" -i"C:/Documents and Settings/Administrator/My Documents/PADK/trunk/dsk/Synth4" -mv67p -@"Release.lkf" "midi.c"
 "midi.c", line 59: warning: variable "keyCheck" was declared but never referenced
 "midi.c", line 59: warning: variable "scaleCheck" was declared but never referenced
 
-[mixer.c] "C:\CCStudio_v3.3\C6000\cgtools\bin\cl6x" -pdsw225 -o3 -fr"C:/Documents and Settings/Administrator/My Documents/PADK/trunk/dsk/Synth4/Release" -i"C:/Lyrtech/PADK/dsp/api" -i"C:/CCStudio_v3.3/csl/csl_C672x/dsp/inc" -i"C:/CCStudio_v3.3/csl/csl_C672x_intc/dsp/inc" -i"C:/CCStudio_v3.3/csl/FastRTS/C6700/mthlib/include" -i"C:/Documents and Settings/Administrator/My Documents/PADK/trunk/dsk/Synth4" -mv67p -@"Release.lkf" "mixer.c"
-"mixer.c", line 32: warning: function declared implicitly
-
 [Linking...] "C:\CCStudio_v3.3\C6000\cgtools\bin\cl6x" -@"Release.lkf"
 <Linking>
 
 Build Complete,
-  0 Errors, 7 Warnings, 0 Remarks.
+  0 Errors, 6 Warnings, 0 Remarks.
