@@ -879,6 +879,7 @@ void ScaleHarmonizer(MIDIEvent *event){
 		//make black keys silent
 		for(index = 0; index < NUM_BLCK_KEYS; index++){
 			if(event->db1 == BLACKKEYS[index]){
+			    event->db1 = 0x01;
 				event->db2 = 0x01; //vel 1  -> almost no sound
 			}
 		}
@@ -894,8 +895,7 @@ void ScaleHarmonizer(MIDIEvent *event){
 					// else {if(randArpHSnum >= 0){ event->db1 = keyOffset + (harmonizerScales[harmonizerScaleSelect][(scaleLUT_Index + (rand()%randArpHSnum))]);}
 						// else if(randArpHSnum < 0){ event->db1 = (event->db1 - (rand()%(-1*randArpHSnum)));	}//sevent->db1 = harmonizerScales[harmonizerScaleSelect][scaleLUT_Index] + keyOffset;}
 					// }
-					else {event->db1 = harmonizerScales[harmonizerScaleSelect][scaleLUT_Index] + keyOffset;
-					      
+					else {event->db1 = harmonizerScales[harmonizerScaleSelect][scaleLUT_Index] + keyOffset;					      
 					}
 				}else{event->db1 = 0x00; event->db2 = 0x01; } //default to note 0 velocity 0  //was 0x00				
 			}
