@@ -1,15 +1,15 @@
-CCS PCH C Compiler, Version 4.084, 37642               08-Apr-09 22:25
+CCS PCH C Compiler, Version 4.084, 37642               28-Apr-09 01:41
 
-               Filename: C:\Users\Bob\Desktop\remote\remote.lst
+               Filename: C:\Users\Bob\Desktop\KiiWiiCode\remote\remote.lst
 
-               ROM used: 960 bytes (3%)
-                         Largest free fragment is 30972
-               RAM used: 42 (3%) at main() level
-                         46 (3%) worst case
+               ROM used: 1624 bytes (5%)
+                         Largest free fragment is 30308
+               RAM used: 41 (3%) at main() level
+                         45 (3%) worst case
                Stack:    2 worst case (1 in main + 1 for interrupts)
 
 *
-0000:  GOTO   0164
+0000:  GOTO   018C
 *
 0008:  MOVWF  05
 000A:  MOVFF  FD8,06
@@ -60,6 +60,26 @@ CCS PCH C Compiler, Version 4.084, 37642               08-Apr-09 22:25
 .................... #device ICD=TRUE 
 .................... #fuses HS,NOLVP,NOWDT 
 .................... #use delay(clock=20000000) 
+*
+0164:  CLRF   FEA
+0166:  MOVLW  25
+0168:  MOVWF  FE9
+016A:  MOVF   FEF,W
+016C:  BZ    0188
+016E:  MOVLW  06
+0170:  MOVWF  01
+0172:  CLRF   00
+0174:  DECFSZ 00,F
+0176:  BRA    0174
+0178:  DECFSZ 01,F
+017A:  BRA    0172
+017C:  MOVLW  7B
+017E:  MOVWF  00
+0180:  DECFSZ 00,F
+0182:  BRA    0180
+0184:  DECFSZ FEF,F
+0186:  BRA    016E
+0188:  GOTO   0658 (RETURN)
 .................... #use rs232 (baud=9600, STREAM=TERM, xmit=PIN_C6, rcv=PIN_C7) 
 *
 011C:  BTFSS  F9E.4
@@ -76,7 +96,7 @@ CCS PCH C Compiler, Version 4.084, 37642               08-Apr-09 22:25
 0130:  BSF    01.7
 0132:  BRA    0150
 0134:  BCF    01.7
-0136:  RRCF   24,F
+0136:  RRCF   25,F
 0138:  BTFSC  FD8.0
 013A:  BSF    F8A.3
 013C:  BTFSS  FD8.0
@@ -2044,24 +2064,26 @@ CCS PCH C Compiler, Version 4.084, 37642               08-Apr-09 22:25
 ....................  
 .................... #endif 
 ....................  
-.................... //#include <math.h> 
 ....................  
 .................... #define GREEN_LED       PIN_A5      // define the pins 
 .................... #define YELLOW_LED      PIN_B4 
 .................... #define RED_LED         PIN_B5 
 .................... #define PUSH_BUTTON     PIN_A4 
-.................... #define BUTTON1         PIN_C0 
-.................... #define BUTTON2         PIN_C1 
-.................... #define BUTTON3         PIN_C2 
+.................... #define BUTTON1         PIN_D2 
+.................... #define BUTTON2         PIN_D4 
+.................... #define BUTTON3         PIN_D6 
 .................... #define VOLUME          0x01        // button values 
 .................... #define PITCH           0x02 
 .................... #define WAH             0x03 
-.................... #define XOFFSET         41          // raw adc offsets 
-.................... #define YOFFSET         49 
-.................... #define ZOFFSET         48 
-.................... #define XMAX            82          // total adc ranges 
-.................... #define YMAX            85 
-.................... #define ZMAX            84 
+.................... #define ARP             0x04 
+.................... #define HAR             0x05 
+.................... #define PUL             0x06 
+.................... #define XMIN         46          // raw adc offsets (min adc) 
+.................... #define YMIN         54 
+.................... #define ZMIN         55 
+.................... #define XMAX            147         // total adc ranges (max adc) 
+.................... #define YMAX            153 
+.................... #define ZMAX            153 
 ....................  
 .................... #INT_EXT2 
 .................... void wegetsignal() {                // toggle red when remote receives data (no application) 
@@ -2075,361 +2097,712 @@ CCS PCH C Compiler, Version 4.084, 37642               08-Apr-09 22:25
 .................... char min(char a, char b) { 
 ....................    if (a < b) return a; 
 *
-0106:  MOVF   2B,W
-0108:  SUBWF  2A,W
+0106:  MOVF   2A,W
+0108:  SUBWF  29,W
 010A:  BC    0114
-010C:  MOVFF  2A,01
+010C:  MOVFF  29,01
 0110:  BRA    011A
 ....................    else return b; 
 0112:  BRA    011A
-0114:  MOVFF  2B,01
+0114:  MOVFF  2A,01
 0118:  BRA    011A
 .................... } 
 011A:  RETLW  00
 ....................  
 .................... void main() { 
 *
-0164:  CLRF   FF8
-0166:  BCF    FD0.7
-0168:  BSF    08.7
-016A:  CLRF   FEA
-016C:  CLRF   FE9
-016E:  BSF    FB8.3
-0170:  MOVLW  08
-0172:  MOVWF  FAF
-0174:  MOVLW  02
-0176:  MOVWF  FB0
-0178:  MOVLW  A6
-017A:  MOVWF  FAC
-017C:  MOVLW  90
-017E:  MOVWF  FAB
-0180:  BCF    F93.3
-0182:  BSF    F8A.3
-0184:  MOVF   FC1,W
-0186:  ANDLW  C0
-0188:  IORLW  0F
-018A:  MOVWF  FC1
-018C:  MOVLW  07
-018E:  MOVWF  FB4
-0190:  CLRF   18
-0192:  CLRF   19
+018C:  CLRF   FF8
+018E:  BCF    FD0.7
+0190:  BSF    08.7
+0192:  CLRF   FEA
+0194:  CLRF   FE9
+0196:  BSF    FB8.3
+0198:  MOVLW  08
+019A:  MOVWF  FAF
+019C:  MOVLW  02
+019E:  MOVWF  FB0
+01A0:  MOVLW  A6
+01A2:  MOVWF  FAC
+01A4:  MOVLW  90
+01A6:  MOVWF  FAB
+01A8:  BCF    F93.3
+01AA:  BSF    F8A.3
+01AC:  MOVF   FC1,W
+01AE:  ANDLW  C0
+01B0:  IORLW  0F
+01B2:  MOVWF  FC1
+01B4:  MOVLW  07
+01B6:  MOVWF  FB4
+01B8:  CLRF   18
+01BA:  CLRF   19
 ....................     char ADC_1, ADC_2, ADC_3, i; 
 ....................     long buffer; 
+....................     unsigned char arpOn = 0; 
+01BC:  CLRF   24
 ....................     enable_interrupts(INT_EXT2); 
-0194:  BSF    FF0.4
+01BE:  BSF    FF0.4
 ....................     enable_interrupts(global); 
-0196:  MOVLW  C0
-0198:  IORWF  FF2,F
+01C0:  MOVLW  C0
+01C2:  IORWF  FF2,F
 ....................  
 ....................     setup_timer_0(RTCC_INTERNAL); 
-019A:  MOVLW  80
-019C:  MOVWF  FD5
+01C4:  MOVLW  80
+01C6:  MOVWF  FD5
 ....................     setup_adc_ports (AN0_TO_AN3_ANALOG); 
-019E:  MOVF   FC1,W
-01A0:  ANDLW  C0
-01A2:  IORLW  0B
-01A4:  MOVWF  FC1
+01C8:  MOVF   FC1,W
+01CA:  ANDLW  C0
+01CC:  IORLW  0B
+01CE:  MOVWF  FC1
 ....................     setup_adc(ADC_CLOCK_INTERNAL); 
-01A6:  MOVF   FC0,W
-01A8:  ANDLW  C0
-01AA:  IORLW  07
-01AC:  MOVWF  FC0
-01AE:  BCF    FC0.7
-01B0:  BSF    FC2.0
+01D0:  MOVF   FC0,W
+01D2:  ANDLW  C0
+01D4:  IORLW  07
+01D6:  MOVWF  FC0
+01D8:  BCF    FC0.7
+01DA:  BSF    FC2.0
 ....................  
 ....................     while(TRUE){ 
-....................         if (input(BUTTON1) == 1) {       // volume button pushed 
-01B2:  BSF    F94.0
-01B4:  BTFSS  F82.0
-01B6:  BRA    025A
+....................         if (input(BUTTON1) == 1 && input(BUTTON2) == 0 && input(BUTTON3) == 0) { // volume button pushed 
+01DC:  BSF    F95.2
+01DE:  BTFSS  F83.2
+01E0:  BRA    0290
+01E2:  BSF    F95.4
+01E4:  BTFSC  F83.4
+01E6:  BRA    0290
+01E8:  BSF    F95.6
+01EA:  BTFSC  F83.6
+01EC:  BRA    0290
 ....................             set_adc_channel(1);              // y axis 
-01B8:  MOVLW  04
-01BA:  MOVWF  01
-01BC:  MOVF   FC2,W
-01BE:  ANDLW  C3
-01C0:  IORWF  01,W
-01C2:  MOVWF  FC2
+01EE:  MOVLW  04
+01F0:  MOVWF  01
+01F2:  MOVF   FC2,W
+01F4:  ANDLW  C3
+01F6:  IORWF  01,W
+01F8:  MOVWF  FC2
 ....................             for (i = 0; i < 8; i++) {        // average 8 samples 
-01C4:  CLRF   21
-01C6:  MOVF   21,W
-01C8:  SUBLW  07
-01CA:  BNC   01DE
+01FA:  CLRF   21
+01FC:  MOVF   21,W
+01FE:  SUBLW  07
+0200:  BNC   0214
 ....................                 buffer += read_adc(); 
-01CC:  BSF    FC2.1
-01CE:  BTFSC  FC2.1
-01D0:  BRA    01CE
-01D2:  MOVF   FC4,W
-01D4:  ADDWF  22,F
-01D6:  MOVLW  00
-01D8:  ADDWFC 23,F
+0202:  BSF    FC2.1
+0204:  BTFSC  FC2.1
+0206:  BRA    0204
+0208:  MOVF   FC4,W
+020A:  ADDWF  22,F
+020C:  MOVLW  00
+020E:  ADDWFC 23,F
 ....................             } 
-01DA:  INCF   21,F
-01DC:  BRA    01C6
+0210:  INCF   21,F
+0212:  BRA    01FC
 ....................             buffer = buffer >> 3; 
-01DE:  RRCF   23,F
-01E0:  RRCF   22,F
-01E2:  RRCF   23,F
-01E4:  RRCF   22,F
-01E6:  RRCF   23,F
-01E8:  RRCF   22,F
-01EA:  MOVLW  1F
-01EC:  ANDWF  23,F
-....................             ADC_1 = min((((long)buffer - YOFFSET) * 127) / YMAX, 127) & 0xFF; 
-01EE:  MOVLW  31
-01F0:  SUBWF  22,W
-01F2:  MOVWF  24
-01F4:  MOVLW  00
-01F6:  SUBWFB 23,W
-01F8:  MOVWF  25
-01FA:  MOVWF  29
-01FC:  MOVFF  24,28
-0200:  CLRF   2B
-0202:  MOVLW  7F
-0204:  MOVWF  2A
-0206:  RCALL  00A6
-0208:  MOVFF  02,26
-020C:  MOVFF  01,25
-0210:  MOVFF  02,2A
-0214:  MOVFF  01,29
-0218:  CLRF   2C
-021A:  MOVLW  55
-021C:  MOVWF  2B
-021E:  RCALL  00C4
-0220:  MOVFF  02,27
-0224:  MOVFF  01,26
-0228:  MOVFF  01,2A
-022C:  MOVLW  7F
-022E:  MOVWF  2B
-0230:  RCALL  0106
-0232:  MOVFF  01,1E
+0214:  RRCF   23,F
+0216:  RRCF   22,F
+0218:  RRCF   23,F
+021A:  RRCF   22,F
+021C:  RRCF   23,F
+021E:  RRCF   22,F
+0220:  MOVLW  1F
+0222:  ANDWF  23,F
+....................             ADC_1 = min((((long)buffer - YMIN) * 127) / (YMAX - YMIN), 127) & 0xFF; 
+0224:  MOVLW  36
+0226:  SUBWF  22,W
+0228:  MOVWF  25
+022A:  MOVLW  00
+022C:  SUBWFB 23,W
+022E:  MOVWF  26
+0230:  MOVWF  28
+0232:  MOVFF  25,27
+0236:  CLRF   2A
+0238:  MOVLW  7F
+023A:  MOVWF  29
+023C:  RCALL  00A6
+023E:  MOVFF  02,27
+0242:  MOVFF  01,26
+0246:  MOVFF  02,29
+024A:  MOVFF  01,28
+024E:  CLRF   2B
+0250:  MOVLW  63
+0252:  MOVWF  2A
+0254:  RCALL  00C4
+0256:  MOVFF  02,28
+025A:  MOVFF  01,27
+025E:  MOVFF  01,29
+0262:  MOVLW  7F
+0264:  MOVWF  2A
+0266:  RCALL  0106
+0268:  MOVFF  01,1E
 ....................             delay_us(25); 
-0236:  MOVLW  29
-0238:  MOVWF  00
-023A:  DECFSZ 00,F
-023C:  BRA    023A
-023E:  NOP   
-....................              
-....................             output_low(GREEN_LED); 
-0240:  BCF    F92.5
-0242:  BCF    F89.5
-....................              
-....................             fputc(VOLUME,TERM); 
-0244:  MOVLW  01
-0246:  RCALL  011C
-....................             fputc(ADC_1,TERM); 
-0248:  MOVF   1E,W
-024A:  RCALL  011C
-....................              
-....................             fputc(VOLUME,XBEE); 
-024C:  MOVLW  01
-024E:  MOVWF  24
-0250:  RCALL  0124
-....................             fputc(ADC_1,XBEE); 
-0252:  MOVFF  1E,24
-0256:  RCALL  0124
-....................         } 
-....................         else if (input(BUTTON2) == 1) {                        // pitch button pushed 
-0258:  BRA    03B4
-025A:  BSF    F94.1
-025C:  BTFSS  F82.1
-025E:  BRA    0302
-....................             set_adc_channel(2);              // z axis 
-0260:  MOVLW  08
-0262:  MOVWF  01
-0264:  MOVF   FC2,W
-0266:  ANDLW  C3
-0268:  IORWF  01,W
-026A:  MOVWF  FC2
-....................             for (i = 0; i < 8; i++) {        // average 8 samples 
-026C:  CLRF   21
-026E:  MOVF   21,W
-0270:  SUBLW  07
-0272:  BNC   0286
-....................                 buffer += read_adc(); 
-0274:  BSF    FC2.1
-0276:  BTFSC  FC2.1
-0278:  BRA    0276
-027A:  MOVF   FC4,W
-027C:  ADDWF  22,F
-027E:  MOVLW  00
-0280:  ADDWFC 23,F
-....................             } 
-0282:  INCF   21,F
-0284:  BRA    026E
-....................             buffer = buffer >> 3; 
-0286:  RRCF   23,F
-0288:  RRCF   22,F
-028A:  RRCF   23,F
-028C:  RRCF   22,F
-028E:  RRCF   23,F
-0290:  RRCF   22,F
-0292:  MOVLW  1F
-0294:  ANDWF  23,F
-....................             ADC_2 = min((((long)buffer - ZOFFSET) * 127) / ZMAX, 127) & 0xFF; 
-0296:  MOVLW  30
-0298:  SUBWF  22,W
-029A:  MOVWF  24
-029C:  MOVLW  00
-029E:  SUBWFB 23,W
-02A0:  MOVWF  25
-02A2:  MOVWF  29
-02A4:  MOVFF  24,28
-02A8:  CLRF   2B
-02AA:  MOVLW  7F
-02AC:  MOVWF  2A
-02AE:  RCALL  00A6
-02B0:  MOVFF  02,26
-02B4:  MOVFF  01,25
-02B8:  MOVFF  02,2A
-02BC:  MOVFF  01,29
-02C0:  CLRF   2C
-02C2:  MOVLW  54
-02C4:  MOVWF  2B
-02C6:  RCALL  00C4
-02C8:  MOVFF  02,27
-02CC:  MOVFF  01,26
-02D0:  MOVFF  01,2A
-02D4:  MOVLW  7F
-02D6:  MOVWF  2B
-02D8:  RCALL  0106
-02DA:  MOVFF  01,1F
-....................             delay_us(25); 
-02DE:  MOVLW  29
-02E0:  MOVWF  00
-02E2:  DECFSZ 00,F
-02E4:  BRA    02E2
-02E6:  NOP   
+026C:  MOVLW  29
+026E:  MOVWF  00
+0270:  DECFSZ 00,F
+0272:  BRA    0270
+0274:  NOP   
 ....................              
 ....................             output_low(RED_LED); 
-02E8:  BCF    F93.5
-02EA:  BCF    F8A.5
+0276:  BCF    F93.5
+0278:  BCF    F8A.5
 ....................              
-....................             fputc(PITCH,TERM); 
-02EC:  MOVLW  02
-02EE:  RCALL  011C
-....................             fputc(ADC_2,TERM); 
-02F0:  MOVF   1F,W
-02F2:  RCALL  011C
+....................             fputc(VOLUME,TERM); 
+027A:  MOVLW  01
+027C:  RCALL  011C
+....................             fputc(ADC_1,TERM); 
+027E:  MOVF   1E,W
+0280:  RCALL  011C
 ....................              
-....................             fputc(PITCH,XBEE); 
-02F4:  MOVLW  02
-02F6:  MOVWF  24
-02F8:  RCALL  0124
-....................             fputc(ADC_2,XBEE); 
-02FA:  MOVFF  1F,24
-02FE:  RCALL  0124
+....................             fputc(VOLUME,XBEE); 
+0282:  MOVLW  01
+0284:  MOVWF  25
+0286:  RCALL  0124
+....................             fputc(ADC_1,XBEE); 
+0288:  MOVFF  1E,25
+028C:  RCALL  0124
 ....................         } 
-....................         else if (input(BUTTON3) == 1) {                        // wah button pushed 
-0300:  BRA    03B4
-0302:  BSF    F94.2
-0304:  BTFSS  F82.2
-0306:  BRA    03B4
-....................             set_adc_channel(3);              // x axis 
-0308:  MOVLW  0C
-030A:  MOVWF  01
-030C:  MOVF   FC2,W
-030E:  ANDLW  C3
-0310:  IORWF  01,W
-0312:  MOVWF  FC2
+....................         else if (input(BUTTON1) == 0 && input(BUTTON2) == 1 && input(BUTTON3) == 0) { // pitch button pushed 
+028E:  BRA    0626
+0290:  BSF    F95.2
+0292:  BTFSC  F83.2
+0294:  BRA    0344
+0296:  BSF    F95.4
+0298:  BTFSS  F83.4
+029A:  BRA    0344
+029C:  BSF    F95.6
+029E:  BTFSC  F83.6
+02A0:  BRA    0344
+....................             set_adc_channel(2);              // z axis 
+02A2:  MOVLW  08
+02A4:  MOVWF  01
+02A6:  MOVF   FC2,W
+02A8:  ANDLW  C3
+02AA:  IORWF  01,W
+02AC:  MOVWF  FC2
 ....................             for (i = 0; i < 8; i++) {        // average 8 samples 
-0314:  CLRF   21
-0316:  MOVF   21,W
-0318:  SUBLW  07
-031A:  BNC   032E
+02AE:  CLRF   21
+02B0:  MOVF   21,W
+02B2:  SUBLW  07
+02B4:  BNC   02C8
 ....................                 buffer += read_adc(); 
-031C:  BSF    FC2.1
-031E:  BTFSC  FC2.1
-0320:  BRA    031E
-0322:  MOVF   FC4,W
-0324:  ADDWF  22,F
-0326:  MOVLW  00
-0328:  ADDWFC 23,F
+02B6:  BSF    FC2.1
+02B8:  BTFSC  FC2.1
+02BA:  BRA    02B8
+02BC:  MOVF   FC4,W
+02BE:  ADDWF  22,F
+02C0:  MOVLW  00
+02C2:  ADDWFC 23,F
 ....................             } 
-032A:  INCF   21,F
-032C:  BRA    0316
+02C4:  INCF   21,F
+02C6:  BRA    02B0
 ....................             buffer = buffer >> 3; 
-032E:  RRCF   23,F
-0330:  RRCF   22,F
-0332:  RRCF   23,F
-0334:  RRCF   22,F
-0336:  RRCF   23,F
-0338:  RRCF   22,F
-033A:  MOVLW  1F
-033C:  ANDWF  23,F
-....................             ADC_3 = min((((long)read_adc() - XOFFSET) * 127) / XMAX, 127) & 0xFF; 
-033E:  BSF    FC2.1
-0340:  BTFSC  FC2.1
-0342:  BRA    0340
-0344:  MOVF   FC4,W
-0346:  CLRF   25
-0348:  MOVWF  24
-034A:  MOVLW  29
-034C:  SUBWF  24,W
-034E:  MOVWF  26
-0350:  MOVLW  00
-0352:  SUBWFB 25,W
-0354:  MOVWF  27
-0356:  MOVWF  29
-0358:  MOVFF  26,28
-035C:  CLRF   2B
-035E:  MOVLW  7F
-0360:  MOVWF  2A
-0362:  RCALL  00A6
-0364:  MOVFF  02,28
-0368:  MOVFF  01,27
-036C:  MOVFF  02,2A
-0370:  MOVFF  01,29
-0374:  CLRF   2C
-0376:  MOVLW  52
-0378:  MOVWF  2B
-037A:  RCALL  00C4
-037C:  MOVFF  02,29
-0380:  MOVFF  01,28
-0384:  MOVFF  01,2A
-0388:  MOVLW  7F
-038A:  MOVWF  2B
-038C:  RCALL  0106
-038E:  MOVFF  01,20
+02C8:  RRCF   23,F
+02CA:  RRCF   22,F
+02CC:  RRCF   23,F
+02CE:  RRCF   22,F
+02D0:  RRCF   23,F
+02D2:  RRCF   22,F
+02D4:  MOVLW  1F
+02D6:  ANDWF  23,F
+....................             ADC_2 = min((((long)buffer - ZMIN) * 127) / (ZMAX - ZMIN), 127) & 0xFF; 
+02D8:  MOVLW  37
+02DA:  SUBWF  22,W
+02DC:  MOVWF  25
+02DE:  MOVLW  00
+02E0:  SUBWFB 23,W
+02E2:  MOVWF  26
+02E4:  MOVWF  28
+02E6:  MOVFF  25,27
+02EA:  CLRF   2A
+02EC:  MOVLW  7F
+02EE:  MOVWF  29
+02F0:  RCALL  00A6
+02F2:  MOVFF  02,27
+02F6:  MOVFF  01,26
+02FA:  MOVFF  02,29
+02FE:  MOVFF  01,28
+0302:  CLRF   2B
+0304:  MOVLW  62
+0306:  MOVWF  2A
+0308:  RCALL  00C4
+030A:  MOVFF  02,28
+030E:  MOVFF  01,27
+0312:  MOVFF  01,29
+0316:  MOVLW  7F
+0318:  MOVWF  2A
+031A:  RCALL  0106
+031C:  MOVFF  01,1F
 ....................             delay_us(25); 
-0392:  MOVLW  29
-0394:  MOVWF  00
-0396:  DECFSZ 00,F
-0398:  BRA    0396
-039A:  NOP   
+0320:  MOVLW  29
+0322:  MOVWF  00
+0324:  DECFSZ 00,F
+0326:  BRA    0324
+0328:  NOP   
 ....................              
 ....................             output_low(YELLOW_LED); 
-039C:  BCF    F93.4
-039E:  BCF    F8A.4
+032A:  BCF    F93.4
+032C:  BCF    F8A.4
+....................              
+....................             fputc(PITCH,TERM); 
+032E:  MOVLW  02
+0330:  RCALL  011C
+....................             fputc(ADC_2,TERM); 
+0332:  MOVF   1F,W
+0334:  RCALL  011C
+....................              
+....................             fputc(PITCH,XBEE); 
+0336:  MOVLW  02
+0338:  MOVWF  25
+033A:  RCALL  0124
+....................             fputc(ADC_2,XBEE); 
+033C:  MOVFF  1F,25
+0340:  RCALL  0124
+....................         } 
+....................         else if (input(BUTTON1) == 0 && input(BUTTON2) == 0 && input(BUTTON3) == 1) { // wah button pushed 
+0342:  BRA    0626
+0344:  BSF    F95.2
+0346:  BTFSC  F83.2
+0348:  BRA    03F8
+034A:  BSF    F95.4
+034C:  BTFSC  F83.4
+034E:  BRA    03F8
+0350:  BSF    F95.6
+0352:  BTFSS  F83.6
+0354:  BRA    03F8
+....................             set_adc_channel(3);              // x axis 
+0356:  MOVLW  0C
+0358:  MOVWF  01
+035A:  MOVF   FC2,W
+035C:  ANDLW  C3
+035E:  IORWF  01,W
+0360:  MOVWF  FC2
+....................             for (i = 0; i < 8; i++) {        // average 8 samples 
+0362:  CLRF   21
+0364:  MOVF   21,W
+0366:  SUBLW  07
+0368:  BNC   037C
+....................                 buffer += read_adc(); 
+036A:  BSF    FC2.1
+036C:  BTFSC  FC2.1
+036E:  BRA    036C
+0370:  MOVF   FC4,W
+0372:  ADDWF  22,F
+0374:  MOVLW  00
+0376:  ADDWFC 23,F
+....................             } 
+0378:  INCF   21,F
+037A:  BRA    0364
+....................             buffer = buffer >> 3; 
+037C:  RRCF   23,F
+037E:  RRCF   22,F
+0380:  RRCF   23,F
+0382:  RRCF   22,F
+0384:  RRCF   23,F
+0386:  RRCF   22,F
+0388:  MOVLW  1F
+038A:  ANDWF  23,F
+....................             ADC_3 = min((((long)buffer - XMIN) * 127) / (XMAX - XMIN), 127) & 0xFF; 
+038C:  MOVLW  2E
+038E:  SUBWF  22,W
+0390:  MOVWF  25
+0392:  MOVLW  00
+0394:  SUBWFB 23,W
+0396:  MOVWF  26
+0398:  MOVWF  28
+039A:  MOVFF  25,27
+039E:  CLRF   2A
+03A0:  MOVLW  7F
+03A2:  MOVWF  29
+03A4:  RCALL  00A6
+03A6:  MOVFF  02,27
+03AA:  MOVFF  01,26
+03AE:  MOVFF  02,29
+03B2:  MOVFF  01,28
+03B6:  CLRF   2B
+03B8:  MOVLW  65
+03BA:  MOVWF  2A
+03BC:  RCALL  00C4
+03BE:  MOVFF  02,28
+03C2:  MOVFF  01,27
+03C6:  MOVFF  01,29
+03CA:  MOVLW  7F
+03CC:  MOVWF  2A
+03CE:  RCALL  0106
+03D0:  MOVFF  01,20
+....................             delay_us(25); 
+03D4:  MOVLW  29
+03D6:  MOVWF  00
+03D8:  DECFSZ 00,F
+03DA:  BRA    03D8
+03DC:  NOP   
+....................              
+....................             output_low(GREEN_LED); 
+03DE:  BCF    F92.5
+03E0:  BCF    F89.5
 ....................              
 ....................             fputc(WAH,TERM); 
-03A0:  MOVLW  03
-03A2:  RCALL  011C
+03E2:  MOVLW  03
+03E4:  RCALL  011C
 ....................             fputc(ADC_3,TERM); 
-03A4:  MOVF   20,W
-03A6:  RCALL  011C
+03E6:  MOVF   20,W
+03E8:  RCALL  011C
 ....................              
 ....................             fputc(WAH,XBEE); 
-03A8:  MOVLW  03
-03AA:  MOVWF  24
-03AC:  RCALL  0124
+03EA:  MOVLW  03
+03EC:  MOVWF  25
+03EE:  RCALL  0124
 ....................             fputc(ADC_3,XBEE); 
-03AE:  MOVFF  20,24
-03B2:  RCALL  0124
+03F0:  MOVFF  20,25
+03F4:  RCALL  0124
+....................         } 
+....................         else if (input(BUTTON1) == 1 && input(BUTTON2) == 1 && input(BUTTON3) == 0) { // random arpeggiator button pushed 
+03F6:  BRA    0626
+03F8:  BSF    F95.2
+03FA:  BTFSS  F83.2
+03FC:  BRA    04B8
+03FE:  BSF    F95.4
+0400:  BTFSS  F83.4
+0402:  BRA    04B8
+0404:  BSF    F95.6
+0406:  BTFSC  F83.6
+0408:  BRA    04B8
+....................             if (arpOn == 0) { 
+040A:  MOVF   24,F
+040C:  BNZ   041C
+....................                  arpOn = 1; 
+040E:  MOVLW  01
+0410:  MOVWF  24
+....................                  fputc(0x09,TERM); 
+0412:  MOVLW  09
+0414:  RCALL  011C
+....................                  
+....................                  fputc(0x09,XBEE); 
+0416:  MOVLW  09
+0418:  MOVWF  25
+041A:  RCALL  0124
+....................             } 
+....................             set_adc_channel(3);              // x axis 
+041C:  MOVLW  0C
+041E:  MOVWF  01
+0420:  MOVF   FC2,W
+0422:  ANDLW  C3
+0424:  IORWF  01,W
+0426:  MOVWF  FC2
+....................             for (i = 0; i < 8; i++) { 
+0428:  CLRF   21
+042A:  MOVF   21,W
+042C:  SUBLW  07
+042E:  BNC   0442
+....................                 buffer += read_adc(); 
+0430:  BSF    FC2.1
+0432:  BTFSC  FC2.1
+0434:  BRA    0432
+0436:  MOVF   FC4,W
+0438:  ADDWF  22,F
+043A:  MOVLW  00
+043C:  ADDWFC 23,F
+....................             } 
+043E:  INCF   21,F
+0440:  BRA    042A
+....................             buffer = buffer >> 3; 
+0442:  RRCF   23,F
+0444:  RRCF   22,F
+0446:  RRCF   23,F
+0448:  RRCF   22,F
+044A:  RRCF   23,F
+044C:  RRCF   22,F
+044E:  MOVLW  1F
+0450:  ANDWF  23,F
+....................             ADC_3 = min((((long)buffer - XMIN) * 127) / (XMAX - XMIN), 127) & 0xFF; 
+0452:  MOVLW  2E
+0454:  SUBWF  22,W
+0456:  MOVWF  25
+0458:  MOVLW  00
+045A:  SUBWFB 23,W
+045C:  MOVWF  26
+045E:  MOVWF  28
+0460:  MOVFF  25,27
+0464:  CLRF   2A
+0466:  MOVLW  7F
+0468:  MOVWF  29
+046A:  RCALL  00A6
+046C:  MOVFF  02,27
+0470:  MOVFF  01,26
+0474:  MOVFF  02,29
+0478:  MOVFF  01,28
+047C:  CLRF   2B
+047E:  MOVLW  65
+0480:  MOVWF  2A
+0482:  RCALL  00C4
+0484:  MOVFF  02,28
+0488:  MOVFF  01,27
+048C:  MOVFF  01,29
+0490:  MOVLW  7F
+0492:  MOVWF  2A
+0494:  RCALL  0106
+0496:  MOVFF  01,20
+....................              
+....................             output_low(RED_LED); 
+049A:  BCF    F93.5
+049C:  BCF    F8A.5
+....................             output_low(YELLOW_LED); 
+049E:  BCF    F93.4
+04A0:  BCF    F8A.4
+....................              
+....................             fputc(ARP,TERM); 
+04A2:  MOVLW  04
+04A4:  RCALL  011C
+....................             fputc(ADC_3,TERM); 
+04A6:  MOVF   20,W
+04A8:  RCALL  011C
+....................              
+....................             fputc(ARP,XBEE); 
+04AA:  MOVLW  04
+04AC:  MOVWF  25
+04AE:  RCALL  0124
+....................             fputc(ADC_3,XBEE); 
+04B0:  MOVFF  20,25
+04B4:  RCALL  0124
+....................         } 
+....................         else if (input(BUTTON1) == 0 && input(BUTTON2) == 1 && input(BUTTON3) == 1) { // harmonizer button pushed 
+04B6:  BRA    0626
+04B8:  BSF    F95.2
+04BA:  BTFSC  F83.2
+04BC:  BRA    0570
+04BE:  BSF    F95.4
+04C0:  BTFSS  F83.4
+04C2:  BRA    0570
+04C4:  BSF    F95.6
+04C6:  BTFSS  F83.6
+04C8:  BRA    0570
+....................             set_adc_channel(3);              // x axis 
+04CA:  MOVLW  0C
+04CC:  MOVWF  01
+04CE:  MOVF   FC2,W
+04D0:  ANDLW  C3
+04D2:  IORWF  01,W
+04D4:  MOVWF  FC2
+....................             for (i = 0; i < 8; i++) {        // average 8 samples 
+04D6:  CLRF   21
+04D8:  MOVF   21,W
+04DA:  SUBLW  07
+04DC:  BNC   04F0
+....................                 buffer += read_adc(); 
+04DE:  BSF    FC2.1
+04E0:  BTFSC  FC2.1
+04E2:  BRA    04E0
+04E4:  MOVF   FC4,W
+04E6:  ADDWF  22,F
+04E8:  MOVLW  00
+04EA:  ADDWFC 23,F
+....................             } 
+04EC:  INCF   21,F
+04EE:  BRA    04D8
+....................             buffer = buffer >> 3; 
+04F0:  RRCF   23,F
+04F2:  RRCF   22,F
+04F4:  RRCF   23,F
+04F6:  RRCF   22,F
+04F8:  RRCF   23,F
+04FA:  RRCF   22,F
+04FC:  MOVLW  1F
+04FE:  ANDWF  23,F
+....................             ADC_3 = min((((long)buffer - XMIN) * 127) / (XMAX - XMIN), 127) & 0xFF; 
+0500:  MOVLW  2E
+0502:  SUBWF  22,W
+0504:  MOVWF  25
+0506:  MOVLW  00
+0508:  SUBWFB 23,W
+050A:  MOVWF  26
+050C:  MOVWF  28
+050E:  MOVFF  25,27
+0512:  CLRF   2A
+0514:  MOVLW  7F
+0516:  MOVWF  29
+0518:  RCALL  00A6
+051A:  MOVFF  02,27
+051E:  MOVFF  01,26
+0522:  MOVFF  02,29
+0526:  MOVFF  01,28
+052A:  CLRF   2B
+052C:  MOVLW  65
+052E:  MOVWF  2A
+0530:  RCALL  00C4
+0532:  MOVFF  02,28
+0536:  MOVFF  01,27
+053A:  MOVFF  01,29
+053E:  MOVLW  7F
+0540:  MOVWF  2A
+0542:  RCALL  0106
+0544:  MOVFF  01,20
+....................             delay_us(25); 
+0548:  MOVLW  29
+054A:  MOVWF  00
+054C:  DECFSZ 00,F
+054E:  BRA    054C
+0550:  NOP   
+....................              
+....................             output_low(YELLOW_LED); 
+0552:  BCF    F93.4
+0554:  BCF    F8A.4
+....................             output_low(GREEN_LED); 
+0556:  BCF    F92.5
+0558:  BCF    F89.5
+....................              
+....................             fputc(HAR,TERM); 
+055A:  MOVLW  05
+055C:  RCALL  011C
+....................             fputc(ADC_3,TERM); 
+055E:  MOVF   20,W
+0560:  RCALL  011C
+....................              
+....................             fputc(HAR,XBEE); 
+0562:  MOVLW  05
+0564:  MOVWF  25
+0566:  RCALL  0124
+....................             fputc(ADC_3,XBEE); 
+0568:  MOVFF  20,25
+056C:  RCALL  0124
+....................         } 
+....................         else if (input(BUTTON1) == 1 && input(BUTTON2) == 0 && input(BUTTON3) == 1) { // pulser button pushed 
+056E:  BRA    0626
+0570:  BSF    F95.2
+0572:  BTFSS  F83.2
+0574:  BRA    0626
+0576:  BSF    F95.4
+0578:  BTFSC  F83.4
+057A:  BRA    0626
+057C:  BSF    F95.6
+057E:  BTFSS  F83.6
+0580:  BRA    0626
+....................             set_adc_channel(3);              // x axis 
+0582:  MOVLW  0C
+0584:  MOVWF  01
+0586:  MOVF   FC2,W
+0588:  ANDLW  C3
+058A:  IORWF  01,W
+058C:  MOVWF  FC2
+....................             for (i = 0; i < 8; i++) {        // average 8 samples 
+058E:  CLRF   21
+0590:  MOVF   21,W
+0592:  SUBLW  07
+0594:  BNC   05A8
+....................                 buffer += read_adc(); 
+0596:  BSF    FC2.1
+0598:  BTFSC  FC2.1
+059A:  BRA    0598
+059C:  MOVF   FC4,W
+059E:  ADDWF  22,F
+05A0:  MOVLW  00
+05A2:  ADDWFC 23,F
+....................             } 
+05A4:  INCF   21,F
+05A6:  BRA    0590
+....................             buffer = buffer >> 3; 
+05A8:  RRCF   23,F
+05AA:  RRCF   22,F
+05AC:  RRCF   23,F
+05AE:  RRCF   22,F
+05B0:  RRCF   23,F
+05B2:  RRCF   22,F
+05B4:  MOVLW  1F
+05B6:  ANDWF  23,F
+....................             ADC_3 = min((((long)buffer - XMIN) * 127) / (XMAX - XMIN), 127) & 0xFF; 
+05B8:  MOVLW  2E
+05BA:  SUBWF  22,W
+05BC:  MOVWF  25
+05BE:  MOVLW  00
+05C0:  SUBWFB 23,W
+05C2:  MOVWF  26
+05C4:  MOVWF  28
+05C6:  MOVFF  25,27
+05CA:  CLRF   2A
+05CC:  MOVLW  7F
+05CE:  MOVWF  29
+05D0:  RCALL  00A6
+05D2:  MOVFF  02,27
+05D6:  MOVFF  01,26
+05DA:  MOVFF  02,29
+05DE:  MOVFF  01,28
+05E2:  CLRF   2B
+05E4:  MOVLW  65
+05E6:  MOVWF  2A
+05E8:  RCALL  00C4
+05EA:  MOVFF  02,28
+05EE:  MOVFF  01,27
+05F2:  MOVFF  01,29
+05F6:  MOVLW  7F
+05F8:  MOVWF  2A
+05FA:  RCALL  0106
+05FC:  MOVFF  01,20
+....................             delay_us(25); 
+0600:  MOVLW  29
+0602:  MOVWF  00
+0604:  DECFSZ 00,F
+0606:  BRA    0604
+0608:  NOP   
+....................              
+....................             output_low(RED_LED); 
+060A:  BCF    F93.5
+060C:  BCF    F8A.5
+....................             output_low(GREEN_LED); 
+060E:  BCF    F92.5
+0610:  BCF    F89.5
+....................              
+....................             fputc(PUL,TERM); 
+0612:  MOVLW  06
+0614:  RCALL  011C
+....................             fputc(ADC_3,TERM); 
+0616:  MOVF   20,W
+0618:  RCALL  011C
+....................              
+....................             fputc(PUL,XBEE); 
+061A:  MOVLW  06
+061C:  MOVWF  25
+061E:  RCALL  0124
+....................             fputc(ADC_3,XBEE); 
+0620:  MOVFF  20,25
+0624:  RCALL  0124
 ....................         } 
 ....................          
+....................         if (input(BUTTON1) != 1 && input(BUTTON2) != 1 && arpOn == 1) { // turn apreggiator off 
+0626:  BSF    F95.2
+0628:  BTFSC  F83.2
+062A:  BRA    0642
+062C:  BSF    F95.4
+062E:  BTFSC  F83.4
+0630:  BRA    0642
+0632:  DECFSZ 24,W
+0634:  BRA    0642
+....................             arpOn = 0; 
+0636:  CLRF   24
+....................             fputc(0x09,TERM); 
+0638:  MOVLW  09
+063A:  RCALL  011C
+....................                  
+....................             fputc(0x09,XBEE); 
+063C:  MOVLW  09
+063E:  MOVWF  25
+0640:  RCALL  0124
+....................         } 
+....................          
+....................         buffer = 0; 
+0642:  CLRF   23
+0644:  CLRF   22
 ....................         output_high(GREEN_LED); 
-03B4:  BCF    F92.5
-03B6:  BSF    F89.5
+0646:  BCF    F92.5
+0648:  BSF    F89.5
 ....................         output_high(RED_LED); 
-03B8:  BCF    F93.5
-03BA:  BSF    F8A.5
+064A:  BCF    F93.5
+064C:  BSF    F8A.5
 ....................         output_high(YELLOW_LED); 
-03BC:  BCF    F93.4
-03BE:  BSF    F8A.4
+064E:  BCF    F93.4
+0650:  BSF    F8A.4
+....................         delay_ms(10); 
+0652:  MOVLW  0A
+0654:  MOVWF  25
+0656:  BRA    0164
 ....................     } 
-03C0:  BRA    01B2
+0658:  BRA    01DC
 .................... } 
-03C2:  BRA    03C2
+065A:  BRA    065A
 
 Configuration Fuses:
    Word  1: 0200   HS NOIESO NOFCMEN RESERVED

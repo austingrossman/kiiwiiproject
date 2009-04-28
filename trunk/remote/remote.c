@@ -11,18 +11,21 @@
 #define YELLOW_LED      PIN_B4
 #define RED_LED         PIN_B5
 #define PUSH_BUTTON     PIN_A4
-#define BUTTON1         PIN_C0
-#define BUTTON2         PIN_C1
-#define BUTTON3         PIN_C2
+#define BUTTON1         PIN_D2
+#define BUTTON2         PIN_D4
+#define BUTTON3         PIN_D6
 #define VOLUME          0x01        // button values
 #define PITCH           0x02
 #define WAH             0x03
-#define XOFFSET         41          // raw adc offsets
-#define YOFFSET         49
-#define ZOFFSET         48
-#define XMAX            82          // total adc ranges
-#define YMAX            85
-#define ZMAX            84
+#define ARP             0x04
+#define HAR             0x05
+#define PUL             0x06
+#define XMIN         46          // raw adc offsets (min adc)
+#define YMIN         54
+#define ZMIN         55
+#define XMAX            147         // total adc ranges (max adc)
+#define YMAX            153
+#define ZMAX            153
 
 #INT_EXT2
 void wegetsignal() {                // toggle red when remote receives data (no application)
@@ -37,6 +40,7 @@ char min(char a, char b) {
 void main() {
     char ADC_1, ADC_2, ADC_3, i;
     long buffer;
+    unsigned char arpOn = 0;
     enable_interrupts(INT_EXT2);
     enable_interrupts(global);
 
@@ -45,16 +49,16 @@ void main() {
     setup_adc(ADC_CLOCK_INTERNAL);
 
     while(TRUE){
-        if (input(BUTTON1) == 1) {           // volume button pushed
+        if (input(BUTTON1) == 1 && input(BUTTON2) == 0 && input(BUTTON3) == 0) { // volume button pushed
             set_adc_channel(1);              // y axis
             for (i = 0; i < 8; i++) {        // average 8 samples
                 buffer += read_adc();
             }
             buffer = buffer >> 3;
-            ADC_1 = min((((long)buffer - YOFFSET) * 127) / YMAX, 127) & 0xFF;
+            ADC_1 = min((((long)buffer - YMIN) * 127) / (YMAX - YMIN), 127) & 0xFF;
             delay_us(25);
             
-            output_low(GREEN_LED);
+            output_low(RED_LED);
             
             fputc(VOLUME,TERM);
             fputc(ADC_1,TERM);
@@ -62,16 +66,16 @@ void main() {
             fputc(VOLUME,XBEE);
             fputc(ADC_1,XBEE);
         }
-        else if (input(BUTTON2) == 1) {                        // pitch button pushed
+        else if (input(BUTTON1) == 0 && input(BUTTON2) == 1 && input(BUTTON3) == 0) { // pitch button pushed
             set_adc_channel(2);              // z axis
             for (i = 0; i < 8; i++) {        // average 8 samples
                 buffer += read_adc();
             }
             buffer = buffer >> 3;
-            ADC_2 = min((((long)buffer - ZOFFSET) * 127) / ZMAX, 127) & 0xFF;
+            ADC_2 = min((((long)buffer - ZMIN) * 127) / (ZMAX - ZMIN), 127) & 0xFF;
             delay_us(25);
             
-            output_low(RED_LED);
+            output_low(YELLOW_LED);
             
             fputc(PITCH,TERM);
             fputc(ADC_2,TERM);
@@ -79,16 +83,16 @@ void main() {
             fputc(PITCH,XBEE);
             fputc(ADC_2,XBEE);
         }
-        else if (input(BUTTON3) == 1) {                        // wah button pushed
+        else if (input(BUTTON1) == 0 && input(BUTTON2) == 0 && input(BUTTON3) == 1) { // wah button pushed
             set_adc_channel(3);              // x axis
             for (i = 0; i < 8; i++) {        // average 8 samples
                 buffer += read_adc();
             }
             buffer = buffer >> 3;
-            ADC_3 = min((((long)read_adc() - XOFFSET) * 127) / XMAX, 127) & 0xFF;
+            ADC_3 = min((((long)buffer - XMIN) * 127) / (XMAX - XMIN), 127) & 0xFF;
             delay_us(25);
             
-            output_low(YELLOW_LED);
+            output_low(GREEN_LED);
             
             fputc(WAH,TERM);
             fputc(ADC_3,TERM);
@@ -96,9 +100,77 @@ void main() {
             fputc(WAH,XBEE);
             fputc(ADC_3,XBEE);
         }
+        else if (input(BUTTON1) == 1 && input(BUTTON2) == 1 && input(BUTTON3) == 0) { // random arpeggiator button pushed
+            if (arpOn == 0) {
+                 arpOn = 1;
+                 fputc(0x09,TERM);
+                
+                 fputc(0x09,XBEE);
+            }
+            set_adc_channel(3);              // x axis
+            for (i = 0; i < 8; i++) {
+                buffer += read_adc();
+            }
+            buffer = buffer >> 3;
+            ADC_3 = min((((long)buffer - XMIN) * 127) / (XMAX - XMIN), 127) & 0xFF;
+            
+            output_low(RED_LED);
+            output_low(YELLOW_LED);
+            
+            fputc(ARP,TERM);
+            fputc(ADC_3,TERM);
+            
+            fputc(ARP,XBEE);
+            fputc(ADC_3,XBEE);
+        }
+        else if (input(BUTTON1) == 0 && input(BUTTON2) == 1 && input(BUTTON3) == 1) { // harmonizer button pushed
+            set_adc_channel(3);              // x axis
+            for (i = 0; i < 8; i++) {        // average 8 samples
+                buffer += read_adc();
+            }
+            buffer = buffer >> 3;
+            ADC_3 = min((((long)buffer - XMIN) * 127) / (XMAX - XMIN), 127) & 0xFF;
+            delay_us(25);
+            
+            output_low(YELLOW_LED);
+            output_low(GREEN_LED);
+            
+            fputc(HAR,TERM);
+            fputc(ADC_3,TERM);
+            
+            fputc(HAR,XBEE);
+            fputc(ADC_3,XBEE);
+        }
+        else if (input(BUTTON1) == 1 && input(BUTTON2) == 0 && input(BUTTON3) == 1) { // pulser button pushed
+            set_adc_channel(3);              // x axis
+            for (i = 0; i < 8; i++) {        // average 8 samples
+                buffer += read_adc();
+            }
+            buffer = buffer >> 3;
+            ADC_3 = min((((long)buffer - XMIN) * 127) / (XMAX - XMIN), 127) & 0xFF;
+            delay_us(25);
+            
+            output_low(RED_LED);
+            output_low(GREEN_LED);
+            
+            fputc(PUL,TERM);
+            fputc(ADC_3,TERM);
+            
+            fputc(PUL,XBEE);
+            fputc(ADC_3,XBEE);
+        }
         
+        if (input(BUTTON1) != 1 && input(BUTTON2) != 1 && arpOn == 1) { // turn apreggiator off
+            arpOn = 0;
+            fputc(0x09,TERM);
+                
+            fputc(0x09,XBEE);
+        }
+        
+        buffer = 0;
         output_high(GREEN_LED);
         output_high(RED_LED);
         output_high(YELLOW_LED);
+        delay_ms(10);
     }
 }

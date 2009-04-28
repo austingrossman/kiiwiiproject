@@ -1,5 +1,5 @@
 ÀÄremote
-   ÃÄMAIN  0/608  Ram=12
+   ÃÄMAIN  0/1232  Ram=11
    ³  ÃÄ??0??
    ³  ÃÄ@MUL1616  0/30  Ram=5
    ³  ÃÄ@DIV1616  0/66  Ram=5
@@ -21,5 +21,31 @@
    ³  ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
    ³  ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
    ³  ÃÄ@PUTCHAR_2_  0/64  Ram=1
-   ³  ÀÄ@PUTCHAR_2_  0/64  Ram=1
+   ³  ÃÄ@PUTCHAR_2_  0/64  Ram=1
+   ³  ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
+   ³  ÃÄ@PUTCHAR_2_  0/64  Ram=1
+   ³  ÃÄ@MUL1616  0/30  Ram=5
+   ³  ÃÄ@DIV1616  0/66  Ram=5
+   ³  ÃÄmin  0/22  Ram=2
+   ³  ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
+   ³  ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
+   ³  ÃÄ@PUTCHAR_2_  0/64  Ram=1
+   ³  ÃÄ@PUTCHAR_2_  0/64  Ram=1
+   ³  ÃÄ@MUL1616  0/30  Ram=5
+   ³  ÃÄ@DIV1616  0/66  Ram=5
+   ³  ÃÄmin  0/22  Ram=2
+   ³  ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
+   ³  ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
+   ³  ÃÄ@PUTCHAR_2_  0/64  Ram=1
+   ³  ÃÄ@PUTCHAR_2_  0/64  Ram=1
+   ³  ÃÄ@MUL1616  0/30  Ram=5
+   ³  ÃÄ@DIV1616  0/66  Ram=5
+   ³  ÃÄmin  0/22  Ram=2
+   ³  ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
+   ³  ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
+   ³  ÃÄ@PUTCHAR_2_  0/64  Ram=1
+   ³  ÃÄ@PUTCHAR_2_  0/64  Ram=1
+   ³  ÃÄ@PUTCHARI_BIU_1  0/8  Ram=0
+   ³  ÃÄ@PUTCHAR_2_  0/64  Ram=1
+   ³  ÀÄ@delay_ms1  0/40  Ram=1
    ÀÄwegetsignal  0/8  Ram=0
