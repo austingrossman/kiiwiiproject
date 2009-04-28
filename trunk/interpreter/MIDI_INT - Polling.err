@@ -1,0 +1,4 @@
+>>> Warning 216 "MIDI_INT - Polling.c" Line 91(0,1): Interrupts disabled during call to prevent re-entrancy:  (set_midievent)
+>>> Warning 216 "MIDI_INT - Polling.c" Line 91(0,1): Interrupts disabled during call to prevent re-entrancy:  (output_midievent)
+      Memory usage:   ROM=1%      RAM=1% - 2%
+      0 Errors,  2 Warnings.

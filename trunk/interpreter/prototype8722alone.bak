@@ -1,6 +1,6 @@
 #include <18F8722.h>
 #fuses HS,NOWDT,NOPROTECT,NOLVP
-#use delay(clock=20000000)
+#use delay(clock=40000000)
 
 #define GREEN_LED PIN_A5
 #define YELLOW_LED PIN_B4

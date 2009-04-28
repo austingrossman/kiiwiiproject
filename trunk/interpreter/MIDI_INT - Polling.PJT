@@ -1,0 +1,39 @@
+[PROJECT]
+Target=MIDI_INT - Polling.HEX
+Development_Mode=2
+Processor=0x8721
+Processor_Text=PIC18F8722
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=C:\Users\Bob\Desktop\KiiWiiCode\interpreter\MIDI_INT - Polling.c
+BuildTool=C-COMPILER
+OptionString=+FH
+AdditionalOptionString=
+BuildRequired=1
+
+[MIDI_INT - Polling.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=MIDI_I~1.C
+
+[Windows]
+0=0000 MIDI_I~1.C 0 0 796 451 3 0
+
+[Opened Files]
+1=MIDI_INT - Polling.c
+2=
+[Units]
+Count=1
+1=MIDI_INT - Polling.c (main)

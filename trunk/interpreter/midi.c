@@ -131,4 +131,3 @@ void set_midievent(MidiEvent* event, unsigned char status, unsigned char data0, 
    event->data[1] = data1;
    event->data[2] = data2;
 }
-

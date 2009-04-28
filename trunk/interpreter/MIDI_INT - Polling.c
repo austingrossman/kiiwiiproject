@@ -1,0 +1,89 @@
+#include <prototype8722alone.h>
+#use rs232 (stream=midi, baud=31250, xmit=PIN_C6, rcv=PIN_C7, bits=8, stop=1, parity=n)
+#use rs232 (stream=xbee, baud=9600, xmit=PIN_G1, rcv=PIN_G2)
+#include <input.c>
+#include <xbee_packet.h>
+#include <midi.c>
+
+char past_eventstatus;
+
+// Still needs to ignore system exclusives
+#int_rda
+void serial_isr1() {
+   unsigned char status, num_databytes, data2;
+   MIDIEvent event;  
+   status = getc();
+  
+   if (status > 0x7F) {
+      num_databytes = lookup_mididatabytes(status);
+      event = get_midievent(status, num_databytes);
+      output_midievent(event);
+      past_eventstatus = status;
+   }
+   else if((past_eventstatus > 0x7F) && (past_eventstatus < 0xF0)) {
+      num_databytes = lookup_mididatabytes(past_eventstatus) - 1;
+     
+      if (num_databytes > 0){
+         data2 = getc();
+         set_midievent(&event, past_eventstatus, status, data2);
+         output_midievent(event);
+      } else {
+         set_midievent(&event, past_eventstatus, status);
+         output_midievent(event);
+      }
+   }
+}
+
+void main() {
+   BYTE b;
+   MIDIEvent event;
+   
+   LED_OFF(GREEN_LED);
+   LED_OFF(RED_LED);
+   LED_OFF(YELLOW_LED);
+  
+   enable_interrupts(int_rda);
+  
+   while(TRUE) {
+      enable_interrupts(global);
+  
+      b = getc(xbee);
+      
+      if(b == 0x01) {   //Volume Change
+         b = getc(xbee);
+         set_midievent(&event, 0xB0, 0x07, b);
+         output_midievent(event);
+      }else if(b == 0x02) {  //Pitch Wheel Change
+         b = getc(xbee);
+         set_midievent(&event, 0xE0, 0x00, b);
+         output_midievent(event);
+      } else if (b == 0x03) {  //Wah-Wah Effect
+         b = getc(xbee);
+         set_midievent(&event, 0xB0, 0x01, b);
+         output_midievent(event);
+      } else if (b == 0x04) {  //Arpeggio
+         b = getc(xbee);
+         set_midievent(&event, 0xB0, 0x5C, b);
+         output_midievent(event);
+      } else if (b == 0x05) {  //Scale-harmonizer
+         b = getc(xbee);
+         set_midievent(&event, 0xB0, 0x48, b);
+         output_midievent(event);
+      } else if (b == 0x06) {  //Pulser
+         b = getc(xbee);
+         set_midievent(&event, 0xB0, 0x47, b);
+         output_midievent(event);
+      } else if (b == 0x07) {  //Combined
+         b = getc(xbee);
+         set_midievent(&event, 0xB0, 0x5C, b);
+         output_midievent(event);
+         b = getc(xbee);
+         set_midievent(&event, 0xB0, 0x0C, b);
+         output_midievent(event);
+      } else if (b == 0x09) { //Arpegiator toggle
+         set_midievent(&event, 0xB0, 0x18, 0x7F);
+         output_midievent(event);
+      }
+   }
+}
+
