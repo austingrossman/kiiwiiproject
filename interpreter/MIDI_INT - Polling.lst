@@ -1,0 +1,1099 @@
+CCS PCH C Compiler, Version 4.084, 37642               28-Apr-09 02:04
+
+               Filename: C:\Users\Bob\Desktop\KiiWiiCode\interpreter\MIDI_INT - Polling.lst
+
+               ROM used: 1582 bytes (1%)
+                         Largest free fragment is 65536
+               RAM used: 40 (1%) at main() level
+                         72 (2%) worst case
+               Stack:    5 worst case (2 in main + 3 for interrupts)
+
+*
+00000:  GOTO   030A
+*
+00008:  MOVWF  05
+0000A:  MOVFF  FD8,06
+0000E:  MOVFF  FE0,07
+00012:  MOVLB  0
+00014:  MOVFF  FE9,0D
+00018:  MOVFF  FEA,08
+0001C:  MOVFF  FE1,09
+00020:  MOVFF  FE2,0A
+00024:  MOVFF  FD9,0B
+00028:  MOVFF  FDA,0C
+0002C:  MOVFF  FF3,14
+00030:  MOVFF  FF4,15
+00034:  MOVFF  FFA,16
+00038:  MOVFF  FFB,17
+0003C:  MOVFF  00,0F
+00040:  MOVFF  01,10
+00044:  MOVFF  02,11
+00048:  MOVFF  03,12
+0004C:  MOVFF  04,13
+00050:  BTFSS  F9D.5
+00052:  GOTO   005C
+00056:  BTFSC  F9E.5
+00058:  GOTO   022A
+0005C:  MOVFF  0F,00
+00060:  MOVFF  10,01
+00064:  MOVFF  11,02
+00068:  MOVFF  12,03
+0006C:  MOVFF  13,04
+00070:  MOVFF  0D,FE9
+00074:  MOVFF  08,FEA
+00078:  BSF    08.7
+0007A:  MOVFF  09,FE1
+0007E:  MOVFF  0A,FE2
+00082:  MOVFF  0B,FD9
+00086:  MOVFF  0C,FDA
+0008A:  MOVFF  14,FF3
+0008E:  MOVFF  15,FF4
+00092:  MOVFF  16,FFA
+00096:  MOVFF  17,FFB
+0009A:  MOVF   05,W
+0009C:  MOVFF  07,FE0
+000A0:  MOVFF  06,FD8
+000A4:  RETFIE 0
+.................... #include <prototype8722alone.h> 
+.................... #include <18F8722.h> 
+.................... //////// Standard Header file for the PIC18F8722 device //////////////// 
+.................... #device PIC18F8722 
+.................... #list 
+....................  
+.................... #fuses HS,NOWDT,NOPROTECT,NOLVP 
+.................... #use delay(clock=20000000) 
+....................  
+.................... #define GREEN_LED PIN_A5 
+.................... #define YELLOW_LED PIN_B4 
+.................... #define RED_LED PIN_B5 
+....................  
+.................... #define delay_s(x) delay_ms(x*1000); 
+.................... #define led_on(x) output_low(x); 
+.................... #define led_off(x) output_high(x); 
+.................... #define toggle_led(x) output_toggle(x); 
+.................... #define led_toggle(x, y) output_toggle(x); delay_ms(y*1000); 
+....................  
+....................  
+.................... #use rs232 (stream=midi, baud=31250, xmit=PIN_C6, rcv=PIN_C7, bits=8, stop=1, parity=n) 
+*
+0017C:  BTFSS  F9E.4
+0017E:  BRA    017C
+00180:  MOVWF  FAD
+00182:  RETLW  00
+.................... #use rs232 (stream=xbee, baud=9600, xmit=PIN_G1, rcv=PIN_G2) 
+.................... #include <input.c> 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996,2003 Custom Computer Services           //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+....................  
+....................  
+.................... #include <ctype.h> 
+.................... //////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996,2003 Custom Computer Services            //// 
+.................... //// This source code may only be used by licensed users of the CCS C   //// 
+.................... //// compiler.  This source code may only be distributed to other       //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction  //// 
+.................... //// or distribution is permitted without written permission.           //// 
+.................... //// Derivative programs created using this software in object code     //// 
+.................... //// form are not restricted in any way.                                //// 
+.................... //////////////////////////////////////////////////////////////////////////// 
+....................  
+.................... #ifndef _CTYPE 
+.................... #define _CTYPE 
+....................  
+.................... #define islower(x)  isamong(x,"abcdefghijklmnopqrstuvwxyz") 
+.................... #define isupper(x)  isamong(x,"ABCDEFGHIJKLMNOPQRSTUVWXYZ") 
+.................... #define isalnum(x)  isamong(x,"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") 
+.................... #define isalpha(x)  isamong(x,"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") 
+.................... #define isdigit(x)  isamong(x,"0123456789") 
+.................... #define isspace(x)  ((x)==' ') 
+.................... #define isxdigit(x) isamong(x,"0123456789ABCDEFabcdef") 
+.................... #define iscntrl(x)  ((x)<' ') 
+.................... #define isprint(x)  ((x)>=' ') 
+.................... #define isgraph(x)  ((x)>' ') 
+.................... #define ispunct(x)  (((x)>' ')&&!isalnum(x)) 
+....................  
+.................... #endif 
+....................  
+....................  
+....................  
+.................... BYTE gethex1() { 
+....................    char digit; 
+....................  
+....................    digit = getc(); 
+....................  
+....................    putc(digit); 
+....................  
+....................    if(digit<='9') 
+....................      return(digit-'0'); 
+....................    else 
+....................      return((toupper(digit)-'A')+10); 
+.................... } 
+....................  
+.................... BYTE gethex() { 
+....................    unsigned int8 lo,hi; 
+....................  
+....................    hi = gethex1(); 
+....................    lo = gethex1(); 
+....................    if(lo==0xdd) 
+....................      return(hi); 
+....................    else 
+....................      return( hi*16+lo ); 
+.................... } 
+....................  
+.................... void get_string(char* s, unsigned int8 max) { 
+....................    unsigned int8 len; 
+....................    char c; 
+....................  
+....................    --max; 
+....................    len=0; 
+....................    do { 
+....................      c=getc(); 
+....................      if(c==8) {  // Backspace 
+....................         if(len>0) { 
+....................           len--; 
+....................           putc(c); 
+....................           putc(' '); 
+....................           putc(c); 
+....................         } 
+....................      } else if ((c>=' ')&&(c<='~')) 
+....................        if(len<=max) { 
+....................          s[len++]=c; 
+....................          putc(c); 
+....................        } 
+....................    } while(c!=13); 
+....................    s[len]=0; 
+.................... } 
+....................  
+.................... // stdlib.h is required for the ato_ conversions 
+.................... // in the following functions 
+.................... #ifdef _STDLIB 
+.................... #if !defined(__PCD__) 
+.................... signed int8 get_int() { 
+....................   char s[5]; 
+....................   signed int8 i; 
+....................  
+....................   get_string(s, 5); 
+....................  
+....................   i=atoi(s); 
+....................   return(i); 
+.................... } 
+.................... #endif 
+....................  
+.................... #if defined(__PCD__) 
+.................... signed int16 get_int() { 
+....................   char s[5]; 
+....................   signed int16 i; 
+....................  
+....................   get_string(s, 7); 
+....................  
+....................   i=atoi(s); 
+....................   return(i); 
+.................... } 
+.................... #endif 
+....................  
+.................... #if !defined(__PCD__) 
+.................... signed int16 get_long() { 
+....................   char s[7]; 
+....................   signed int16 l; 
+....................  
+....................   get_string(s, 7); 
+....................   l=atol(s); 
+....................   return(l); 
+.................... } 
+.................... #endif 
+....................  
+.................... #if defined(__PCD__) 
+.................... signed int32 get_long() { 
+....................   char s[7]; 
+....................   signed int32 l; 
+....................  
+....................   get_string(s, 10); 
+....................   l=atoi32(s); 
+....................   return(l); 
+.................... } 
+.................... #endif 
+....................  
+.................... float get_float() { 
+....................   char s[20]; 
+....................   float f; 
+....................  
+....................   get_string(s, 20); 
+....................   f = atof(s); 
+....................   return(f); 
+.................... } 
+....................  
+.................... #endif 
+....................  
+.................... #include <xbee_packet.h> 
+.................... #define BUFFER_SIZE 3 // = data bytes + 1 
+....................  
+.................... BYTE buffer[BUFFER_SIZE]; 
+.................... BYTE next_in = 0; 
+.................... BYTE next_out = 0; 
+.................... BYTE strt_rc = FALSE; 
+.................... BYTE stop_rc = FALSE; 
+....................  
+.................... #define bkbhit (next_in!=next_out) 
+....................  
+.................... BYTE bgetc() { 
+....................    BYTE c; 
+....................  
+....................    while(!bkbhit) ; 
+....................    c=buffer[next_out]; 
+....................    next_out=(next_out+1) % BUFFER_SIZE; 
+....................    return(c); 
+.................... } 
+....................  
+.................... void bsetc(BYTE b) { 
+....................    int t; 
+....................     
+....................    buffer[next_in] = b; 
+....................    t=next_in; 
+....................    next_in=(next_in+1) % BUFFER_SIZE; 
+....................    if(next_in==next_out) 
+....................      next_in=t;           // Buffer full !! 
+.................... } 
+....................  
+.................... void reset_buffer(){ 
+....................    next_in = 0; 
+....................    next_out = 0; 
+....................    strt_rc = FALSE; 
+....................    stop_rc = FALSE; 
+.................... } 
+....................  
+....................  
+.................... #include <midi.c> 
+.................... /* Structure that represents a MIDI Message */ 
+.................... typedef struct 
+.................... { 
+....................    unsigned char length; 
+....................    unsigned char status; 
+....................    unsigned char data[3]; 
+.................... } MidiEvent; 
+....................  
+.................... /* Function initializes a MIDI Event */ 
+.................... void init_midievent(MidiEvent* event) 
+.................... {   
+....................    event->length = 0; 
+....................    event->status = 0; 
+....................    event->data[0] = 0; 
+....................    event->data[1] = 0; 
+....................    event->data[2] = 0; 
+.................... } 
+....................  
+.................... /* Function outputs a MIDI event */ 
+.................... void output_midievent(MidiEvent event) 
+.................... { 
+....................    unsigned char i; 
+....................     
+....................    if(event.length) 
+00184:  MOVF   37,F
+00186:  BZ    018C
+....................    { 
+....................       putc(event.status); 
+00188:  MOVF   38,W
+0018A:  RCALL  017C
+....................    } 
+....................     
+....................    for(i = 0; i < event.length - 1; i++) 
+0018C:  CLRF   3C
+0018E:  MOVLW  01
+00190:  SUBWF  37,W
+00192:  SUBWF  3C,W
+00194:  BC    01BA
+....................    { 
+....................       putc(event.data[i]); 
+00196:  CLRF   03
+00198:  MOVF   3C,W
+0019A:  ADDLW  02
+0019C:  MOVWF  01
+0019E:  MOVLW  00
+001A0:  ADDWFC 03,F
+001A2:  MOVF   01,W
+001A4:  ADDLW  37
+001A6:  MOVWF  FE9
+001A8:  MOVLW  00
+001AA:  ADDWFC 03,W
+001AC:  MOVWF  FEA
+001AE:  MOVFF  FEF,3D
+001B2:  MOVF   3D,W
+001B4:  RCALL  017C
+....................    } 
+001B6:  INCF   3C,F
+001B8:  BRA    018E
+.................... } 
+001BA:  RETLW  00
+....................  
+.................... /* Function retrieves the first midi status byte */ 
+.................... unsigned char get_midistatus() 
+.................... { 
+....................    unsigned char rbyte = 0; 
+....................     
+....................    while(rbyte < 128) 
+....................    { 
+....................       rbyte = getchar(midi); 
+....................    } 
+....................     
+....................    return rbyte; 
+.................... } 
+....................  
+.................... /* Function polls the UART until a properly formatted MIDI message is retrieved */ 
+.................... MidiEvent get_midievent(unsigned char status, unsigned char num_databytes) 
+.................... { 
+....................    unsigned char rbyte, i; 
+....................     
+....................    MidiEvent event; 
+....................    event.status = status; 
+*
+0012C:  MOVFF  3D,42
+....................    event.length = num_databytes + 1; 
+00130:  MOVLW  01
+00132:  ADDWF  3E,W
+00134:  MOVWF  41
+....................     
+....................    for (i = 0; i < num_databytes; i++) 
+00136:  CLRF   40
+00138:  MOVF   3E,W
+0013A:  SUBWF  40,W
+0013C:  BC    0172
+....................    { 
+....................       rbyte = getchar(midi); 
+0013E:  BTFSS  F9E.5
+00140:  BRA    013E
+00142:  MOVFF  FAE,3F
+....................     
+....................       if(rbyte < 0x80) 
+00146:  MOVF   3F,W
+00148:  SUBLW  7F
+0014A:  BNC   016A
+....................       { 
+....................          event.data[i] = rbyte; 
+0014C:  CLRF   03
+0014E:  MOVF   40,W
+00150:  ADDLW  02
+00152:  MOVWF  01
+00154:  MOVLW  00
+00156:  ADDWFC 03,F
+00158:  MOVF   01,W
+0015A:  ADDLW  41
+0015C:  MOVWF  FE9
+0015E:  MOVLW  00
+00160:  ADDWFC 03,W
+00162:  MOVWF  FEA
+00164:  MOVFF  3F,FEF
+....................       } 
+....................       else 
+00168:  BRA    016E
+....................       { 
+....................          // This should be impossible, return error state 
+....................          LED_ON(YELLOW_LED); 
+0016A:  BCF    F93.4
+0016C:  BCF    F8A.4
+....................       } 
+....................    } 
+0016E:  INCF   40,F
+00170:  BRA    0138
+....................     
+....................    return event; 
+00172:  MOVLW  41
+00174:  MOVWF  01
+00176:  CLRF   02
+.................... } 
+00178:  GOTO   024C (RETURN)
+....................  
+.................... // Function returns the number of data bytes based on status byte 
+.................... unsigned char lookup_mididatabytes(unsigned char status) 
+.................... { 
+....................    if(status < 0xC0) {   //192 
+*
+000A6:  MOVF   37,W
+000A8:  SUBLW  BF
+000AA:  BNC   00B4
+....................       return 2; 
+000AC:  MOVLW  02
+000AE:  MOVWF  01
+000B0:  BRA    012A
+....................    } else if (status < 0xE0) { //224 
+000B2:  BRA    012A
+000B4:  MOVF   37,W
+000B6:  SUBLW  DF
+000B8:  BNC   00C2
+....................       return 1; 
+000BA:  MOVLW  01
+000BC:  MOVWF  01
+000BE:  BRA    012A
+....................    } else if (status < 0xF0) { //240 
+000C0:  BRA    012A
+000C2:  MOVF   37,W
+000C4:  SUBLW  EF
+000C6:  BNC   00D0
+....................       return 2; 
+000C8:  MOVLW  02
+000CA:  MOVWF  01
+000CC:  BRA    012A
+....................    } else if (status < 0xF1) { //241 
+000CE:  BRA    012A
+000D0:  MOVF   37,W
+000D2:  SUBLW  F0
+000D4:  BNC   00DE
+....................       return 3;               // System exclusive: length varies 
+000D6:  MOVLW  03
+000D8:  MOVWF  01
+000DA:  BRA    012A
+....................    } else if (status < 0xF2) { //242 
+000DC:  BRA    012A
+000DE:  MOVF   37,W
+000E0:  SUBLW  F1
+000E2:  BNC   00EC
+....................       return 1; 
+000E4:  MOVLW  01
+000E6:  MOVWF  01
+000E8:  BRA    012A
+....................    } else if (status < 0xF3) { //243 
+000EA:  BRA    012A
+000EC:  MOVF   37,W
+000EE:  SUBLW  F2
+000F0:  BNC   00FA
+....................       return 2; 
+000F2:  MOVLW  02
+000F4:  MOVWF  01
+000F6:  BRA    012A
+....................    } else if (status < 0xF4) { //244 
+000F8:  BRA    012A
+000FA:  MOVF   37,W
+000FC:  SUBLW  F3
+000FE:  BNC   0108
+....................       return 1; 
+00100:  MOVLW  01
+00102:  MOVWF  01
+00104:  BRA    012A
+....................    } else if (status < 0xF5) { //245 - 0xF4 - Wah 
+00106:  BRA    012A
+00108:  MOVF   37,W
+0010A:  SUBLW  F4
+0010C:  BNC   0116
+....................       return 2; 
+0010E:  MOVLW  02
+00110:  MOVWF  01
+00112:  BRA    012A
+....................    } else if (status < 0xF6) { //246 
+00114:  BRA    012A
+00116:  MOVF   37,W
+00118:  SUBLW  F5
+0011A:  BNC   0124
+....................       return 1; 
+0011C:  MOVLW  01
+0011E:  MOVWF  01
+00120:  BRA    012A
+....................    }else { 
+00122:  BRA    012A
+....................       return 0; 
+00124:  MOVLW  00
+00126:  MOVWF  01
+00128:  BRA    012A
+....................    }    
+.................... } 
+0012A:  RETLW  00
+....................  
+.................... /* Function creates a MIDI event with the specified status and data bytes */ 
+.................... void set_midievent(MidiEvent* event, unsigned char status) 
+.................... { 
+....................    event->length = 1; 
+....................    event->status = status; 
+.................... } 
+....................  
+.................... /* Function creates a MIDI event with the specified status and data bytes */ 
+.................... void set_midievent(MidiEvent* event, unsigned char status, unsigned char data0) 
+.................... { 
+....................    event->length = 2; 
+*
+001FA:  MOVF   37,W
+001FC:  MOVWF  FE9
+001FE:  MOVFF  38,FEA
+00202:  MOVLW  02
+00204:  MOVWF  FEF
+....................    event->status = status; 
+00206:  MOVLW  01
+00208:  ADDWF  37,W
+0020A:  MOVWF  FE9
+0020C:  MOVLW  00
+0020E:  ADDWFC 38,W
+00210:  MOVWF  FEA
+00212:  MOVFF  39,FEF
+....................    event->data[0] = data0; 
+00216:  MOVLW  02
+00218:  ADDWF  37,W
+0021A:  MOVWF  FE9
+0021C:  MOVLW  00
+0021E:  ADDWFC 38,W
+00220:  MOVWF  FEA
+00222:  MOVFF  3A,FEF
+.................... } 
+00226:  GOTO   02EE (RETURN)
+....................  
+.................... /* Function creates a MIDI event with the specified status and data bytes */ 
+.................... void set_midievent(MidiEvent* event, unsigned char status, unsigned char data0, unsigned char data1) 
+.................... { 
+....................    event->length = 3; 
+*
+001BC:  MOVF   37,W
+001BE:  MOVWF  FE9
+001C0:  MOVFF  38,FEA
+001C4:  MOVLW  03
+001C6:  MOVWF  FEF
+....................    event->status = status; 
+001C8:  MOVLW  01
+001CA:  ADDWF  37,W
+001CC:  MOVWF  FE9
+001CE:  MOVLW  00
+001D0:  ADDWFC 38,W
+001D2:  MOVWF  FEA
+001D4:  MOVFF  39,FEF
+....................    event->data[0] = data0; 
+001D8:  MOVLW  02
+001DA:  ADDWF  37,W
+001DC:  MOVWF  FE9
+001DE:  MOVLW  00
+001E0:  ADDWFC 38,W
+001E2:  MOVWF  FEA
+001E4:  MOVFF  3A,FEF
+....................    event->data[1] = data1; 
+001E8:  MOVLW  03
+001EA:  ADDWF  37,W
+001EC:  MOVWF  FE9
+001EE:  MOVLW  00
+001F0:  ADDWFC 38,W
+001F2:  MOVWF  FEA
+001F4:  MOVFF  3B,FEF
+.................... } 
+001F8:  RETLW  00
+....................  
+.................... /* Function creates a MIDI event with the specified status and data bytes */ 
+.................... void set_midievent(MidiEvent* event, unsigned char status, unsigned char data0, unsigned char data1, unsigned char data2) 
+.................... { 
+....................    event->length = 4; 
+....................    event->status = status; 
+....................    event->data[0] = data0; 
+....................    event->data[1] = data1; 
+....................    event->data[2] = data2; 
+.................... } 
+....................  
+....................  
+.................... char past_eventstatus; 
+....................  
+.................... // Still needs to ignore system exclusives 
+.................... #int_rda 
+.................... void serial_isr1() { 
+....................    unsigned char status, num_databytes, data2; 
+....................    MIDIEvent event;   
+....................    status = getc(); 
+*
+0022A:  BTFSS  F9E.5
+0022C:  BRA    022A
+0022E:  MOVFF  FAE,2F
+....................    
+....................    if (status > 0x7F) { 
+00232:  MOVF   2F,W
+00234:  SUBLW  7F
+00236:  BC    028E
+....................       num_databytes = lookup_mididatabytes(status); 
+00238:  MOVFF  2F,37
+0023C:  RCALL  00A6
+0023E:  MOVFF  01,30
+....................       event = get_midievent(status, num_databytes); 
+00242:  MOVFF  2F,3D
+00246:  MOVFF  30,3E
+0024A:  BRA    012C
+0024C:  MOVFF  02,03
+00250:  MOVFF  01,37
+00254:  MOVFF  02,38
+00258:  CLRF   FEA
+0025A:  MOVLW  32
+0025C:  MOVWF  FE9
+0025E:  MOVFF  02,FE2
+00262:  MOVFF  01,FE1
+00266:  MOVLW  05
+00268:  MOVWF  01
+0026A:  MOVFF  FE6,FEE
+0026E:  DECFSZ 01,F
+00270:  BRA    026A
+....................       output_midievent(event); 
+00272:  MOVFF  32,37
+00276:  MOVFF  33,38
+0027A:  MOVFF  34,39
+0027E:  MOVFF  35,3A
+00282:  MOVFF  36,3B
+00286:  RCALL  0184
+....................       past_eventstatus = status; 
+00288:  MOVFF  2F,21
+....................    } 
+....................    else if((past_eventstatus > 0x7F) && (past_eventstatus < 0xF0)) { 
+0028C:  BRA    0304
+0028E:  MOVF   21,W
+00290:  SUBLW  7F
+00292:  BC    0304
+00294:  MOVF   21,W
+00296:  SUBLW  EF
+00298:  BNC   0304
+....................       num_databytes = lookup_mididatabytes(past_eventstatus) - 1; 
+0029A:  MOVFF  21,37
+0029E:  RCALL  00A6
+002A0:  MOVLW  01
+002A2:  SUBWF  01,W
+002A4:  MOVWF  30
+....................       
+....................       if (num_databytes > 0){ 
+002A6:  MOVF   30,F
+002A8:  BZ    02DE
+....................          data2 = getc(); 
+002AA:  BTFSS  F9E.5
+002AC:  BRA    02AA
+002AE:  MOVFF  FAE,31
+....................          set_midievent(&event, past_eventstatus, status, data2); 
+002B2:  CLRF   38
+002B4:  MOVLW  32
+002B6:  MOVWF  37
+002B8:  MOVFF  21,39
+002BC:  MOVFF  2F,3A
+002C0:  MOVFF  31,3B
+002C4:  RCALL  01BC
+....................          output_midievent(event); 
+002C6:  MOVFF  32,37
+002CA:  MOVFF  33,38
+002CE:  MOVFF  34,39
+002D2:  MOVFF  35,3A
+002D6:  MOVFF  36,3B
+002DA:  RCALL  0184
+....................       } else { 
+002DC:  BRA    0304
+....................          set_midievent(&event, past_eventstatus, status); 
+002DE:  CLRF   38
+002E0:  MOVLW  32
+002E2:  MOVWF  37
+002E4:  MOVFF  21,39
+002E8:  MOVFF  2F,3A
+002EC:  BRA    01FA
+....................          output_midievent(event); 
+002EE:  MOVFF  32,37
+002F2:  MOVFF  33,38
+002F6:  MOVFF  34,39
+002FA:  MOVFF  35,3A
+002FE:  MOVFF  36,3B
+00302:  RCALL  0184
+....................       } 
+....................    } 
+.................... } 
+....................  
+00304:  BCF    F9E.5
+00306:  GOTO   005C
+.................... void main() { 
+0030A:  CLRF   FF8
+0030C:  BCF    FD0.7
+0030E:  BSF    08.7
+00310:  CLRF   FEA
+00312:  CLRF   FE9
+00314:  BCF    F7E.3
+00316:  MOVLW  09
+00318:  MOVWF  FAF
+0031A:  MOVLW  A2
+0031C:  MOVWF  FAC
+0031E:  MOVLW  90
+00320:  MOVWF  FAB
+00322:  BSF    F7C.3
+00324:  MOVLW  08
+00326:  MOVWF  F6F
+00328:  MOVLW  02
+0032A:  MOVWF  F7D
+0032C:  MOVLW  A6
+0032E:  MOVWF  F6C
+00330:  MOVLW  90
+00332:  MOVWF  F6B
+00334:  MOVF   FC1,W
+00336:  ANDLW  C0
+00338:  IORLW  0F
+0033A:  MOVWF  FC1
+0033C:  MOVLW  07
+0033E:  MOVWF  FB4
+00340:  CLRF   1D
+00342:  CLRF   1E
+00344:  CLRF   1F
+00346:  CLRF   20
+....................    BYTE b; 
+....................    MIDIEvent event; 
+....................     
+....................    LED_OFF(GREEN_LED); 
+00348:  BCF    F92.5
+0034A:  BSF    F89.5
+....................    LED_OFF(RED_LED); 
+0034C:  BCF    F93.5
+0034E:  BSF    F8A.5
+....................    LED_OFF(YELLOW_LED); 
+00350:  BCF    F93.4
+00352:  BSF    F8A.4
+....................    
+....................    enable_interrupts(int_rda); 
+00354:  BSF    F9D.5
+....................    
+....................    while(TRUE) { 
+....................       enable_interrupts(global); 
+00356:  MOVLW  C0
+00358:  IORWF  FF2,F
+....................    
+....................       b = getc(xbee); 
+0035A:  BTFSS  FA4.5
+0035C:  BRA    035A
+0035E:  MOVFF  F6E,22
+....................        
+....................       if(b == 0x01) {   //Volume Change 
+00362:  DECFSZ 22,W
+00364:  BRA    03B2
+....................          b = getc(xbee); 
+00366:  BTFSS  FA4.5
+00368:  BRA    0366
+0036A:  MOVFF  F6E,22
+0036E:  CLRF   19
+00370:  BTFSC  FF2.7
+00372:  BSF    19.7
+00374:  BCF    FF2.7
+....................          set_midievent(&event, 0xB0, 0x07, b); 
+00376:  CLRF   38
+00378:  MOVLW  23
+0037A:  MOVWF  37
+0037C:  MOVLW  B0
+0037E:  MOVWF  39
+00380:  MOVLW  07
+00382:  MOVWF  3A
+00384:  MOVFF  22,3B
+00388:  RCALL  01BC
+0038A:  BTFSC  19.7
+0038C:  BSF    FF2.7
+0038E:  CLRF   19
+00390:  BTFSC  FF2.7
+00392:  BSF    19.7
+00394:  BCF    FF2.7
+....................          output_midievent(event); 
+00396:  MOVFF  23,37
+0039A:  MOVFF  24,38
+0039E:  MOVFF  25,39
+003A2:  MOVFF  26,3A
+003A6:  MOVFF  27,3B
+003AA:  RCALL  0184
+003AC:  BTFSC  19.7
+003AE:  BSF    FF2.7
+....................       }else if(b == 0x02) {  //Pitch Wheel Change 
+003B0:  BRA    062E
+003B2:  MOVF   22,W
+003B4:  SUBLW  02
+003B6:  BNZ   0402
+....................          b = getc(xbee); 
+003B8:  BTFSS  FA4.5
+003BA:  BRA    03B8
+003BC:  MOVFF  F6E,22
+003C0:  CLRF   19
+003C2:  BTFSC  FF2.7
+003C4:  BSF    19.7
+003C6:  BCF    FF2.7
+....................          set_midievent(&event, 0xE0, 0x00, b); 
+003C8:  CLRF   38
+003CA:  MOVLW  23
+003CC:  MOVWF  37
+003CE:  MOVLW  E0
+003D0:  MOVWF  39
+003D2:  CLRF   3A
+003D4:  MOVFF  22,3B
+003D8:  RCALL  01BC
+003DA:  BTFSC  19.7
+003DC:  BSF    FF2.7
+003DE:  CLRF   19
+003E0:  BTFSC  FF2.7
+003E2:  BSF    19.7
+003E4:  BCF    FF2.7
+....................          output_midievent(event); 
+003E6:  MOVFF  23,37
+003EA:  MOVFF  24,38
+003EE:  MOVFF  25,39
+003F2:  MOVFF  26,3A
+003F6:  MOVFF  27,3B
+003FA:  RCALL  0184
+003FC:  BTFSC  19.7
+003FE:  BSF    FF2.7
+....................       } else if (b == 0x03) {  //Wah-Wah Effect 
+00400:  BRA    062E
+00402:  MOVF   22,W
+00404:  SUBLW  03
+00406:  BNZ   0454
+....................          b = getc(xbee); 
+00408:  BTFSS  FA4.5
+0040A:  BRA    0408
+0040C:  MOVFF  F6E,22
+00410:  CLRF   19
+00412:  BTFSC  FF2.7
+00414:  BSF    19.7
+00416:  BCF    FF2.7
+....................          set_midievent(&event, 0xB0, 0x01, b); 
+00418:  CLRF   38
+0041A:  MOVLW  23
+0041C:  MOVWF  37
+0041E:  MOVLW  B0
+00420:  MOVWF  39
+00422:  MOVLW  01
+00424:  MOVWF  3A
+00426:  MOVFF  22,3B
+0042A:  RCALL  01BC
+0042C:  BTFSC  19.7
+0042E:  BSF    FF2.7
+00430:  CLRF   19
+00432:  BTFSC  FF2.7
+00434:  BSF    19.7
+00436:  BCF    FF2.7
+....................          output_midievent(event); 
+00438:  MOVFF  23,37
+0043C:  MOVFF  24,38
+00440:  MOVFF  25,39
+00444:  MOVFF  26,3A
+00448:  MOVFF  27,3B
+0044C:  RCALL  0184
+0044E:  BTFSC  19.7
+00450:  BSF    FF2.7
+....................       } else if (b == 0x04) {  //Arpeggio 
+00452:  BRA    062E
+00454:  MOVF   22,W
+00456:  SUBLW  04
+00458:  BNZ   04A6
+....................          b = getc(xbee); 
+0045A:  BTFSS  FA4.5
+0045C:  BRA    045A
+0045E:  MOVFF  F6E,22
+00462:  CLRF   19
+00464:  BTFSC  FF2.7
+00466:  BSF    19.7
+00468:  BCF    FF2.7
+....................          set_midievent(&event, 0xB0, 0x5C, b); 
+0046A:  CLRF   38
+0046C:  MOVLW  23
+0046E:  MOVWF  37
+00470:  MOVLW  B0
+00472:  MOVWF  39
+00474:  MOVLW  5C
+00476:  MOVWF  3A
+00478:  MOVFF  22,3B
+0047C:  RCALL  01BC
+0047E:  BTFSC  19.7
+00480:  BSF    FF2.7
+00482:  CLRF   19
+00484:  BTFSC  FF2.7
+00486:  BSF    19.7
+00488:  BCF    FF2.7
+....................          output_midievent(event); 
+0048A:  MOVFF  23,37
+0048E:  MOVFF  24,38
+00492:  MOVFF  25,39
+00496:  MOVFF  26,3A
+0049A:  MOVFF  27,3B
+0049E:  RCALL  0184
+004A0:  BTFSC  19.7
+004A2:  BSF    FF2.7
+....................       } else if (b == 0x05) {  //Scale-harmonizer 
+004A4:  BRA    062E
+004A6:  MOVF   22,W
+004A8:  SUBLW  05
+004AA:  BNZ   04F8
+....................          b = getc(xbee); 
+004AC:  BTFSS  FA4.5
+004AE:  BRA    04AC
+004B0:  MOVFF  F6E,22
+004B4:  CLRF   19
+004B6:  BTFSC  FF2.7
+004B8:  BSF    19.7
+004BA:  BCF    FF2.7
+....................          set_midievent(&event, 0xB0, 0x48, b); 
+004BC:  CLRF   38
+004BE:  MOVLW  23
+004C0:  MOVWF  37
+004C2:  MOVLW  B0
+004C4:  MOVWF  39
+004C6:  MOVLW  48
+004C8:  MOVWF  3A
+004CA:  MOVFF  22,3B
+004CE:  RCALL  01BC
+004D0:  BTFSC  19.7
+004D2:  BSF    FF2.7
+004D4:  CLRF   19
+004D6:  BTFSC  FF2.7
+004D8:  BSF    19.7
+004DA:  BCF    FF2.7
+....................          output_midievent(event); 
+004DC:  MOVFF  23,37
+004E0:  MOVFF  24,38
+004E4:  MOVFF  25,39
+004E8:  MOVFF  26,3A
+004EC:  MOVFF  27,3B
+004F0:  RCALL  0184
+004F2:  BTFSC  19.7
+004F4:  BSF    FF2.7
+....................       } else if (b == 0x06) {  //Pulser 
+004F6:  BRA    062E
+004F8:  MOVF   22,W
+004FA:  SUBLW  06
+004FC:  BNZ   054A
+....................          b = getc(xbee); 
+004FE:  BTFSS  FA4.5
+00500:  BRA    04FE
+00502:  MOVFF  F6E,22
+00506:  CLRF   19
+00508:  BTFSC  FF2.7
+0050A:  BSF    19.7
+0050C:  BCF    FF2.7
+....................          set_midievent(&event, 0xB0, 0x47, b); 
+0050E:  CLRF   38
+00510:  MOVLW  23
+00512:  MOVWF  37
+00514:  MOVLW  B0
+00516:  MOVWF  39
+00518:  MOVLW  47
+0051A:  MOVWF  3A
+0051C:  MOVFF  22,3B
+00520:  RCALL  01BC
+00522:  BTFSC  19.7
+00524:  BSF    FF2.7
+00526:  CLRF   19
+00528:  BTFSC  FF2.7
+0052A:  BSF    19.7
+0052C:  BCF    FF2.7
+....................          output_midievent(event); 
+0052E:  MOVFF  23,37
+00532:  MOVFF  24,38
+00536:  MOVFF  25,39
+0053A:  MOVFF  26,3A
+0053E:  MOVFF  27,3B
+00542:  RCALL  0184
+00544:  BTFSC  19.7
+00546:  BSF    FF2.7
+....................       } else if (b == 0x07) {  //Combined 
+00548:  BRA    062E
+0054A:  MOVF   22,W
+0054C:  SUBLW  07
+0054E:  BNZ   05E6
+....................          b = getc(xbee); 
+00550:  BTFSS  FA4.5
+00552:  BRA    0550
+00554:  MOVFF  F6E,22
+00558:  CLRF   19
+0055A:  BTFSC  FF2.7
+0055C:  BSF    19.7
+0055E:  BCF    FF2.7
+....................          set_midievent(&event, 0xB0, 0x5C, b); 
+00560:  CLRF   38
+00562:  MOVLW  23
+00564:  MOVWF  37
+00566:  MOVLW  B0
+00568:  MOVWF  39
+0056A:  MOVLW  5C
+0056C:  MOVWF  3A
+0056E:  MOVFF  22,3B
+00572:  RCALL  01BC
+00574:  BTFSC  19.7
+00576:  BSF    FF2.7
+00578:  CLRF   19
+0057A:  BTFSC  FF2.7
+0057C:  BSF    19.7
+0057E:  BCF    FF2.7
+....................          output_midievent(event); 
+00580:  MOVFF  23,37
+00584:  MOVFF  24,38
+00588:  MOVFF  25,39
+0058C:  MOVFF  26,3A
+00590:  MOVFF  27,3B
+00594:  RCALL  0184
+00596:  BTFSC  19.7
+00598:  BSF    FF2.7
+....................          b = getc(xbee); 
+0059A:  BTFSS  FA4.5
+0059C:  BRA    059A
+0059E:  MOVFF  F6E,22
+005A2:  CLRF   19
+005A4:  BTFSC  FF2.7
+005A6:  BSF    19.7
+005A8:  BCF    FF2.7
+....................          set_midievent(&event, 0xB0, 0x0C, b); 
+005AA:  CLRF   38
+005AC:  MOVLW  23
+005AE:  MOVWF  37
+005B0:  MOVLW  B0
+005B2:  MOVWF  39
+005B4:  MOVLW  0C
+005B6:  MOVWF  3A
+005B8:  MOVFF  22,3B
+005BC:  RCALL  01BC
+005BE:  BTFSC  19.7
+005C0:  BSF    FF2.7
+005C2:  CLRF   19
+005C4:  BTFSC  FF2.7
+005C6:  BSF    19.7
+005C8:  BCF    FF2.7
+....................          output_midievent(event); 
+005CA:  MOVFF  23,37
+005CE:  MOVFF  24,38
+005D2:  MOVFF  25,39
+005D6:  MOVFF  26,3A
+005DA:  MOVFF  27,3B
+005DE:  RCALL  0184
+005E0:  BTFSC  19.7
+005E2:  BSF    FF2.7
+....................       } else if (b == 0x09) { //Arpegiator toggle 
+005E4:  BRA    062E
+005E6:  MOVF   22,W
+005E8:  SUBLW  09
+005EA:  BNZ   062E
+005EC:  CLRF   19
+005EE:  BTFSC  FF2.7
+005F0:  BSF    19.7
+005F2:  BCF    FF2.7
+....................          set_midievent(&event, 0xB0, 0x18, 0x7F); 
+005F4:  CLRF   38
+005F6:  MOVLW  23
+005F8:  MOVWF  37
+005FA:  MOVLW  B0
+005FC:  MOVWF  39
+005FE:  MOVLW  18
+00600:  MOVWF  3A
+00602:  MOVLW  7F
+00604:  MOVWF  3B
+00606:  RCALL  01BC
+00608:  BTFSC  19.7
+0060A:  BSF    FF2.7
+0060C:  CLRF   19
+0060E:  BTFSC  FF2.7
+00610:  BSF    19.7
+00612:  BCF    FF2.7
+....................          output_midievent(event); 
+00614:  MOVFF  23,37
+00618:  MOVFF  24,38
+0061C:  MOVFF  25,39
+00620:  MOVFF  26,3A
+00624:  MOVFF  27,3B
+00628:  RCALL  0184
+0062A:  BTFSC  19.7
+0062C:  BSF    FF2.7
+....................       } 
+....................    } 
+0062E:  BRA    0356
+.................... } 
+....................  
+00630:  SLEEP 
+
+Configuration Fuses:
+   Word  1: 0200   HS NOIESO NOFCMEN RESERVED
+   Word  2: 1E1E   BROWNOUT NOWDT TO PUT WDT32768
+   Word  3: 83F3   CCP2C1 NOLPT1OSC MCLR MCU RESERVED NOWAIT BW16 ABW20 ECCPE
+   Word  4: 0081   STVREN NODEBUG NOLVP NOXINST RESERVED BBSIZ1K
+   Word  5: C0FF   NOPROTECT NOCPD NOCPB
+   Word  6: E0FF   NOWRT NOWRTD NOWRTC NOWRTB
+   Word  7: 40FF   NOEBTRB NOEBTR

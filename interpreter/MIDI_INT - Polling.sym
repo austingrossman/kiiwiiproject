@@ -1,0 +1,130 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @SCRATCH
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     @INTERRUPT_AREA
+018     @INTERRUPT_AREA
+019     @INTERRUPT_AREA
+01A-01C buffer
+01D     next_in
+01E     next_out
+01F     strt_rc
+020     stop_rc
+021     past_eventstatus
+022     MAIN.b
+023-027 MAIN.event
+02F     serial_isr1.status
+030     serial_isr1.num_databytes
+031     serial_isr1.data2
+032-036 serial_isr1.event
+037-03B output_midievent.event
+037-038 set_midievent.event
+037     lookup_mididatabytes.status
+037     serial_isr1.@SCRATCH1
+038     serial_isr1.@SCRATCH2
+039     set_midievent.status
+03A     set_midievent.data0
+03B     set_midievent.data1
+03B     set_midievent.@SCRATCH1
+03C     output_midievent.i
+03C     set_midievent.@SCRATCH2
+03C     set_midievent.@SCRATCH1
+03D     get_midievent.status
+03D     output_midievent.@SCRATCH1
+03D     set_midievent.@SCRATCH2
+03E     get_midievent.num_databytes
+03F     get_midievent.rbyte
+040     get_midievent.i
+041-045 get_midievent.event
+046     get_midievent.@SCRATCH1
+047     get_midievent.@SCRATCH2
+F71     CCP_5_HIGH
+F71     CCP_5_LOW
+F71     CCP_5
+F74     CCP_4
+F74     CCP_4_HIGH
+F74     CCP_4_LOW
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FB8     CCP_3
+FB8     CCP_3_HIGH
+FB8     CCP_3_LOW
+FBB     CCP_2_HIGH
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBE     CCP_1_LOW
+FBE     CCP_1_HIGH
+FBE     CCP_1
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+00017C  @PUTCHARI_BIU_1
+000184  output_midievent
+00012C  get_midievent
+0000A6  lookup_mididatabytes
+0001FA  set_midievent
+0001BC  set_midievent
+00022A  serial_isr1
+00030A  MAIN
+00030A  @cinit
+
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\Bob\Desktop\KiiWiiCode\interpreter\
+
+Project Files:
+    MIDI_INT - Polling.c
+    prototype8722alone.h
+    ..\..\..\..\..\Program Files (x86)\PICC\devices\18F8722.h
+    ..\..\..\..\..\Program Files (x86)\PICC\drivers\input.c
+    ..\..\..\..\..\Program Files (x86)\PICC\drivers\ctype.h
+    xbee_packet.h
+    midi.c
+
+Units:
+    C:\Users\Bob\Desktop\KiiWiiCode\interpreter\MIDI_INT - Polling.c (main)
+
+Compiler Settings:
+    Processor:      PIC18F8722
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      MIDI_INT - Polling.err
+    Ext Symbols: MIDI_INT - Polling.esym
+    INHX32:      MIDI_INT - Polling.hex
+    Symbols:     MIDI_INT - Polling.sym
+    List:        MIDI_INT - Polling.lst
+    Debug/COFF:  MIDI_INT - Polling.cof
+    Project:     MIDI_INT - Polling.PJT
+    Call Tree:   MIDI_INT - Polling.tre
+    Statistics:  MIDI_INT - Polling.sta
